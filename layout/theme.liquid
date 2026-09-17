@@ -123,6 +123,54 @@
         background-color: rgb(var(--color-background));
       }
 
+      html :root,
+      html .color-scheme-1 {
+        --color-background: 250, 251, 252;
+        --color-foreground: 28, 25, 23;
+        --color-button: 194, 65, 12;
+        --color-button-text: 255, 255, 255;
+        --color-secondary-button: 250, 251, 252;
+        --color-secondary-button-text: 15, 118, 110;
+        --color-link: 15, 118, 110;
+        --gradient-background: #fafbfc;
+      }
+      html .color-scheme-2 {
+        --color-background: 238, 241, 243;
+        --color-foreground: 28, 25, 23;
+        --color-button: 194, 65, 12;
+        --color-button-text: 255, 255, 255;
+        --color-secondary-button-text: 15, 118, 110;
+        --color-link: 15, 118, 110;
+        --gradient-background: #eef1f3;
+      }
+      html .color-scheme-3 {
+        --color-background: 28, 25, 23;
+        --color-foreground: 250, 251, 252;
+        --color-button: 194, 65, 12;
+        --color-button-text: 255, 255, 255;
+        --color-secondary-button-text: 250, 251, 252;
+        --color-link: 153, 246, 228;
+        --gradient-background: #1c1917;
+      }
+      html .color-scheme-4 {
+        --color-background: 194, 65, 12;
+        --color-foreground: 255, 255, 255;
+        --color-button: 255, 255, 255;
+        --color-button-text: 154, 52, 18;
+        --color-secondary-button-text: 255, 255, 255;
+        --color-link: 255, 255, 255;
+        --gradient-background: #c2410c;
+      }
+      html .color-scheme-5 {
+        --color-background: 15, 118, 110;
+        --color-foreground: 255, 255, 255;
+        --color-button: 255, 255, 255;
+        --color-button-text: 17, 94, 89;
+        --color-secondary-button-text: 255, 255, 255;
+        --color-link: 255, 255, 255;
+        --gradient-background: #0f766e;
+      }
+
       :root {
         --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
         --font-body-style: {{ settings.type_body_font.style }};
@@ -402,5 +450,6 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    {{ 'utility-kitchen.css' | asset_url | stylesheet_tag }}
   </body>
 </html>

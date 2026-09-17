@@ -55,13 +55,13 @@
 
 .custom-hero-slider__button {
   display: inline-block;
-  padding: 1rem 2.4rem;
-  font-size: 1.4rem;
+  padding: 1.1rem 2.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
   border-radius: 0.4rem;
-  text-transform: uppercase;
   text-decoration: none;
   line-height: 1.2;
+  min-height: 4.4rem;
 }
 
 .custom-hero-slider__button:hover {

@@ -12,7 +12,7 @@
             "heading": "",
             "text_color": "#ffffff",
             "button_label": "Shop kitchen",
-            "button_bg_color": "#1C1917",
+            "button_bg_color": "#C2410C",
             "button_text_color": "#ffffff"
           }
         },
@@ -25,7 +25,7 @@
             "heading": "",
             "text_color": "#ffffff",
             "button_label": "Shop gadgets",
-            "button_bg_color": "#1C1917",
+            "button_bg_color": "#0F766E",
             "button_text_color": "#ffffff"
           }
         },
@@ -38,7 +38,7 @@
             "heading": "",
             "text_color": "#ffffff",
             "button_label": "Shop bestsellers",
-            "button_bg_color": "#1C1917",
+            "button_bg_color": "#C2410C",
             "button_text_color": "#ffffff"
           }
         }
@@ -65,8 +65,8 @@
           "type": "item",
           "settings": {
             "icon": "truck",
-            "title": "Free shipping",
-            "text": "On orders across Pakistan"
+            "title": "Pakistan shipping",
+            "text": "Free delivery on eligible orders"
           }
         },
         "returns": {
@@ -74,30 +74,42 @@
           "settings": {
             "icon": "return",
             "title": "Easy returns",
-            "text": "Support after delivery"
+            "text": "Support after the parcel arrives"
           }
         }
       },
       "block_order": ["cod", "shipping", "returns"],
       "settings": {
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-2",
         "padding_top": 28,
         "padding_bottom": 28
       }
     },
     "shop_categories": {
-      "type": "collection-list",
+      "type": "uk-category-spotlight",
       "blocks": {
         "kitchen": {
-          "type": "featured_collection",
+          "type": "tile",
           "settings": {
-            "collection": "kitchen-accessories"
+            "collection": "kitchen-accessories",
+            "image": "shopify://shop_images/BIG_DEAL_2.png",
+            "kicker": "For the kitchen",
+            "heading": "Kitchen accessories",
+            "link": "shopify://collections/kitchen-accessories",
+            "button_label": "Shop kitchen",
+            "accent": "chili"
           }
         },
         "gadgets": {
-          "type": "featured_collection",
+          "type": "tile",
           "settings": {
-            "collection": "home-gadgets"
+            "collection": "home-gadgets",
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_10_20_26_PM.png",
+            "kicker": "For the home",
+            "heading": "Home gadgets",
+            "link": "shopify://collections/home-gadgets",
+            "button_label": "Shop gadgets",
+            "accent": "enamel"
           }
         }
       },
@@ -105,13 +117,8 @@
       "settings": {
         "title": "Shop by category",
         "heading_size": "h1",
-        "image_ratio": "square",
-        "columns_desktop": 2,
         "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 52,
+        "padding_top": 48,
         "padding_bottom": 20
       }
     },
@@ -140,7 +147,19 @@
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 36,
-        "padding_bottom": 52
+        "padding_bottom": 36
+      }
+    },
+    "cod_promo": {
+      "type": "uk-promo-strip",
+      "settings": {
+        "heading": "Cash on Delivery across Pakistan",
+        "heading_size": "h1",
+        "text": "Order kitchen tools and home gadgets, then pay when the parcel arrives.",
+        "button_label": "Shop bestsellers",
+        "button_link": "shopify://collections/all",
+        "padding_top": 44,
+        "padding_bottom": 44
       }
     },
     "daily_gadgets": {
@@ -168,55 +187,83 @@
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 52,
-        "padding_bottom": 52
+        "padding_bottom": 36
       }
     },
-    "why_smart_deal": {
-      "type": "multicolumn",
+    "how_it_works": {
+      "type": "uk-how-it-works",
       "blocks": {
-        "cod": {
-          "type": "column",
+        "pick": {
+          "type": "step",
           "settings": {
-            "title": "Cash on Delivery",
-            "text": "<p>Order kitchen tools and home gadgets and pay when the parcel arrives.</p>",
-            "link_label": "",
-            "link": ""
+            "heading": "Pick a tool",
+            "text": "Choose kitchen accessories or a daily home gadget that earns its place on the counter."
           }
         },
-        "deals": {
-          "type": "column",
+        "order": {
+          "type": "step",
           "settings": {
-            "title": "Everyday prices",
-            "text": "<p>Practical products chosen for daily use, not showroom markup.</p>",
-            "link_label": "",
-            "link": ""
+            "heading": "Place the order",
+            "text": "Checkout in minutes. We ship across Pakistan so your kitchen stays stocked."
           }
         },
-        "delivery": {
-          "type": "column",
+        "pay": {
+          "type": "step",
           "settings": {
-            "title": "Pakistan delivery",
-            "text": "<p>We ship across the country so your kitchen and home stay stocked.</p>",
-            "link_label": "",
-            "link": ""
+            "heading": "Pay on delivery",
+            "text": "Cash on Delivery on eligible orders. Check the parcel, then pay."
           }
         }
       },
-      "block_order": ["cod", "deals", "delivery"],
+      "block_order": ["pick", "order", "pay"],
       "settings": {
-        "title": "Why Smart Deal",
+        "title": "Order in three steps",
         "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "none",
         "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 52,
+        "padding_top": 48,
+        "padding_bottom": 36
+      }
+    },
+    "kitchen_story": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Tools for the everyday kitchen",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Smart Deal is built for daily cooking and small-home jobs: peelers, organizers, chargers, and the gadgets you actually reach for. Practical prices, Pakistan delivery, and Cash on Delivery on eligible orders.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop kitchen accessories",
+            "button_link": "shopify://collections/kitchen-accessories",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": ["heading", "text", "button"],
+      "settings": {
+        "image": "shopify://shop_images/Untitled_design_3.png",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
         "padding_bottom": 36
       }
     },
@@ -226,14 +273,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "New tools, sent quietly",
-            "heading_size": "h2"
+            "heading": "Get restocks first",
+            "heading_size": "h1"
           }
         },
         "paragraph": {
           "type": "paragraph",
           "settings": {
-            "text": "<p>Be first to know when kitchen and home gadgets restock.</p>"
+            "text": "<p>Kitchen tools and home gadgets, plus COD-friendly deals.</p>"
           }
         },
         "email_form": {
@@ -243,10 +290,10 @@
       },
       "block_order": ["heading", "paragraph", "email_form"],
       "settings": {
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-5",
         "full_width": true,
-        "padding_top": 52,
-        "padding_bottom": 52
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     }
   },
@@ -255,8 +302,10 @@
     "trust_bar",
     "shop_categories",
     "best_sellers",
+    "cod_promo",
     "daily_gadgets",
-    "why_smart_deal",
+    "how_it_works",
+    "kitchen_story",
     "newsletter"
   ]
 }
