@@ -803,6 +803,59 @@ ul.product-grid > li {
   padding: 0.4rem;
 }
 
+.uk-switch__title {
+  margin: 0 0 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.uk-switch__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.uk-switch__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 4.4rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid #dce3e8;
+  background: var(--uk-white);
+  color: var(--uk-ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.uk-switch__links a:hover {
+  border-color: var(--uk-chili);
+  color: var(--uk-chili);
+}
+
+.template-404 {
+  padding: 6rem 0 8rem;
+}
+
+.template-404 .title {
+  margin: 0.8rem 0 2.4rem;
+}
+
+.customer h1,
+.customer h2 {
+  letter-spacing: -0.03em;
+}
+
+.customer button {
+  background: var(--uk-chili);
+  color: var(--uk-white);
+  border-color: var(--uk-chili);
+}
+
+.collection-hero {
+  background: var(--uk-steel);
+}
+
 @media screen and (min-width: 750px) {
   .trust-bar__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));

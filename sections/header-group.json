@@ -11,18 +11,11 @@
             "text": "Free shipping + Cash on Delivery across Pakistan",
             "link": "shopify://collections/all"
           }
-        },
-        "announcement-bar-1": {
-          "type": "announcement",
-          "settings": {
-            "text": "Kitchen accessories and daily home gadgets",
-            "link": "shopify://collections/kitchen-accessories"
-          }
         }
       },
-      "block_order": ["announcement-bar-0", "announcement-bar-1"],
+      "block_order": ["announcement-bar-0"],
       "settings": {
-        "auto_rotate": true,
+        "auto_rotate": false,
         "change_slides_speed": 5,
         "color_scheme": "scheme-4",
         "show_line_separator": false,

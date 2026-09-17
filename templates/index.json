@@ -224,6 +224,55 @@
         "padding_bottom": 36
       }
     },
+    "why_smart_deal": {
+      "type": "multicolumn",
+      "blocks": {
+        "cod": {
+          "type": "column",
+          "settings": {
+            "title": "Cash on Delivery",
+            "text": "<p>Order kitchen tools and home gadgets and pay when the parcel arrives.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "deals": {
+          "type": "column",
+          "settings": {
+            "title": "Everyday prices",
+            "text": "<p>Practical products chosen for daily use, not showroom markup.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "delivery": {
+          "type": "column",
+          "settings": {
+            "title": "Pakistan delivery",
+            "text": "<p>We ship across the country so your kitchen and home stay stocked.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["cod", "deals", "delivery"],
+      "settings": {
+        "title": "Why Smart Deal",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 24
+      }
+    },
     "kitchen_story": {
       "type": "image-with-text",
       "blocks": {
@@ -305,6 +354,7 @@
     "cod_promo",
     "daily_gadgets",
     "how_it_works",
+    "why_smart_deal",
     "kitchen_story",
     "newsletter"
   ]

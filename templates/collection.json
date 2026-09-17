@@ -8,6 +8,50 @@
         "color_scheme": "scheme-2"
       }
     },
+    "trust_bar": {
+      "type": "trust-bar",
+      "blocks": {
+        "cod": {
+          "type": "item",
+          "settings": {
+            "icon": "box",
+            "title": "Cash on Delivery",
+            "text": "Pay when your order arrives"
+          }
+        },
+        "shipping": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Pakistan shipping",
+            "text": "Free delivery on eligible orders"
+          }
+        },
+        "returns": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "Easy returns",
+            "text": "Support after the parcel arrives"
+          }
+        }
+      },
+      "block_order": ["cod", "shipping", "returns"],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "padding_top": 24,
+        "padding_bottom": 8
+      }
+    },
+    "category_switch": {
+      "type": "uk-category-switch",
+      "settings": {
+        "title": "Shop by category",
+        "color_scheme": "scheme-1",
+        "padding_top": 16,
+        "padding_bottom": 8
+      }
+    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
@@ -24,10 +68,10 @@
         "filter_type": "horizontal",
         "enable_sorting": true,
         "columns_mobile": "2",
-        "padding_top": 36,
+        "padding_top": 24,
         "padding_bottom": 52
       }
     }
   },
-  "order": ["banner", "product-grid"]
+  "order": ["banner", "trust_bar", "category_switch", "product-grid"]
 }
