@@ -7,7 +7,7 @@
           "type": "text",
           "settings": {
             "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
+            "text_style": "subtitle"
           }
         },
         "title": {
@@ -36,9 +36,30 @@
             "show_gift_card_recipient": true
           }
         },
+        "trust_icons": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "box",
+            "heading_1": "Cash on Delivery",
+            "icon_2": "truck",
+            "heading_2": "Pakistan shipping",
+            "icon_3": "return",
+            "heading_3": "Easy returns"
+          }
+        },
         "description": {
           "type": "description",
           "settings": {}
+        },
+        "shipping_tab": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping and COD",
+            "icon": "truck",
+            "content": "<p>We deliver across Pakistan. Cash on Delivery is available on eligible orders — pay when the parcel arrives.</p>",
+            "page": ""
+          }
         },
         "share": {
           "type": "share",
@@ -54,7 +75,9 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "trust_icons",
         "description",
+        "shipping_tab",
         "share"
       ],
       "settings": {
