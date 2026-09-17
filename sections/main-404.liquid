@@ -1,15 +1,3 @@
-<style type="text/css">
-  .template-404 .title + * {
-    margin-top: 1rem;
-  }
-
-  @media screen and (min-width: 750px) {
-    .template-404 .title + * {
-      margin-top: 2rem;
-    }
-  }
-</style>
-
 <div class="template-404 page-width page-margin center">
   <p>
     {{ 'templates.404.subtext' | t }}
@@ -20,4 +8,14 @@
   <a href="{{ routes.all_products_collection_url }}" class="button">
     {{ 'general.continue_shopping' | t }}
   </a>
+  <div class="template-404__links">
+    <a href="{{ routes.collections_url }}/kitchen-accessories" class="button button--secondary">Kitchen accessories</a>
+    <a href="{{ routes.collections_url }}/home-gadgets" class="button button--secondary">Home gadgets</a>
+  </div>
 </div>
+
+{% schema %}
+{
+  "name": "t:sections.main-404.name"
+}
+{% endschema %}

@@ -8,11 +8,11 @@
           "settings": {
             "desktop_image": "shopify://shop_images/BIG_DEAL_2.png",
             "mobile_image": "shopify://shop_images/BIG_DEAL_2.png",
-            "banner_link": "shopify://collections/all",
+            "banner_link": "shopify://collections/kitchen-accessories",
             "heading": "",
             "text_color": "#ffffff",
-            "button_label": "Shop Now",
-            "button_bg_color": "#C24A0A",
+            "button_label": "Shop kitchen",
+            "button_bg_color": "#1C1917",
             "button_text_color": "#ffffff"
           }
         },
@@ -21,11 +21,11 @@
           "settings": {
             "desktop_image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_10_20_26_PM.png",
             "mobile_image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_10_20_26_PM.png",
-            "banner_link": "shopify://collections/all",
+            "banner_link": "shopify://collections/home-gadgets",
             "heading": "",
             "text_color": "#ffffff",
-            "button_label": "Shop Now",
-            "button_bg_color": "#C24A0A",
+            "button_label": "Shop gadgets",
+            "button_bg_color": "#1C1917",
             "button_text_color": "#ffffff"
           }
         },
@@ -37,8 +37,8 @@
             "banner_link": "shopify://collections/all",
             "heading": "",
             "text_color": "#ffffff",
-            "button_label": "Shop Now",
-            "button_bg_color": "#C24A0A",
+            "button_label": "Shop bestsellers",
+            "button_bg_color": "#1C1917",
             "button_text_color": "#ffffff"
           }
         }
@@ -47,53 +47,80 @@
       "name": "Custom Hero Slider",
       "settings": {
         "autoplay": true,
-        "autoplay_speed": 4
+        "autoplay_speed": 5
       }
     },
-    "image_banner": {
-      "type": "image-banner",
+    "trust_bar": {
+      "type": "trust-bar",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "cod": {
+          "type": "item",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "icon": "box",
+            "title": "Cash on Delivery",
+            "text": "Pay when your order arrives"
           }
         },
-        "button": {
-          "type": "buttons",
+        "shipping": {
+          "type": "item",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "icon": "truck",
+            "title": "Free shipping",
+            "text": "On orders across Pakistan"
+          }
+        },
+        "returns": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "Easy returns",
+            "text": "Support after delivery"
           }
         }
       },
-      "block_order": ["heading", "button"],
-      "disabled": true,
+      "block_order": ["cod", "shipping", "returns"],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "small",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "color_scheme": "scheme-5",
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     },
-    "featured_collection_JtEtKb": {
+    "shop_categories": {
+      "type": "collection-list",
+      "blocks": {
+        "kitchen": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "kitchen-accessories"
+          }
+        },
+        "gadgets": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "home-gadgets"
+          }
+        }
+      },
+      "block_order": ["kitchen", "gadgets"],
+      "settings": {
+        "title": "Shop by category",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 2,
+        "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 52,
+        "padding_bottom": 20
+      }
+    },
+    "best_sellers": {
       "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "all",
-        "products_to_show": 12,
-        "title": "Featured collection",
+        "products_to_show": 8,
+        "title": "Best sellers",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
@@ -104,7 +131,7 @@
         "show_view_all": true,
         "view_all_style": "solid",
         "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
@@ -113,9 +140,123 @@
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 36,
+        "padding_bottom": 52
+      }
+    },
+    "daily_gadgets": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "home-gadgets",
+        "products_to_show": 8,
+        "title": "Daily home gadgets",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "color_scheme": "scheme-2",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "why_smart_deal": {
+      "type": "multicolumn",
+      "blocks": {
+        "cod": {
+          "type": "column",
+          "settings": {
+            "title": "Cash on Delivery",
+            "text": "<p>Order kitchen tools and home gadgets and pay when the parcel arrives.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "deals": {
+          "type": "column",
+          "settings": {
+            "title": "Everyday prices",
+            "text": "<p>Practical products chosen for daily use, not showroom markup.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "delivery": {
+          "type": "column",
+          "settings": {
+            "title": "Pakistan delivery",
+            "text": "<p>We ship across the country so your kitchen and home stay stocked.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["cod", "deals", "delivery"],
+      "settings": {
+        "title": "Why Smart Deal",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 52,
         "padding_bottom": 36
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "New tools, sent quietly",
+            "heading_size": "h2"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Be first to know when kitchen and home gadgets restock.</p>"
+          }
+        },
+        "email_form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": ["heading", "paragraph", "email_form"],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 52
       }
     }
   },
-  "order": ["custom_hero_slider_dfk6ij", "image_banner", "featured_collection_JtEtKb"]
+  "order": [
+    "custom_hero_slider_dfk6ij",
+    "trust_bar",
+    "shop_categories",
+    "best_sellers",
+    "daily_gadgets",
+    "why_smart_deal",
+    "newsletter"
+  ]
 }

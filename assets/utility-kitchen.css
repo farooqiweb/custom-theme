@@ -1,0 +1,114 @@
+.utility-kitchen-heading,
+h1, h2, h3, .h0, .h1, .h2, .hxl, .hxxl {
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.price {
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+
+.header__menu-item,
+.list-menu__item {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.card--card,
+.card--standard .card__inner,
+.collection-card-wrapper .card {
+  border-radius: var(--product-card-corner-radius);
+}
+
+.button,
+.shopify-payment-button__button {
+  letter-spacing: 0.01em;
+}
+
+.footer-greeting {
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  padding: 1.6rem 1.5rem 0;
+  direction: rtl;
+}
+
+.product-cod-note {
+  margin: 1.2rem 0 0;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: #0f766e;
+}
+
+.trust-bar {
+  display: block;
+}
+
+.trust-bar__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.trust-bar__item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.trust-bar__icon {
+  flex: 0 0 2.4rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  color: currentColor;
+}
+
+.trust-bar__icon svg {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: block;
+}
+
+.trust-bar__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.trust-bar__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.trust-bar__text {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.template-404__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+}
+
+@media screen and (min-width: 750px) {
+  .trust-bar__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.4rem;
+  }
+
+  .footer-greeting {
+    font-size: 1.5rem;
+    padding-top: 2rem;
+  }
+}

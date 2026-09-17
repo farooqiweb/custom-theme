@@ -5,46 +5,20 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
-        "announcement_nN6ATM": {
-          "type": "announcement",
-          "settings": {
-            "text": "الصَّلَاةُ وَالسَّلَامُ عَلَيْكَ يَا رَسُولَ اللَّهِ وَعَلَى آلِكَ وَأَصْحَابِكَ يَا حَبِيبَ اللَّهِ",
-            "link": ""
-          }
-        },
-        "announcement_WbLcyQ": {
-          "type": "announcement",
-          "settings": {
-            "text": "Enjoy Free Shipping + Cash on Delivery (COD)",
-            "link": ""
-          }
-        },
-        "announcement_f3Y8wp": {
-          "type": "announcement",
-          "settings": {
-            "text": "Flat 40% Off",
-            "link": ""
-          }
-        },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to Smart Deal.pk",
+            "text": "Free shipping + Cash on Delivery across Pakistan",
             "link": ""
           }
         }
       },
-      "block_order": [
-        "announcement_nN6ATM",
-        "announcement_WbLcyQ",
-        "announcement_f3Y8wp",
-        "announcement-bar-0"
-      ],
+      "block_order": ["announcement-bar-0"],
       "settings": {
-        "auto_rotate": true,
-        "change_slides_speed": 3,
-        "color_scheme": "scheme-5",
-        "show_line_separator": true,
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-4",
+        "show_line_separator": false,
         "show_social": false,
         "enable_country_selector": false,
         "enable_language_selector": false
@@ -59,14 +33,14 @@
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
-        "color_scheme": "scheme-ee4ae223-7f4a-4a9f-888a-b6f874bf5adf",
-        "menu_color_scheme": "scheme-278dc53b-b3e1-4bd8-a3a0-6d31ff684761",
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
         "enable_country_selector": false,
         "enable_language_selector": false,
         "enable_customer_avatar": true,
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 16,
+        "padding_bottom": 16
       }
     }
   },
