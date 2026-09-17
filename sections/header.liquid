@@ -180,6 +180,20 @@
       {%- endif -%}
     {%- endif -%}
 
+    <form action="{{ routes.search_url }}" method="get" role="search" class="uk-header-search">
+      <label class="visually-hidden" for="uk-HeaderSearch">Search</label>
+      <input
+        id="uk-HeaderSearch"
+        class="uk-header-search__input"
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="Search kitchen and home tools"
+      >
+      <input type="hidden" name="options[prefix]" value="last">
+      <button class="uk-header-search__submit" type="submit">Search</button>
+    </form>
+
     {%- liquid
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
@@ -285,12 +299,13 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart uk-header-cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
         {% else %}
           <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
         {% endif %}
+        <span class="uk-header-cart__label small-hide">Cart</span>
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
           <div class="cart-count-bubble">
@@ -303,6 +318,14 @@
       </a>
     </div>
   </header>
+  <nav class="uk-header-cats" aria-label="Shop categories">
+    <div class="uk-header-cats__inner page-width">
+      <a href="{{ routes.collections_url }}/kitchen-accessories">Kitchen accessories</a>
+      <a href="{{ routes.collections_url }}/home-gadgets">Home gadgets</a>
+      <a href="{{ routes.all_products_collection_url }}">Bestsellers</a>
+      <a href="{{ pages.contact.url | default: routes.root_url }}">Contact</a>
+    </div>
+  </nav>
 </{{ header_tag }}>
 
 {%- if settings.cart_type == 'notification' -%}

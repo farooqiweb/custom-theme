@@ -207,9 +207,11 @@
               {%- endif -%}
 
               {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-              {%- if card_product.available -%}
-                <p class="uk-card-cod">Cash on Delivery</p>
-              {%- endif -%}
+              <p class="uk-card-cod{% unless card_product.available %} uk-card-cod--empty{% endunless %}">
+                {%- if card_product.available -%}
+                  Cash on Delivery
+                {%- endif -%}
+              </p>
               {%- if card_product.quantity_price_breaks_configured? -%}
                 {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                   {% liquid
