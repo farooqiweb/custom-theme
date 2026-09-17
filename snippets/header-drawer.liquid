@@ -21,6 +21,18 @@
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              <li>
+                <a class="menu-drawer__menu-item list-menu__item link link--text focus-inset" href="{{ routes.collections_url }}/kitchen-accessories">Kitchen accessories</a>
+              </li>
+              <li>
+                <a class="menu-drawer__menu-item list-menu__item link link--text focus-inset" href="{{ routes.collections_url }}/home-gadgets">Home gadgets</a>
+              </li>
+              <li>
+                <a class="menu-drawer__menu-item list-menu__item link link--text focus-inset" href="{{ routes.all_products_collection_url }}">Bestsellers</a>
+              </li>
+              <li>
+                <a class="menu-drawer__menu-item list-menu__item link link--text focus-inset" href="{{ pages.contact.url | default: routes.root_url }}">Contact</a>
+              </li>
               {%- for link in section.settings.menu.links -%}
                 <li>
                   {%- if link.links != blank -%}

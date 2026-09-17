@@ -1,0 +1,304 @@
+.uk-store-header {
+  background: #fafbfc;
+  box-shadow: 0 10px 28px rgba(28, 25, 23, 0.08);
+  z-index: 20;
+}
+
+.uk-store-header.header-wrapper {
+  border-bottom: 0;
+}
+
+.uk-store-header header-drawer {
+  margin-left: 0;
+  justify-self: start;
+}
+
+.uk-store-header .header {
+  display: flex !important;
+  grid-template-columns: none !important;
+  grid-template-areas: none !important;
+  align-items: center;
+  gap: 1.2rem;
+  min-height: 7.4rem;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+}
+
+.uk-store-header .header__heading,
+.uk-store-header .header > .header__heading-link,
+.uk-store-header .header__icons,
+.uk-store-header .header__inline-menu,
+.uk-store-header header-drawer {
+  grid-area: auto !important;
+  justify-self: auto !important;
+}
+
+.uk-store-header .header__heading {
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.uk-store-header .header__heading-link {
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.uk-store-header .header__heading-logo {
+  max-height: 5.2rem;
+  width: auto;
+}
+
+.uk-store-header .uk-head__wordmark {
+  display: inline-block;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: #1c1917;
+}
+
+.uk-store-header .header__inline-menu,
+.uk-store-header header-menu {
+  display: none !important;
+}
+
+.uk-store-header .uk-header-search {
+  display: none;
+  align-items: stretch;
+  flex: 1 1 22rem;
+  max-width: 58rem;
+  min-width: 0;
+  background: #eef1f3;
+  border: 1px solid #d7dee4;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.uk-store-header .uk-header-search__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 1rem 1.6rem;
+  font-size: 1.5rem;
+  color: #1c1917;
+}
+
+.uk-store-header .uk-header-search__input:focus {
+  outline: none;
+}
+
+.uk-store-header .uk-header-search__input:focus-visible {
+  box-shadow: inset 0 0 0 2px #0f766e;
+}
+
+.uk-store-header .uk-header-search__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0;
+  background: #c2410c;
+  color: #fff;
+  font-weight: 600;
+  padding: 0 1.6rem;
+  min-height: 4.6rem;
+  cursor: pointer;
+}
+
+.uk-store-header .uk-header-search__submit:hover {
+  background: #9a3412;
+}
+
+.uk-store-header .uk-header-search__submit .svg-wrapper,
+.uk-store-header .uk-header-search__submit svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  color: #fff;
+}
+
+.uk-store-header .header__icons {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-right: 0;
+}
+
+.uk-store-header .header__icon {
+  width: auto;
+  height: auto;
+}
+
+.uk-store-header .header__icon--account {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 4.6rem;
+  padding: 0 1.2rem;
+  border-radius: 999px;
+  border: 1px solid #d7dee4;
+  background: #fff;
+  color: #1c1917;
+}
+
+.uk-store-header .header__icon--account .svg-wrapper,
+.uk-store-header .header__icon--account .svg-wrapper svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.uk-store-header .uk-head__account-label,
+.uk-store-header .uk-header-cart__label {
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.uk-store-header .uk-header-cart {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+  min-height: 4.6rem;
+  min-width: 4.6rem;
+  padding: 0 1.4rem;
+  border-radius: 999px;
+  background: #c2410c !important;
+  color: #fff !important;
+}
+
+.uk-store-header .uk-header-cart:hover {
+  background: #9a3412 !important;
+}
+
+.uk-store-header .uk-header-cart .svg-wrapper,
+.uk-store-header .uk-header-cart .svg-wrapper svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  color: #fff;
+}
+
+.uk-store-header .uk-header-cart .cart-count-bubble {
+  top: 0.2rem;
+  right: 0.3rem;
+  bottom: auto;
+  left: auto;
+  background: #1c1917;
+  color: #fff;
+}
+
+.uk-header-cats {
+  background: #1c1917;
+  border-top: 3px solid #c2410c;
+}
+
+.uk-header-cats__inner {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  overflow-x: auto;
+  padding: 0.55rem 0;
+  scrollbar-width: none;
+}
+
+.uk-header-cats__inner::-webkit-scrollbar {
+  display: none;
+}
+
+.uk-header-cats a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 4.4rem;
+  padding: 0 1.15rem;
+  border-radius: 999px;
+  color: #fafbfc;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.4rem;
+  white-space: nowrap;
+}
+
+.uk-header-cats a:hover,
+.uk-header-cats a:focus-visible {
+  background: rgba(250, 251, 252, 0.1);
+  color: #fdba74;
+}
+
+.uk-header-cats__icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  object-fit: contain;
+}
+
+.uk-header-cats__cod {
+  margin-left: auto;
+  background: #0f766e;
+  color: #fff !important;
+}
+
+.uk-header-cats__cod:hover,
+.uk-header-cats__cod:focus-visible {
+  background: #115e59;
+  color: #fff !important;
+}
+
+@media screen and (max-width: 749px) {
+  .uk-store-header .header {
+    display: grid !important;
+    grid-template-columns: 4.8rem minmax(0, 1fr) auto !important;
+    grid-template-areas: "menu logo icons" !important;
+    column-gap: 0.6rem;
+    min-height: 6.4rem;
+  }
+
+  .uk-store-header header-drawer {
+    grid-area: menu !important;
+  }
+
+  .uk-store-header .header__heading,
+  .uk-store-header .header > .header__heading-link {
+    grid-area: logo !important;
+    justify-self: center !important;
+  }
+
+  .uk-store-header .header__icons {
+    grid-area: icons !important;
+    margin-left: 0;
+  }
+
+  .uk-store-header .uk-header-search {
+    display: none !important;
+  }
+
+  .uk-store-header .uk-header-cart {
+    padding: 0 1rem;
+  }
+
+  .uk-store-header .uk-head__wordmark {
+    font-size: 1.7rem;
+  }
+
+  .uk-header-cats__cod {
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .uk-store-header .uk-header-search {
+    display: flex !important;
+  }
+
+  .uk-store-header .header__search {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uk-store-header *,
+  .uk-header-cats * {
+    transition: none !important;
+  }
+}

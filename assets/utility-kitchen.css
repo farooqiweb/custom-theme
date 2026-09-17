@@ -294,34 +294,7 @@ button.shopify-payment-button__button--unbranded:hover {
   background-color: var(--uk-white);
 }
 
-@media screen and (min-width: 990px) {
-  .header--middle-left {
-    grid-template-areas:
-      "heading search icons"
-      "navigation navigation navigation";
-    grid-template-columns: auto minmax(18rem, 1fr) auto;
-    row-gap: 0.8rem;
-  }
-
-  .header--middle-left .header__heading {
-    grid-area: heading;
-  }
-
-  .header--middle-left .uk-header-search {
-    display: flex;
-    grid-area: search;
-    justify-self: stretch;
-  }
-
-  .header--middle-left .header__inline-menu {
-    grid-area: navigation;
-    margin-left: 0;
-  }
-
-  .header--middle-left .header__icons {
-    grid-area: icons;
-  }
-
+@media screen and (min-width: 750px) {
   .header .header__search {
     display: none;
   }

@@ -1,3 +1,4 @@
+{{ 'uk-header.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -122,7 +123,7 @@
   {% if header_tag == 'sticky-header' %}
     data-sticky-type="{{ section.settings.sticky_header_type }}"
   {% endif %}
-  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
+  class="header-wrapper uk-store-header color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
 >
   {%- liquid
     assign social_links = false
@@ -172,7 +173,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <span class="h2 uk-head__wordmark">{{ shop.name }}</span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -191,7 +192,10 @@
         placeholder="Search kitchen and home tools"
       >
       <input type="hidden" name="options[prefix]" value="last">
-      <button class="uk-header-search__submit" type="submit">Search</button>
+      <button class="uk-header-search__submit" type="submit">
+        <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
+        <span class="small-hide">Search</span>
+      </button>
     </form>
 
     {%- liquid
@@ -229,7 +233,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <span class="h2 uk-head__wordmark">{{ shop.name }}</span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -280,6 +284,7 @@
           {%- else -%}
             <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
           {%- endif -%}
+          <span class="uk-head__account-label small-hide">{% if customer %}Account{% else %}Log in{% endif %}</span>
           <span class="visually-hidden">
             {%- liquid
               if customer
@@ -320,10 +325,26 @@
   </header>
   <nav class="uk-header-cats" aria-label="Shop categories">
     <div class="uk-header-cats__inner page-width">
-      <a href="{{ routes.collections_url }}/kitchen-accessories">Kitchen accessories</a>
-      <a href="{{ routes.collections_url }}/home-gadgets">Home gadgets</a>
-      <a href="{{ routes.all_products_collection_url }}">Bestsellers</a>
-      <a href="{{ pages.contact.url | default: routes.root_url }}">Contact</a>
+      <a href="{{ routes.collections_url }}/kitchen-accessories">
+        <img class="uk-header-cats__icon" src="{{ 'uk-icon-bag.png' | asset_url }}" alt="" width="48" height="48">
+        Kitchen accessories
+      </a>
+      <a href="{{ routes.collections_url }}/home-gadgets">
+        <img class="uk-header-cats__icon" src="{{ 'uk-icon-pay.png' | asset_url }}" alt="" width="48" height="48">
+        Home gadgets
+      </a>
+      <a href="{{ routes.all_products_collection_url }}">
+        <img class="uk-header-cats__icon" src="{{ 'uk-icon-truck.png' | asset_url }}" alt="" width="48" height="48">
+        Bestsellers
+      </a>
+      <a href="{{ pages.contact.url | default: routes.root_url }}">
+        <img class="uk-header-cats__icon" src="{{ 'uk-icon-return.png' | asset_url }}" alt="" width="48" height="48">
+        Contact
+      </a>
+      <a class="uk-header-cats__cod" href="{{ routes.all_products_collection_url }}">
+        <img class="uk-header-cats__icon" src="{{ 'uk-icon-cod.png' | asset_url }}" alt="" width="48" height="48">
+        Cash on Delivery
+      </a>
     </div>
   </nav>
 </{{ header_tag }}>
