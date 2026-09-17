@@ -24,6 +24,16 @@
 .custom-hero-slider__slide {
   min-width: 100%;
   position: relative;
+  overflow: hidden;
+}
+
+.custom-hero-slider__slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(28, 25, 23, 0.18) 10%, rgba(28, 25, 23, 0.5) 100%);
+  pointer-events: none;
 }
 
 .custom-hero-slider__picture,
@@ -32,6 +42,20 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+.custom-hero-slider__img {
+  animation: uk-kenburns 14s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes uk-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
 }
 
 .custom-hero-slider__content {
@@ -174,6 +198,11 @@
 @media (prefers-reduced-motion: reduce) {
   .custom-hero-slider__track {
     transition: none;
+  }
+
+  .custom-hero-slider__img {
+    animation: none;
+    transform: none;
   }
 }
 

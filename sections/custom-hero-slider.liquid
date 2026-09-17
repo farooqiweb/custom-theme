@@ -16,6 +16,12 @@
     {% for block in section.blocks %}
       {%- liquid
         assign desktop_image = block.settings.desktop_image
+        assign fallback_image = 'uk-hero-kitchen.jpg'
+        if forloop.index == 2
+          assign fallback_image = 'uk-hero-gadgets.jpg'
+        elsif forloop.index == 3
+          assign fallback_image = 'uk-hero-bestsellers.jpg'
+        endif
         assign mobile_image = block.settings.mobile_image
         assign slide_alt = desktop_image.alt | default: mobile_image.alt | default: block.settings.heading | default: shop.name
         assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
@@ -75,7 +81,18 @@
             {%- endif -%}
           </picture>
         {%- else -%}
-          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg custom-hero-slider__img' }}
+          <img
+            class="custom-hero-slider__img"
+            src="{{ fallback_image | asset_url }}"
+            alt="{{ slide_alt | escape }}"
+            width="1920"
+            height="1080"
+            {% if fetch_priority == 'high' %}
+              fetchpriority="high"
+            {% else %}
+              loading="lazy"
+            {% endif %}
+          >
         {%- endif -%}
 
         {%- if block.settings.heading != blank or block.settings.button_label != blank -%}

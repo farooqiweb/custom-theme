@@ -506,24 +506,25 @@ button.shopify-payment-button__button--unbranded:hover {
 }
 
 .trust-bar__icon {
-  flex: 0 0 4.8rem;
-  width: 4.8rem;
-  height: 4.8rem;
-  border-radius: 999px;
+  flex: 0 0 7.2rem;
+  width: 7.2rem;
+  height: 7.2rem;
+  border-radius: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--uk-enamel);
-  color: var(--uk-white);
+  background: var(--uk-steel);
+  overflow: visible;
 }
 
 .trust-bar__item:nth-child(2) .trust-bar__icon {
-  background: var(--uk-chili);
+  background: var(--uk-steel);
 }
 
-.trust-bar__icon svg {
-  width: 2.4rem;
-  height: 2.4rem;
+.trust-bar__icon svg,
+.trust-bar__icon .uk-icon-3d {
+  width: 6.4rem;
+  height: 6.4rem;
   display: block;
 }
 
@@ -607,6 +608,7 @@ button.shopify-payment-button__button--unbranded:hover {
   color: var(--uk-white);
   text-decoration: none;
   background: var(--uk-ink);
+  perspective: 800px;
 }
 
 .uk-spotlight__tile img,
@@ -616,6 +618,7 @@ button.shopify-payment-button__button--unbranded:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
 .uk-spotlight__tile::after {
@@ -681,6 +684,11 @@ button.shopify-payment-button__button--unbranded:hover {
   align-items: flex-start;
 }
 
+.uk-promo__icon {
+  width: 7.2rem;
+  height: 7.2rem;
+}
+
 .uk-promo__inner h2 {
   margin: 0;
   color: var(--uk-white);
@@ -728,6 +736,20 @@ button.shopify-payment-button__button--unbranded:hover {
   border: 1px solid #dce3e8;
   border-radius: 1.2rem;
   padding: 2rem;
+}
+
+.uk-steps__icon {
+  width: 6.4rem;
+  height: 6.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.uk-icon-3d {
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(28, 25, 23, 0.18));
+  transform: perspective(480px) rotateX(10deg) rotateY(-12deg);
+  animation: uk-float 3.2s ease-in-out infinite;
 }
 
 .uk-steps__index {
@@ -817,8 +839,11 @@ button.shopify-payment-button__button--unbranded:hover {
   border-color: var(--uk-chili);
 }
 
-.collection-hero {
-  background: var(--uk-steel);
+.image-with-text__media img,
+.uk-story-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media screen and (min-width: 750px) {
@@ -860,8 +885,28 @@ button.shopify-payment-button__button--unbranded:hover {
     box-shadow: 0 10px 24px rgba(28, 25, 23, 0.08);
   }
 
+  .uk-spotlight__tile:hover img {
+    transform: scale(1.06);
+  }
+
   .uk-spotlight__tile:hover .uk-spotlight__cta {
     background: var(--uk-steel);
+  }
+
+  .trust-bar__item:hover .uk-icon-3d,
+  .uk-steps__item:hover .uk-icon-3d {
+    animation-duration: 1.6s;
+    transform: perspective(480px) rotateX(6deg) rotateY(8deg) scale(1.06);
+  }
+}
+
+@keyframes uk-float {
+  0%,
+  100% {
+    transform: perspective(480px) rotateX(10deg) rotateY(-12deg) translateY(0);
+  }
+  50% {
+    transform: perspective(480px) rotateX(6deg) rotateY(-6deg) translateY(-6px);
   }
 }
 
@@ -869,7 +914,14 @@ button.shopify-payment-button__button--unbranded:hover {
   .product-card-wrapper .card,
   .uk-spotlight__cta,
   .uk-promo__cta,
+  .uk-spotlight__tile img,
   .button {
     transition: none;
+  }
+
+  .uk-icon-3d,
+  .custom-hero-slider__img {
+    animation: none;
+    transform: none;
   }
 }

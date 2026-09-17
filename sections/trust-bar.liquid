@@ -22,11 +22,11 @@
           <span class="trust-bar__icon" aria-hidden="true">
             {%- case block.settings.icon -%}
               {%- when 'truck' -%}
-                {{- 'icon-truck.svg' | inline_asset_content -}}
+                <img src="{{ 'uk-icon-truck.png' | asset_url }}" alt="" width="96" height="96" class="uk-icon-3d" loading="lazy">
               {%- when 'return' -%}
-                {{- 'icon-return.svg' | inline_asset_content -}}
+                <img src="{{ 'uk-icon-return.png' | asset_url }}" alt="" width="96" height="96" class="uk-icon-3d" loading="lazy">
               {%- else -%}
-                {{- 'icon-box.svg' | inline_asset_content -}}
+                <img src="{{ 'uk-icon-cod.png' | asset_url }}" alt="" width="96" height="96" class="uk-icon-3d" loading="lazy">
             {%- endcase -%}
           </span>
           <span class="trust-bar__copy">

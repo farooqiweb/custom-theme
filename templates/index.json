@@ -6,10 +6,10 @@
         "slide_RjGf6R": {
           "type": "slide",
           "settings": {
-            "desktop_image": "shopify://shop_images/BIG_DEAL_2.png",
-            "mobile_image": "shopify://shop_images/BIG_DEAL_2.png",
+            "desktop_image": "",
+            "mobile_image": "",
             "banner_link": "shopify://collections/kitchen-accessories",
-            "heading": "",
+            "heading": "Tools for the everyday kitchen",
             "text_color": "#ffffff",
             "button_label": "Shop kitchen",
             "button_bg_color": "#C2410C",
@@ -19,10 +19,10 @@
         "slide_TT78wf": {
           "type": "slide",
           "settings": {
-            "desktop_image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_10_20_26_PM.png",
-            "mobile_image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_10_20_26_PM.png",
+            "desktop_image": "",
+            "mobile_image": "",
             "banner_link": "shopify://collections/home-gadgets",
-            "heading": "",
+            "heading": "Daily gadgets for small homes",
             "text_color": "#ffffff",
             "button_label": "Shop gadgets",
             "button_bg_color": "#0F766E",
@@ -32,10 +32,10 @@
         "slide_ycNFCf": {
           "type": "slide",
           "settings": {
-            "desktop_image": "shopify://shop_images/Untitled_design_3.png",
-            "mobile_image": "shopify://shop_images/Untitled_design_3.png",
+            "desktop_image": "",
+            "mobile_image": "",
             "banner_link": "shopify://collections/all",
-            "heading": "",
+            "heading": "Bestsellers, ready for COD",
             "text_color": "#ffffff",
             "button_label": "Shop bestsellers",
             "button_bg_color": "#C2410C",
@@ -92,7 +92,7 @@
           "type": "tile",
           "settings": {
             "collection": "kitchen-accessories",
-            "image": "shopify://shop_images/BIG_DEAL_2.png",
+            "image": "",
             "kicker": "For the kitchen",
             "heading": "Kitchen accessories",
             "link": "shopify://collections/kitchen-accessories",
@@ -104,7 +104,7 @@
           "type": "tile",
           "settings": {
             "collection": "home-gadgets",
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_10_20_26_PM.png",
+            "image": "",
             "kicker": "For the home",
             "heading": "Home gadgets",
             "link": "shopify://collections/home-gadgets",
@@ -301,7 +301,7 @@
       },
       "block_order": ["heading", "text", "button"],
       "settings": {
-        "image": "shopify://shop_images/Untitled_design_3.png",
+        "image": "",
         "height": "medium",
         "desktop_image_width": "medium",
         "layout": "image_first",

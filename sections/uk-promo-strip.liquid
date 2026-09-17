@@ -17,6 +17,7 @@
 <div class="uk-promo">
   <div class="page-width section-{{ section.id }}-padding">
     <div class="uk-promo__inner">
+      <img class="uk-icon-3d uk-promo__icon" src="{{ 'uk-icon-cod.png' | asset_url }}" alt="" width="96" height="96">
       <div>
         {%- if section.settings.heading != blank -%}
           <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>

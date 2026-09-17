@@ -38,6 +38,10 @@
           if tile_heading == blank and tile_collection != empty
             assign tile_heading = tile_collection.title
           endif
+          assign tile_fallback = 'uk-cat-kitchen.jpg'
+          if block.settings.accent == 'enamel'
+            assign tile_fallback = 'uk-cat-gadgets.jpg'
+          endif
         -%}
         <a
           class="uk-spotlight__tile uk-spotlight__tile--{{ block.settings.accent }}"
@@ -55,7 +59,13 @@
                 alt: tile_heading
             }}
           {%- else -%}
-            {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            <img
+              src="{{ tile_fallback | asset_url }}"
+              alt="{{ tile_heading | escape }}"
+              width="800"
+              height="800"
+              loading="lazy"
+            >
           {%- endif -%}
           <span class="uk-spotlight__copy">
             {%- if block.settings.kicker != blank -%}

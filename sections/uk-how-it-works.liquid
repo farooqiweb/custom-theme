@@ -22,6 +22,15 @@
     <ol class="uk-steps__list">
       {%- for block in section.blocks -%}
         <li class="uk-steps__item" {{ block.shopify_attributes }}>
+          {%- liquid
+            assign step_icon = 'uk-icon-bag.png'
+            if forloop.index == 2
+              assign step_icon = 'uk-icon-pay.png'
+            elsif forloop.index == 3
+              assign step_icon = 'uk-icon-truck.png'
+            endif
+          -%}
+          <img class="uk-icon-3d uk-steps__icon" src="{{ step_icon | asset_url }}" alt="" width="96" height="96" loading="lazy">
           <span class="uk-steps__index" aria-hidden="true">{{ forloop.index }}</span>
           {%- if block.settings.heading != blank -%}
             <h3>{{ block.settings.heading | escape }}</h3>
