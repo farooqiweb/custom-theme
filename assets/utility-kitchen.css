@@ -101,6 +101,37 @@ h1, h2, h3, .h0, .h1, .h2, .hxl, .hxxl {
   margin-top: 2.4rem;
 }
 
+.header {
+  letter-spacing: 0;
+}
+
+.header__heading-link {
+  letter-spacing: -0.03em;
+}
+
+.card__heading {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.card-information .price {
+  margin-top: 0.4rem;
+}
+
+.badge.color-scheme-4,
+.badge.color-scheme-scheme-4 {
+  letter-spacing: 0.02em;
+}
+
+.cart-drawer__cod {
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+.predictive-search__item-heading {
+  letter-spacing: -0.02em;
+}
+
 @media screen and (min-width: 750px) {
   .trust-bar__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));

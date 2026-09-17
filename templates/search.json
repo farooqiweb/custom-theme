@@ -4,9 +4,9 @@
       "type": "main-search",
       "settings": {
         "columns_desktop": 4,
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "image_shape": "default",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "enable_filtering": true,
@@ -16,11 +16,9 @@
         "article_show_author": false,
         "columns_mobile": "2",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 52
       }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }

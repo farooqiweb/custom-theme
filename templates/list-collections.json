@@ -3,15 +3,13 @@
     "main": {
       "type": "main-list-collections",
       "settings": {
-        "title": "Collections",
+        "title": "Shop kitchen and home",
         "sort": "alphabetical",
         "image_ratio": "square",
-        "columns_desktop": 3,
-        "columns_mobile": "2"
+        "columns_desktop": 2,
+        "columns_mobile": "1"
       }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }
