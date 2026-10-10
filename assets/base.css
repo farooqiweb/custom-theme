@@ -3637,12 +3637,12 @@ details-disclosure > details {
 }
 :root {
 
-  --brand-purple: #6C2BFF;
-  --brand-violet: #8B3DFF;
-  --brand-gold: #FFD23F;
-  --brand-navy: #111827;
-  --brand-light: #F5F1FF;
-  --text-dark: #1F2937;
+  --brand-green: #1C3D2D;
+  --brand-green-dark: #132B20;
+  --brand-orange: #E85A2A;
+  --brand-orange-dark: #C0471F;
+  --brand-cream: #F9EFE4;
+  --text-dark: #1A1A1A;
   --text-gray: #6B7280;
 
 }
@@ -3652,7 +3652,7 @@ details-disclosure > details {
 
 .button,
 .shopify-payment-button__button {
-    background: #6C2BFF !important;
+    background: #E85A2A !important;
     color: #FFFFFF !important;
 }
 
@@ -3660,7 +3660,7 @@ details-disclosure > details {
 /* Button Hover */
 
 .button:hover {
-    background: #8B3DFF !important;
+    background: #C0471F !important;
 }
 
 
@@ -3668,22 +3668,22 @@ details-disclosure > details {
 
 .price--on-sale .badge,
 .badge {
-    background: #FFD23F !important;
-    color: #111827 !important;
+    background: #E85A2A !important;
+    color: #FFFFFF !important;
 }
 
 
 /* Headings */
 
 h1,h2,h3,h4,h5,h6 {
-    color:#1F2937;
+    color:#1A1A1A;
 }
 
 
 /* Footer */
 
 .footer {
-    background:#111827;
+    background:#1C3D2D;
     color:#FFFFFF;
 }
 
@@ -3691,5 +3691,5 @@ h1,h2,h3,h4,h5,h6 {
 /* Product Cards */
 
 .card {
-    background:#F5F1FF;
-} 
+    background:#FFFFFF;
+}
