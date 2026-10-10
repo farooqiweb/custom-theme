@@ -361,23 +361,6 @@
         "padding_top": 40,
         "padding_bottom": 0
       }
-    },
-    "cod_popup_form_KzQiVx": {
-      "type": "cod-popup-form",
-      "name": "3D COD Popup",
-      "settings": {
-        "open_button_text": "Order on Cash on Delivery",
-        "place_order_text": "PLACE ORDER",
-        "name_placeholder": "Enter your full name",
-        "address_placeholder": "House, street, area, city",
-        "phone_placeholder": "03XXXXXXXXX",
-        "primary_color": "#e85a2a",
-        "button_text_color": "#FFFFFF",
-        "card_color": "#FFFFFF",
-        "text_color": "#222222",
-        "form_width": 460,
-        "card_radius": 20
-      }
     }
   },
   "order": [
@@ -387,7 +370,6 @@
     "deal_banner_responsive_ztejA3",
     "custom_responsive_hero_banner_7izejr",
     "product_section_UtKJ8f",
-    "custom_liquid_Rwaiim",
-    "cod_popup_form_KzQiVx"
+    "custom_liquid_Rwaiim"
   ]
 }
