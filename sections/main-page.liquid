@@ -1,0 +1,39 @@
+{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+
+  #shopify-section-{{ section.id }} {
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .section-{{ section.id }}-padding {
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+  }
+
+  .section-{{ section.id }}-padding .main-page-title,
+  .section-{{ section.id }}-padding .page-title,
+  .section-{{ section.id }}-padding .rte {
+    display: none !important;
+  }
+
+  .section-{{ section.id }}-padding:empty {
+    display: block !important;
+  }
+
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding"></div>
+
+{% schema %}
+{
+  "name": "Clean White Page",
+  "tag": "section",
+  "class": "section",
+  "settings": []
+}
+{% endschema %}

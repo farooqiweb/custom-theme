@@ -1,0 +1,373 @@
+/*
+ * Auto-generated Shopify product template.
+ * Edit with care; the theme editor may overwrite changes.
+ */
+{
+  "sections": {
+    "product_badge_ticker_xr7EKa": {
+      "type": "product-badge-ticker",
+      "blocks": {
+        "trust_badge_L9dQXP": {
+          "type": "trust_badge",
+          "settings": {
+            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_36_48_PM.png",
+            "badge_title": "Allow to open"
+          }
+        },
+        "trust_badge_e8ytqY": {
+          "type": "trust_badge",
+          "settings": {
+            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_30_43_PM.png",
+            "badge_title": "Easy to return"
+          }
+        },
+        "trust_badge_bfTwDw": {
+          "type": "trust_badge",
+          "settings": {
+            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_31_18_PM.png",
+            "badge_title": "Secure catalog"
+          }
+        },
+        "trust_badge_xLeFct": {
+          "type": "trust_badge",
+          "settings": {
+            "badge_image": "shopify://shop_images/Glossy_Purple_Call_Icon_0653a4db-6e54-4ebf-8c91-9d12c4fc3a37.png",
+            "badge_title": "Customer support"
+          }
+        },
+        "trust_badge_n8hQkF": {
+          "type": "trust_badge",
+          "settings": {
+            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_26_2026_09_58_13_PM.png",
+            "badge_title": "Product quality: 100%"
+          }
+        },
+        "trust_badge_zPiP76": {
+          "type": "trust_badge",
+          "settings": {
+            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_30_55_PM.png",
+            "badge_title": "Cash on delivery free"
+          }
+        },
+        "trust_badge_nxMhbD": {
+          "type": "trust_badge",
+          "settings": {
+            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_31_10_PM.png",
+            "badge_title": "Fast delivery"
+          }
+        }
+      },
+      "block_order": [
+        "trust_badge_L9dQXP",
+        "trust_badge_e8ytqY",
+        "trust_badge_bfTwDw",
+        "trust_badge_xLeFct",
+        "trust_badge_n8hQkF",
+        "trust_badge_zPiP76",
+        "trust_badge_nxMhbD"
+      ],
+      "disabled": true,
+      "name": "Product Badge Ticker",
+      "settings": {
+        "heading": "",
+        "heading_alignment": "center",
+        "heading_weight": "700",
+        "background_color": "#f1f3f7",
+        "heading_color": "#f3f3f3",
+        "text_color": "#6219c1",
+        "animation_speed": 20,
+        "direction": "rtl",
+        "pause_on_hover": true,
+        "desktop_heading_size": 28,
+        "desktop_image_size": 50,
+        "desktop_title_size": 15,
+        "desktop_gap": 50,
+        "image_text_gap": 10,
+        "mobile_heading_size": 22,
+        "mobile_image_size": 40,
+        "mobile_title_size": 13,
+        "mobile_gap": 30,
+        "mobile_image_text_gap": 8,
+        "image_fit": "contain",
+        "badge_title_weight": "600",
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_color": "#1a180c",
+            "font_size_desktop": 35,
+            "font_size_mobile": 25,
+            "font_weight": "500",
+            "line_height_desktop": 105,
+            "line_height_mobile": 100,
+            "letter_spacing": -1,
+            "text_transform": "none",
+            "alignment_desktop": "left",
+            "margin_top_desktop": 20,
+            "margin_bottom_desktop": 20,
+            "alignment_mobile": "left",
+            "margin_top_mobile": 8,
+            "margin_bottom_mobile": 12,
+            "max_width": 0,
+            "hide_desktop": false,
+            "hide_mobile": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "price_size_d": 24,
+            "price_size_m": 20,
+            "sale_size_d": 24,
+            "sale_size_m": 20,
+            "compare_size_d": 17,
+            "compare_size_m": 15,
+            "price_weight": "600",
+            "compare_weight": "400",
+            "regular_color": "#121212",
+            "sale_color": "#6219c1",
+            "compare_color": "#777777",
+            "compare_line_w": 1,
+            "price_align_d": "left",
+            "price_align_m": "left",
+            "price_mt_d": 0,
+            "price_mb_d": 0,
+            "price_mt_m": 0,
+            "price_mb_m": 0,
+            "badge_bg": "#a57dff",
+            "badge_color": "#ffffff",
+            "badge_size": 14,
+            "badge_radius": 4,
+            "tax_color": "#777777",
+            "tax_size": 12
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "custom_liquid_pH8LDX": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"bd-stock-alert\">\n  <div class=\"bd-stock-title\">\n    <span class=\"bd-fire bd-fire-left\">🔥</span>\n\n    <span class=\"bd-heading\">\n      Limited Stock — Selling Fast!\n    </span>\n\n    <span class=\"bd-fire bd-fire-right\">🔥</span>\n  </div>\n\n  <div class=\"bd-stock-subtitle\">\n    Order Yours Now Before It’s Gone\n  </div>\n</div>\n\n<style>\n\n.bd-stock-alert {\n  width: 100%;\n  box-sizing: border-box;\n\n  margin: 12px 0 20px;\n  padding: 16px 15px;\n\n  background: linear-gradient(\n    135deg,\n    #431684 0%,\n    #6524d4 100%\n  );\n\n  border: 2px solid #F2D400;\n  border-radius: 18px;\n\n  text-align: center;\n\n  box-shadow:\n    0 7px 18px rgba(0, 0, 0, 0.20);\n\n  transform-origin: center;\n\n  animation: bdHeartbeat 1.35s infinite ease-in-out;\n}\n\n\n/* TITLE */\n\n.bd-stock-title {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n\n  gap: 9px;\n\n  color: #ffffff;\n\n  font-size: 20px;\n  font-weight: 800;\n\n  line-height: 1.3;\n}\n\n\n.bd-heading {\n  display: inline-block;\n}\n\n\n/* FIRE */\n\n.bd-fire {\n  display: inline-block;\n\n  font-size: 25px;\n\n  animation:\n    bdFireBlink 0.70s infinite ease-in-out,\n    bdFirePulse 0.70s infinite ease-in-out;\n}\n\n\n/* Slight delay on right fire */\n\n.bd-fire-right {\n  animation-delay: 0.35s;\n}\n\n\n/* SUBTITLE */\n\n.bd-stock-subtitle {\n  margin-top: 7px;\n\n  color: #ffffff;\n\n  font-size: 14px;\n  font-weight: 500;\n\n  opacity: 0.95;\n}\n\n\n/* =========================\n   HEARTBEAT BOX ANIMATION\n========================= */\n\n@keyframes bdHeartbeat {\n\n  0% {\n    transform: scale(1);\n  }\n\n  10% {\n    transform: scale(1.025);\n  }\n\n  20% {\n    transform: scale(1);\n  }\n\n  30% {\n    transform: scale(1.04);\n  }\n\n  42% {\n    transform: scale(1);\n  }\n\n  100% {\n    transform: scale(1);\n  }\n}\n\n\n/* FIRE BLINK */\n\n@keyframes bdFireBlink {\n\n  0%,\n  100% {\n    opacity: 1;\n  }\n\n  50% {\n    opacity: 0.25;\n  }\n}\n\n\n/* FIRE PULSE */\n\n@keyframes bdFirePulse {\n\n  0%,\n  100% {\n    transform: scale(1);\n  }\n\n  50% {\n    transform: scale(1.35);\n  }\n}\n\n\n/* MOBILE */\n\n@media screen and (max-width: 749px) {\n\n  .bd-stock-alert {\n    padding: 14px 10px;\n    margin: 10px 0 17px;\n\n    border-radius: 15px;\n\n    animation-duration: 1.45s;\n  }\n\n  .bd-stock-title {\n    font-size: 16px;\n    gap: 6px;\n  }\n\n  .bd-fire {\n    font-size: 21px;\n  }\n\n  .bd-stock-subtitle {\n    margin-top: 5px;\n    font-size: 12px;\n  }\n\n}\n\n</style>"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true,
+            "atc_h_d": 50,
+            "atc_h_m": 52,
+            "atc_size_d": 18,
+            "atc_size_m": 16,
+            "atc_weight": "600",
+            "atc_width_d": 100,
+            "atc_width_m": 100,
+            "atc_bg": "#f2d400",
+            "atc_text": "#6c2bff",
+            "atc_border": "#6c2bff",
+            "atc_border_w": 2,
+            "atc_radius": 25,
+            "atc_hover_bg": "#6c2bff",
+            "atc_hover_text": "#ffffff",
+            "buy_h_d": 50,
+            "buy_h_m": 52,
+            "buy_size_d": 18,
+            "buy_size_m": 16,
+            "buy_weight": "600",
+            "buy_width_d": 100,
+            "buy_width_m": 100,
+            "buy_bg": "#6c2bff",
+            "buy_text": "#ffffff",
+            "buy_border": "#e4cb0a",
+            "buy_border_w": 3,
+            "buy_radius": 25,
+            "buy_hover_bg": "#f2d400",
+            "buy_hover_text": "#6c2bff",
+            "button_gap": 10,
+            "button_align_d": "left",
+            "button_align_m": "left",
+            "button_transform": "none",
+            "button_letter": 0
+          }
+        },
+        "trust_badges_timeline_QVkX7c": {
+          "type": "trust_badges_timeline",
+          "settings": {
+            "trust_heading": "",
+            "trust_heading_color": "#111111",
+            "trust_heading_d": 20,
+            "trust_heading_m": 12,
+            "trust_bg": "#f3f3f3",
+            "trust_text_color": "#6c2bff",
+            "trust_speed": 70,
+            "trust_direction": "left",
+            "trust_pause": true,
+            "trust_image_d": 44,
+            "trust_text_d": 14,
+            "trust_gap_d": 32,
+            "trust_image_m": 36,
+            "trust_text_m": 12,
+            "trust_gap_m": 24,
+            "trust_item_gap": 8,
+            "trust_pad_d": 12,
+            "trust_pad_m": 10,
+            "trust_mt": 10,
+            "trust_mb": 10,
+            "badge_1_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_31_18_PM.png",
+            "badge_1_title": "Secure Payment",
+            "badge_2_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_31_10_PM.png",
+            "badge_2_title": "Fast Delivery",
+            "badge_3_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_30_43_PM.png",
+            "badge_3_title": "Easy Returns",
+            "badge_4_image": "shopify://shop_images/ChatGPT_Image_Sep_26_2026_09_58_13_PM.png",
+            "badge_4_title": "Quality Products",
+            "badge_5_image": "shopify://shop_images/Glossy_Purple_Call_Icon_0653a4db-6e54-4ebf-8c91-9d12c4fc3a37.png",
+            "badge_5_title": "Customer Support",
+            "badge_6_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_30_55_PM.png",
+            "badge_6_title": "Cash on Delivery free",
+            "badge_7_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_36_48_PM.png",
+            "badge_7_title": "Allow to open"
+          }
+        },
+        "icon_with_text_UQCRFP": {
+          "type": "icon-with-text",
+          "disabled": true,
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "heart",
+            "image_1": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_31_10_PM.png",
+            "heading_1": "Free shipping",
+            "icon_2": "return",
+            "image_2": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_36_48_PM.png",
+            "heading_2": "Allow to open&nbsp;",
+            "icon_3": "truck",
+            "image_3": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_30_43_PM.png",
+            "heading_3": "Easy to return.&nbsp;"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "desc_size_d": 16,
+            "desc_size_m": 15,
+            "desc_weight": "400",
+            "desc_line": 160,
+            "desc_color": "#444444",
+            "desc_link": "#6c3ff5",
+            "desc_p_space": 12,
+            "desc_align_d": "center",
+            "desc_align_m": "left",
+            "desc_max_width": 0,
+            "desc_mt_d": 0,
+            "desc_mb_d": 16,
+            "desc_mt_m": 0,
+            "desc_mb_m": 12,
+            "desc_bg_enable": true,
+            "desc_bg": "#dad1ed",
+            "desc_pad": 16,
+            "desc_radius": 8
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "custom_liquid_pH8LDX",
+        "buy_buttons",
+        "trust_badges_timeline_QVkX7c",
+        "icon_with_text_UQCRFP",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "custom_liquid_BXGAhy": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{% comment %}\n  Bestdeal.pk Animated Waves - paste this into a Shopify \"Custom liquid\" section.\n  This is intentionally separate from the footer.\n{% endcomment %}\n\n<style>\n  .bestdeal-custom-waves {\n    --wave-purple: #6F2ED6;\n    --wave-gold: #9A6A35;\n    --wave-soft: #8D5B9A;\n    position: relative;\n    width: 100%;\n    height: 130px;\n    overflow: hidden;\n    background: transparent;\n    line-height: 0;\n    pointer-events: none;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave {\n    position: absolute;\n    left: -3%;\n    bottom: 0;\n    width: 106%;\n    height: 100%;\n    transform-origin: center bottom;\n    will-change: transform;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave--1 {\n    opacity: .72;\n    animation: bdcwWave1 5s ease-in-out infinite;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave--2 {\n    opacity: .50;\n    animation: bdcwWave2 7s ease-in-out infinite;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave--3 {\n    opacity: .30;\n    animation: bdcwWave3 9s ease-in-out infinite;\n  }\n\n  @keyframes bdcwWave1 {\n    0%,100% { transform: translate3d(-1.2%,0,0) scaleX(1.02); }\n    50% { transform: translate3d(1.3%,7px,0) scaleX(1.05); }\n  }\n\n  @keyframes bdcwWave2 {\n    0%,100% { transform: translate3d(1%,4px,0) scaleX(1.05); }\n    50% { transform: translate3d(-1.6%,-5px,0) scaleX(1.01); }\n  }\n\n  @keyframes bdcwWave3 {\n    0%,100% { transform: translate3d(-.8%,-2px,0) scaleX(1.01); }\n    50% { transform: translate3d(1.8%,9px,0) scaleX(1.06); }\n  }\n\n  @media screen and (max-width: 749px) {\n    .bestdeal-custom-waves {\n      height: 90px;\n    }\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    .bestdeal-custom-waves .bdcw-wave {\n      animation: none !important;\n    }\n  }\n</style>\n\n<div class=\"bestdeal-custom-waves\" aria-hidden=\"true\">\n  <svg class=\"bdcw-wave bdcw-wave--1\" viewBox=\"0 0 1440 180\" preserveAspectRatio=\"none\">\n    <path fill=\"var(--wave-purple)\" d=\"M-20 98 C 170 40, 350 145, 565 91 S 935 29, 1175 86 S 1415 132, 1490 72 L 1490 200 L -20 200 Z\"/>\n  </svg>\n\n  <svg class=\"bdcw-wave bdcw-wave--2\" viewBox=\"0 0 1440 180\" preserveAspectRatio=\"none\">\n    <path fill=\"var(--wave-gold)\" d=\"M-35 120 C 175 151, 350 45, 565 111 S 910 154, 1125 77 S 1385 35, 1490 93 L 1490 200 L -35 200 Z\"/>\n  </svg>\n\n  <svg class=\"bdcw-wave bdcw-wave--3\" viewBox=\"0 0 1440 180\" preserveAspectRatio=\"none\">\n    <path fill=\"var(--wave-soft)\" d=\"M-25 94 C 180 155, 370 74, 610 118 S 930 150, 1120 92 S 1360 70, 1490 118 L 1490 200 L -25 200 Z\"/>\n  </svg>\n</div>",
+        "color_scheme": "",
+        "padding_top": 12,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "product_badge_ticker_xr7EKa",
+    "main",
+    "disclosures",
+    "related-products",
+    "custom_liquid_BXGAhy"
+  ]
+}

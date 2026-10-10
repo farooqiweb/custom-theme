@@ -1,0 +1,743 @@
+{% comment %}
+  BestDeals.pk - Same Display Responsive Deal Banner
+  -------------------------------------------------
+  • One banner image on desktop and mobile
+  • Same composition mode preserves the complete banner ratio everywhere
+  • Optional custom desktop/mobile height mode
+  • No separate logo overlay
+  • MEGA DEAL block: Left / Center / Right + fine left/right adjustment + heartbeat
+  • Countdown block: Left / Center / Right + compact responsive sizes
+  • SHOP NOW block: Left / Center / Right + fine adjustment + heartbeat
+  • All overlay elements remain visible on mobile
+{% endcomment %}
+
+{% liquid
+  assign banner_image = section.settings.banner_image
+  assign banner_link = section.settings.banner_link
+%}
+
+<section
+  id="BDDealBanner-{{ section.id }}"
+  class="bd-deal-banner{% if section.settings.full_width %} bd-deal-banner--full{% endif %}"
+  style="
+    --bd-section-bg: {{ section.settings.section_bg }};
+    --bd-stage-bg: {{ section.settings.stage_bg }};
+    --bd-max-width: {{ section.settings.max_width }}px;
+    --bd-radius: {{ section.settings.border_radius }}px;
+    --bd-desktop-height: {{ section.settings.desktop_height }}px;
+    --bd-mobile-height: {{ section.settings.mobile_height }}px;
+    --bd-desktop-fit: {{ section.settings.desktop_fit }};
+    --bd-mobile-fit: {{ section.settings.mobile_fit }};
+    --bd-d-mt: {{ section.settings.desktop_margin_top }}px;
+    --bd-d-mb: {{ section.settings.desktop_margin_bottom }}px;
+    --bd-m-mt: {{ section.settings.mobile_margin_top }}px;
+    --bd-m-mb: {{ section.settings.mobile_margin_bottom }}px;
+  "
+>
+  <div class="bd-deal-banner__outer">
+    <div
+      class="bd-deal-banner__stage{% if section.settings.layout_mode == 'same' %} bd-deal-banner__stage--same{% else %} bd-deal-banner__stage--custom{% endif %}"
+      {% if section.settings.layout_mode == 'same' and banner_image != blank %}
+        style="aspect-ratio: {{ banner_image.aspect_ratio }} / 1;"
+      {% elsif section.settings.layout_mode == 'same' %}
+        style="aspect-ratio: 4 / 1;"
+      {% endif %}
+    >
+      {% if banner_link != blank %}
+        <a class="bd-deal-banner__image-link" href="{{ banner_link }}" aria-label="View deal">
+      {% else %}
+        <div class="bd-deal-banner__image-link">
+      {% endif %}
+
+        {% if banner_image != blank %}
+          {{ banner_image
+            | image_url: width: 3200
+            | image_tag:
+              class: 'bd-deal-banner__image',
+              widths: '360, 480, 640, 750, 960, 1200, 1500, 1800, 2200, 2600, 3200',
+              sizes: '100vw',
+              loading: 'lazy',
+              alt: 'BestDeals deal banner'
+          }}
+        {% else %}
+          <div class="bd-deal-banner__placeholder">
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'bd-deal-banner__placeholder-svg' }}
+            <span>Select your deal banner</span>
+          </div>
+        {% endif %}
+
+      {% if banner_link != blank %}
+        </a>
+      {% else %}
+        </div>
+      {% endif %}
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'deal_title' %}
+            {% liquid
+              assign title_x = 50
+              assign title_shift = '-50%'
+              case block.settings.align
+                when 'left'
+                  assign title_x = 3
+                  assign title_shift = '0%'
+                when 'right'
+                  assign title_x = 97
+                  assign title_shift = '-100%'
+              endcase
+            %}
+            <div
+              class="bd-deal-banner__overlay bd-deal-banner__title-wrap"
+              {{ block.shopify_attributes }}
+              style="
+                --bd-x: {{ title_x }}%;
+                --bd-y: {{ block.settings.y_position }}%;
+                --bd-shift-x: {{ title_shift }};
+                --bd-nudge-d: {{ block.settings.nudge_desktop }}px;
+                --bd-nudge-m: {{ block.settings.nudge_mobile }}px;
+                --bd-size-d: {{ block.settings.size_desktop }}px;
+                --bd-size-m: {{ block.settings.size_mobile }}px;
+                --bd-pad-x-d: {{ block.settings.pad_x_desktop }}px;
+                --bd-pad-y-d: {{ block.settings.pad_y_desktop }}px;
+                --bd-pad-x-m: {{ block.settings.pad_x_mobile }}px;
+                --bd-pad-y-m: {{ block.settings.pad_y_mobile }}px;
+                --bd-bg: {{ block.settings.bg }};
+                --bd-color: {{ block.settings.color }};
+                --bd-speed: {{ block.settings.speed | divided_by: 10.0 }}s;
+                --bd-scale: {{ block.settings.scale | divided_by: 100.0 }};
+              "
+            >
+              <div class="bd-deal-banner__title{% if block.settings.animate %} bd-deal-banner__title--pulse{% endif %}">
+                {{ block.settings.text | escape }}
+              </div>
+            </div>
+
+          {% when 'countdown' %}
+            {% liquid
+              assign timer_x = 50
+              assign timer_shift = '-50%'
+              case block.settings.align
+                when 'left'
+                  assign timer_x = 3
+                  assign timer_shift = '0%'
+                when 'right'
+                  assign timer_x = 97
+                  assign timer_shift = '-100%'
+              endcase
+            %}
+            <div
+              class="bd-deal-banner__overlay bd-deal-banner__timer-wrap"
+              {{ block.shopify_attributes }}
+              style="
+                --bd-x: {{ timer_x }}%;
+                --bd-y: {{ block.settings.y_position }}%;
+                --bd-shift-x: {{ timer_shift }};
+                --bd-nudge-d: {{ block.settings.nudge_desktop }}px;
+                --bd-nudge-m: {{ block.settings.nudge_mobile }}px;
+                --bd-num-d: {{ block.settings.number_size_desktop }}px;
+                --bd-label-d: {{ block.settings.label_size_desktop }}px;
+                --bd-num-m: {{ block.settings.number_size_mobile }}px;
+                --bd-label-m: {{ block.settings.label_size_mobile }}px;
+                --bd-pad-x-d: {{ block.settings.pad_x_desktop }}px;
+                --bd-pad-y-d: {{ block.settings.pad_y_desktop }}px;
+                --bd-pad-x-m: {{ block.settings.pad_x_mobile }}px;
+                --bd-pad-y-m: {{ block.settings.pad_y_mobile }}px;
+                --bd-bg: {{ block.settings.bg }};
+                --bd-color: {{ block.settings.color }};
+                --bd-label-color: {{ block.settings.label_color }};
+              "
+            >
+              <div
+                class="bd-deal-banner__timer"
+                data-bd-timer
+                data-end="{{ block.settings.end_date | escape }}"
+                aria-label="Deal countdown"
+              >
+                <div class="bd-deal-banner__unit"><strong data-days>00</strong><span>Days</span></div>
+                <b>:</b>
+                <div class="bd-deal-banner__unit"><strong data-hours>00</strong><span>Hrs</span></div>
+                <b>:</b>
+                <div class="bd-deal-banner__unit"><strong data-minutes>00</strong><span>Min</span></div>
+                <b>:</b>
+                <div class="bd-deal-banner__unit"><strong data-seconds>00</strong><span>Sec</span></div>
+              </div>
+            </div>
+
+          {% when 'shop_button' %}
+            {% liquid
+              assign button_x = 50
+              assign button_shift = '-50%'
+              case block.settings.align
+                when 'left'
+                  assign button_x = 3
+                  assign button_shift = '0%'
+                when 'right'
+                  assign button_x = 97
+                  assign button_shift = '-100%'
+              endcase
+              assign button_link = block.settings.link | default: banner_link
+            %}
+            <div
+              class="bd-deal-banner__overlay bd-deal-banner__button-wrap"
+              {{ block.shopify_attributes }}
+              style="
+                --bd-x: {{ button_x }}%;
+                --bd-y: {{ block.settings.y_position }}%;
+                --bd-shift-x: {{ button_shift }};
+                --bd-nudge-d: {{ block.settings.nudge_desktop }}px;
+                --bd-nudge-m: {{ block.settings.nudge_mobile }}px;
+                --bd-size-d: {{ block.settings.size_desktop }}px;
+                --bd-size-m: {{ block.settings.size_mobile }}px;
+                --bd-pad-x-d: {{ block.settings.pad_x_desktop }}px;
+                --bd-pad-y-d: {{ block.settings.pad_y_desktop }}px;
+                --bd-pad-x-m: {{ block.settings.pad_x_mobile }}px;
+                --bd-pad-y-m: {{ block.settings.pad_y_mobile }}px;
+                --bd-bg: {{ block.settings.bg }};
+                --bd-color: {{ block.settings.color }};
+                --bd-border: {{ block.settings.border }};
+                --bd-speed: {{ block.settings.speed | divided_by: 10.0 }}s;
+                --bd-scale: {{ block.settings.scale | divided_by: 100.0 }};
+              "
+            >
+              {% if button_link != blank %}
+                <a href="{{ button_link }}" class="bd-deal-banner__button{% if block.settings.animate %} bd-deal-banner__button--heartbeat{% endif %}">
+                  {{ block.settings.text | escape }}
+                </a>
+              {% else %}
+                <span class="bd-deal-banner__button{% if block.settings.animate %} bd-deal-banner__button--heartbeat{% endif %}">
+                  {{ block.settings.text | escape }}
+                </span>
+              {% endif %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #BDDealBanner-{{ section.id }} {
+    width: 100%;
+    background: var(--bd-section-bg);
+    margin-top: var(--bd-d-mt);
+    margin-bottom: var(--bd-d-mb);
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__outer {
+    width: min(calc(100% - 24px), var(--bd-max-width));
+    margin-inline: auto;
+  }
+
+  #BDDealBanner-{{ section.id }}.bd-deal-banner--full .bd-deal-banner__outer {
+    width: 100%;
+    max-width: none;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__stage {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--bd-radius);
+    background: var(--bd-stage-bg);
+    isolation: isolate;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__stage--same {
+    height: auto;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__stage--custom {
+    height: var(--bd-desktop-height);
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__image-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__image,
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__image {
+    max-width: none;
+    border: 0;
+    object-position: center center;
+    object-fit: {% if section.settings.layout_mode == 'same' %}cover{% else %}var(--bd-desktop-fit){% endif %};
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #f4f4f4;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__placeholder-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__placeholder span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 7px 10px;
+    border-radius: 6px;
+    background: rgba(255,255,255,.94);
+    color: #111;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__overlay {
+    position: absolute;
+    z-index: 20;
+    left: var(--bd-x);
+    top: var(--bd-y);
+    transform: translate(var(--bd-shift-x), -50%) translateX(var(--bd-nudge-d));
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    max-width: 96%;
+  }
+
+  /* MEGA DEAL */
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__title-wrap {
+    pointer-events: none;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--bd-pad-y-d) var(--bd-pad-x-d);
+    border-radius: .30em;
+    background: var(--bd-bg);
+    color: var(--bd-color);
+    font-size: var(--bd-size-d);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,.20);
+    transform-origin: center;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__title--pulse {
+    animation: bdTitleHeartbeat-{{ section.id }} var(--bd-speed) ease-in-out infinite;
+    will-change: transform, filter;
+  }
+
+  @keyframes bdTitleHeartbeat-{{ section.id }} {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    10% { transform: scale(var(--bd-scale)); filter: brightness(1.12); }
+    20% { transform: scale(1); filter: brightness(1); }
+    30% { transform: scale(var(--bd-scale)); filter: brightness(1.08); }
+    44%, 82% { transform: scale(1); filter: brightness(1); }
+  }
+
+  /* TIMER */
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__timer-wrap {
+    pointer-events: none;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__timer {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: var(--bd-pad-y-d) var(--bd-pad-x-d);
+    border-radius: 8px;
+    background: var(--bd-bg);
+    color: var(--bd-color);
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(0,0,0,.22);
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__timer > b {
+    font-size: calc(var(--bd-num-d) * .65);
+    line-height: 1;
+    opacity: .86;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__unit {
+    min-width: calc(var(--bd-num-d) * 1.65);
+    text-align: center;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__unit strong {
+    display: block;
+    font-size: var(--bd-num-d);
+    line-height: .95;
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__unit span {
+    display: block;
+    margin-top: 2px;
+    font-size: var(--bd-label-d);
+    line-height: 1;
+    color: var(--bd-label-color);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+
+  /* SHOP NOW */
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__button-wrap {
+    pointer-events: auto;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--bd-pad-y-d) var(--bd-pad-x-d);
+    border: 2px solid var(--bd-border);
+    border-radius: 999px;
+    background: var(--bd-bg);
+    color: var(--bd-color);
+    font-size: var(--bd-size-d);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 5px 18px rgba(0,0,0,.25);
+    transform-origin: center;
+  }
+
+  #BDDealBanner-{{ section.id }} .bd-deal-banner__button--heartbeat {
+    animation: bdButtonHeartbeat-{{ section.id }} var(--bd-speed) ease-in-out infinite;
+    will-change: transform, box-shadow, filter;
+  }
+
+  @keyframes bdButtonHeartbeat-{{ section.id }} {
+    0%, 100% {
+      transform: scale(1);
+      filter: brightness(1);
+      box-shadow: 0 5px 18px rgba(0,0,0,.25), 0 0 0 0 rgba(255,255,255,.30);
+    }
+    10% {
+      transform: scale(var(--bd-scale));
+      filter: brightness(1.14);
+      box-shadow: 0 7px 22px rgba(0,0,0,.28), 0 0 0 4px rgba(255,255,255,.24);
+    }
+    20% {
+      transform: scale(1);
+      filter: brightness(1);
+      box-shadow: 0 5px 18px rgba(0,0,0,.25), 0 0 0 0 rgba(255,255,255,.16);
+    }
+    30% {
+      transform: scale(var(--bd-scale));
+      filter: brightness(1.10);
+      box-shadow: 0 7px 22px rgba(0,0,0,.28), 0 0 0 7px rgba(255,255,255,0);
+    }
+    44%, 82% {
+      transform: scale(1);
+      filter: brightness(1);
+      box-shadow: 0 5px 18px rgba(0,0,0,.25), 0 0 0 0 rgba(255,255,255,0);
+    }
+  }
+
+  @media (hover:hover) and (pointer:fine) {
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__button:hover {
+      filter: brightness(1.12);
+    }
+  }
+
+  /* MOBILE: nothing is hidden; same alignment anchors and same vertical positions */
+  @media screen and (max-width: 749px) {
+    #BDDealBanner-{{ section.id }} {
+      margin-top: var(--bd-m-mt);
+      margin-bottom: var(--bd-m-mb);
+    }
+
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__outer {
+      width: min(calc(100% - 12px), var(--bd-max-width));
+    }
+
+    #BDDealBanner-{{ section.id }}.bd-deal-banner--full .bd-deal-banner__outer {
+      width: 100%;
+    }
+
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__stage--custom {
+      height: var(--bd-mobile-height);
+    }
+
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__stage--custom .bd-deal-banner__image {
+      object-fit: var(--bd-mobile-fit);
+    }
+
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__overlay {
+      transform: translate(var(--bd-shift-x), -50%) translateX(var(--bd-nudge-m));
+    }
+
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__title {
+      font-size: var(--bd-size-m);
+      padding: var(--bd-pad-y-m) var(--bd-pad-x-m);
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__timer {
+      gap: 1px;
+      padding: var(--bd-pad-y-m) var(--bd-pad-x-m);
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.20);
+    }
+
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__timer > b {
+      font-size: calc(var(--bd-num-m) * .62);
+    }
+
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__unit {
+      min-width: calc(var(--bd-num-m) * 1.55);
+    }
+
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__unit strong {
+      font-size: var(--bd-num-m);
+    }
+
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__unit span {
+      margin-top: 1px;
+      font-size: var(--bd-label-m);
+    }
+
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__button {
+      font-size: var(--bd-size-m);
+      padding: var(--bd-pad-y-m) var(--bd-pad-x-m);
+      border-width: 1px;
+      box-shadow: 0 3px 10px rgba(0,0,0,.24);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__button,
+    #BDDealBanner-{{ section.id }} .bd-deal-banner__title {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var sectionId = 'BDDealBanner-{{ section.id }}';
+    var intervals = [];
+
+    function clearTimers() {
+      intervals.forEach(function(id) { clearInterval(id); });
+      intervals = [];
+    }
+
+    function initTimers() {
+      clearTimers();
+      var section = document.getElementById(sectionId);
+      if (!section) return;
+
+      var timers = section.querySelectorAll('[data-bd-timer]');
+      timers.forEach(function(timer) {
+        var endValue = timer.getAttribute('data-end');
+        var endTime = endValue ? new Date(endValue).getTime() : NaN;
+
+        function pad(value) {
+          return String(Math.max(0, value)).padStart(2, '0');
+        }
+
+        function render(distance) {
+          var d = Math.max(0, distance);
+          var days = Math.floor(d / 86400000);
+          var hours = Math.floor((d % 86400000) / 3600000);
+          var minutes = Math.floor((d % 3600000) / 60000);
+          var seconds = Math.floor((d % 60000) / 1000);
+
+          var dayEl = timer.querySelector('[data-days]');
+          var hourEl = timer.querySelector('[data-hours]');
+          var minEl = timer.querySelector('[data-minutes]');
+          var secEl = timer.querySelector('[data-seconds]');
+
+          if (dayEl) dayEl.textContent = pad(days);
+          if (hourEl) hourEl.textContent = pad(hours);
+          if (minEl) minEl.textContent = pad(minutes);
+          if (secEl) secEl.textContent = pad(seconds);
+        }
+
+        function update() {
+          if (Number.isNaN(endTime)) {
+            render(0);
+            return false;
+          }
+          var distance = endTime - Date.now();
+          render(distance);
+          return distance > 0;
+        }
+
+        if (update()) {
+          var id = setInterval(function() {
+            if (!update()) clearInterval(id);
+          }, 1000);
+          intervals.push(id);
+        }
+      });
+    }
+
+    initTimers();
+
+    document.addEventListener('shopify:section:load', function(event) {
+      if (event.detail && event.detail.sectionId === '{{ section.id }}') initTimers();
+    });
+
+    document.addEventListener('shopify:section:unload', function(event) {
+      if (event.detail && event.detail.sectionId === '{{ section.id }}') clearTimers();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "BestDeals same display",
+  "tag": "section",
+  "class": "section-bestdeals-same-display",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "header", "content": "Banner" },
+    { "type": "image_picker", "id": "banner_image", "label": "Banner image - same for desktop/mobile" },
+    { "type": "url", "id": "banner_link", "label": "Banner link" },
+    { "type": "checkbox", "id": "full_width", "label": "Full width", "default": true },
+    { "type": "range", "id": "max_width", "label": "Maximum width", "min": 800, "max": 2400, "step": 50, "unit": "px", "default": 1600 },
+    { "type": "range", "id": "border_radius", "label": "Corner radius", "min": 0, "max": 30, "step": 1, "unit": "px", "default": 8 },
+    { "type": "color", "id": "section_bg", "label": "Section background", "default": "#ffffff" },
+    { "type": "color", "id": "stage_bg", "label": "Banner background", "default": "#ffffff" },
+
+    { "type": "header", "content": "Responsive display" },
+    { "type": "select", "id": "layout_mode", "label": "Display mode", "default": "same", "info": "Same composition keeps the complete banner ratio on desktop and mobile.", "options": [
+      { "value": "same", "label": "Same composition (recommended)" },
+      { "value": "custom", "label": "Custom heights" }
+    ] },
+    { "type": "range", "id": "desktop_height", "label": "Desktop height - custom mode", "min": 70, "max": 420, "step": 10, "unit": "px", "default": 190 },
+    { "type": "range", "id": "mobile_height", "label": "Mobile height - custom mode", "min": 60, "max": 320, "step": 5, "unit": "px", "default": 120 },
+    { "type": "select", "id": "desktop_fit", "label": "Desktop image fit - custom mode", "default": "cover", "options": [
+      { "value": "cover", "label": "Fill area" },
+      { "value": "contain", "label": "Show complete image" }
+    ] },
+    { "type": "select", "id": "mobile_fit", "label": "Mobile image fit - custom mode", "default": "contain", "options": [
+      { "value": "contain", "label": "Show complete image" },
+      { "value": "cover", "label": "Fill area" }
+    ] },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "desktop_margin_top", "label": "Desktop top spacing", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "desktop_margin_bottom", "label": "Desktop bottom spacing", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_margin_top", "label": "Mobile top spacing", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_margin_bottom", "label": "Mobile bottom spacing", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "deal_title",
+      "name": "MEGA DEAL title",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "MEGA DEAL" },
+        { "type": "select", "id": "align", "label": "Horizontal side", "default": "center", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ] },
+        { "type": "range", "id": "y_position", "label": "Vertical position", "min": 5, "max": 95, "step": 1, "unit": "%", "default": 50 },
+        { "type": "range", "id": "nudge_desktop", "label": "Left/right fine tune - desktop", "min": -250, "max": 250, "step": 5, "unit": "px", "default": 0 },
+        { "type": "range", "id": "nudge_mobile", "label": "Left/right fine tune - mobile", "min": -150, "max": 150, "step": 5, "unit": "px", "default": 0 },
+        { "type": "range", "id": "size_desktop", "label": "Text size - desktop", "min": 10, "max": 56, "step": 1, "unit": "px", "default": 22 },
+        { "type": "range", "id": "size_mobile", "label": "Text size - mobile", "min": 7, "max": 30, "step": 1, "unit": "px", "default": 13 },
+        { "type": "range", "id": "pad_x_desktop", "label": "Side padding - desktop", "min": 6, "max": 40, "step": 1, "unit": "px", "default": 14 },
+        { "type": "range", "id": "pad_y_desktop", "label": "Top/bottom padding - desktop", "min": 3, "max": 22, "step": 1, "unit": "px", "default": 8 },
+        { "type": "range", "id": "pad_x_mobile", "label": "Side padding - mobile", "min": 4, "max": 24, "step": 1, "unit": "px", "default": 9 },
+        { "type": "range", "id": "pad_y_mobile", "label": "Top/bottom padding - mobile", "min": 2, "max": 14, "step": 1, "unit": "px", "default": 5 },
+        { "type": "color", "id": "bg", "label": "Background", "default": "#df2935" },
+        { "type": "color", "id": "color", "label": "Text color", "default": "#ffffff" },
+        { "type": "checkbox", "id": "animate", "label": "Heartbeat animation", "default": true },
+        { "type": "range", "id": "speed", "label": "Animation speed (x0.1 sec)", "min": 8, "max": 30, "step": 1, "default": 17 },
+        { "type": "range", "id": "scale", "label": "Animation strength", "min": 102, "max": 116, "step": 1, "unit": "%", "default": 105 }
+      ]
+    },
+    {
+      "type": "countdown",
+      "name": "Countdown timer",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "end_date", "label": "End date/time", "info": "Example: 2026-12-31T23:59:59+05:00", "default": "2026-12-31T23:59:59+05:00" },
+        { "type": "select", "id": "align", "label": "Horizontal side", "default": "center", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ] },
+        { "type": "range", "id": "y_position", "label": "Vertical position", "min": 5, "max": 95, "step": 1, "unit": "%", "default": 79 },
+        { "type": "range", "id": "nudge_desktop", "label": "Left/right fine tune - desktop", "min": -250, "max": 250, "step": 5, "unit": "px", "default": 0 },
+        { "type": "range", "id": "nudge_mobile", "label": "Left/right fine tune - mobile", "min": -150, "max": 150, "step": 5, "unit": "px", "default": 0 },
+        { "type": "color", "id": "bg", "label": "Background", "default": "#111111" },
+        { "type": "color", "id": "color", "label": "Number color", "default": "#ffffff" },
+        { "type": "color", "id": "label_color", "label": "Label color", "default": "#ffd95a" },
+        { "type": "range", "id": "number_size_desktop", "label": "Number size - desktop", "min": 8, "max": 32, "step": 1, "unit": "px", "default": 12 },
+        { "type": "range", "id": "label_size_desktop", "label": "Label size - desktop", "min": 5, "max": 14, "step": 1, "unit": "px", "default": 6 },
+        { "type": "range", "id": "number_size_mobile", "label": "Number size - mobile", "min": 6, "max": 20, "step": 1, "unit": "px", "default": 8 },
+        { "type": "range", "id": "label_size_mobile", "label": "Label size - mobile", "min": 4, "max": 10, "step": 1, "unit": "px", "default": 4 },
+        { "type": "range", "id": "pad_x_desktop", "label": "Side padding - desktop", "min": 3, "max": 20, "step": 1, "unit": "px", "default": 7 },
+        { "type": "range", "id": "pad_y_desktop", "label": "Top/bottom padding - desktop", "min": 2, "max": 14, "step": 1, "unit": "px", "default": 5 },
+        { "type": "range", "id": "pad_x_mobile", "label": "Side padding - mobile", "min": 2, "max": 14, "step": 1, "unit": "px", "default": 4 },
+        { "type": "range", "id": "pad_y_mobile", "label": "Top/bottom padding - mobile", "min": 1, "max": 10, "step": 1, "unit": "px", "default": 3 }
+      ]
+    },
+    {
+      "type": "shop_button",
+      "name": "Shop Now button",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Button text", "default": "SHOP NOW" },
+        { "type": "url", "id": "link", "label": "Button link" },
+        { "type": "select", "id": "align", "label": "Shop Now alignment", "default": "right", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ] },
+        { "type": "range", "id": "y_position", "label": "Vertical position", "min": 5, "max": 95, "step": 1, "unit": "%", "default": 52 },
+        { "type": "range", "id": "nudge_desktop", "label": "Left/right fine tune - desktop", "min": -250, "max": 250, "step": 5, "unit": "px", "default": 0 },
+        { "type": "range", "id": "nudge_mobile", "label": "Left/right fine tune - mobile", "min": -150, "max": 150, "step": 5, "unit": "px", "default": 0 },
+        { "type": "color", "id": "bg", "label": "Button background", "default": "#df2935" },
+        { "type": "color", "id": "color", "label": "Button text color", "default": "#ffffff" },
+        { "type": "color", "id": "border", "label": "Button border color", "default": "#ffffff" },
+        { "type": "range", "id": "size_desktop", "label": "Text size - desktop", "min": 10, "max": 32, "step": 1, "unit": "px", "default": 19 },
+        { "type": "range", "id": "size_mobile", "label": "Text size - mobile", "min": 7, "max": 22, "step": 1, "unit": "px", "default": 11 },
+        { "type": "range", "id": "pad_x_desktop", "label": "Side padding - desktop", "min": 8, "max": 40, "step": 1, "unit": "px", "default": 22 },
+        { "type": "range", "id": "pad_y_desktop", "label": "Top/bottom padding - desktop", "min": 4, "max": 22, "step": 1, "unit": "px", "default": 10 },
+        { "type": "range", "id": "pad_x_mobile", "label": "Side padding - mobile", "min": 5, "max": 26, "step": 1, "unit": "px", "default": 13 },
+        { "type": "range", "id": "pad_y_mobile", "label": "Top/bottom padding - mobile", "min": 3, "max": 16, "step": 1, "unit": "px", "default": 7 },
+        { "type": "checkbox", "id": "animate", "label": "Heartbeat animation", "default": true },
+        { "type": "range", "id": "speed", "label": "Animation speed (x0.1 sec)", "min": 8, "max": 30, "step": 1, "default": 16 },
+        { "type": "range", "id": "scale", "label": "Animation strength", "min": 102, "max": 120, "step": 1, "unit": "%", "default": 108 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BestDeals same display",
+      "blocks": [
+        { "type": "deal_title" },
+        { "type": "countdown" },
+        { "type": "shop_button" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1222 @@
+{% comment %}
+  Bestdeal.pk Premium 3D Footer V8 — Ultra Compact Mobile
+  - Keeps the purple + gold 3D design
+  - Keeps contact details, newsletter and large logo unchanged
+  - Removes the Trust Badges section to reduce footer height
+  - Hides the Search footer link while preserving any other footer page links
+  - Desktop: contact information left, large logo right
+  - Mobile: contact information left, logo stays on the right
+  - Mobile lower row: newsletter spans full width for a shorter, cleaner footer
+{% endcomment %}
+
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+
+{%- assign phone_clean = section.settings.mobile_number | remove: ' ' | remove: '-' | remove: '(' | remove: ')' -%}
+
+{%- style -%}
+  #BestdealFooter-{{ section.id }} {
+    --bd-bg-1: {{ section.settings.bg_color_1 }};
+    --bd-bg-2: {{ section.settings.bg_color_2 }};
+    --bd-purple: {{ section.settings.purple }};
+    --bd-purple-light: {{ section.settings.purple_light }};
+    --bd-purple-dark: {{ section.settings.purple_dark }};
+    --bd-gold: {{ section.settings.gold }};
+    --bd-gold-dark: {{ section.settings.gold_dark }};
+    --bd-text: {{ section.settings.text_color }};
+    --bd-muted: {{ section.settings.muted_text_color }};
+    --bd-surface: {{ section.settings.surface_color }};
+
+    position: relative;
+    overflow: hidden;
+    margin-top: {{ section.settings.margin_top }}px;
+    background:
+      radial-gradient(circle at 10% 30%, rgba(144, 65, 255, .15), transparent 30%),
+      radial-gradient(circle at 90% 15%, rgba(255, 207, 68, .10), transparent 28%),
+      linear-gradient(150deg, var(--bd-bg-1), var(--bd-bg-2));
+    color: var(--bd-text);
+    border: 0 !important;
+    outline: 0 !important;
+  }
+
+  #BestdealFooter-{{ section.id }} *,
+  #BestdealFooter-{{ section.id }} *::before,
+  #BestdealFooter-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #BestdealFooter-{{ section.id }}::before,
+  #BestdealFooter-{{ section.id }}::after {
+    content: none !important;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-footer-content {
+    position: relative;
+    z-index: 2;
+    padding-top: {{ section.settings.content_padding_top }}px;
+    padding-bottom: 0;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-main-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+    grid-template-areas:
+      "contact logo"
+      "newsletter logo";
+    column-gap: 58px;
+    row-gap: 24px;
+    align-items: start;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-left {
+    grid-area: contact;
+    min-width: 0;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-right {
+    grid-area: logo;
+    min-width: 0;
+    display: flex;
+    justify-content: {{ section.settings.logo_alignment }};
+    align-items: center;
+    align-self: center;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-heading {
+    margin: 0 0 20px;
+    color: var(--bd-gold);
+    font-size: {{ section.settings.heading_size }}px;
+    line-height: 1.15;
+    font-weight: 900;
+    letter-spacing: .2px;
+    text-shadow:
+      0 1px 0 #fff2aa,
+      0 2px 0 var(--bd-gold-dark),
+      0 5px 11px rgba(0,0,0,.45);
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-contact-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-contact-row {
+    display: grid;
+    grid-template-columns: {{ section.settings.icon_size }}px minmax(0, 1fr);
+    gap: 13px;
+    align-items: center;
+    color: var(--bd-text);
+    text-decoration: none;
+    min-width: 0;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-contact-icon {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fff;
+    background:
+      radial-gradient(circle at 30% 23%, rgba(255,255,255,.55), transparent 20%),
+      linear-gradient(145deg, var(--bd-purple-light), var(--bd-purple) 55%, var(--bd-purple-dark));
+    border: 1px solid rgba(255, 221, 107, .46);
+    box-shadow:
+      0 4px 0 #2b0758,
+      0 9px 17px rgba(0,0,0,.34),
+      0 0 15px rgba(130,60,255,.24),
+      inset 0 1px 2px rgba(255,255,255,.48),
+      inset 0 -3px 5px rgba(24,3,58,.38);
+    transition: transform .22s ease, box-shadow .22s ease;
+    flex: 0 0 auto;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-contact-icon--gold {
+    background:
+      radial-gradient(circle at 30% 23%, rgba(255,255,255,.72), transparent 20%),
+      linear-gradient(145deg, #ffe98b, var(--bd-gold) 55%, var(--bd-gold-dark));
+    color: #431173;
+    border-color: rgba(255,255,255,.32);
+    box-shadow:
+      0 4px 0 #946209,
+      0 9px 17px rgba(0,0,0,.30),
+      0 0 15px rgba(255,198,45,.22),
+      inset 0 1px 2px rgba(255,255,255,.75),
+      inset 0 -3px 5px rgba(130,74,0,.22);
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-contact-icon svg {
+    width: 48%;
+    height: 48%;
+    fill: currentColor;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-contact-row:hover .bd-contact-icon {
+    transform: translateY(-3px) scale(1.04);
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-contact-meta {
+    min-width: 0;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-contact-label {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--bd-muted);
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-contact-value {
+    display: block;
+    color: var(--bd-text);
+    font-size: {{ section.settings.text_size }}px;
+    line-height: 1.45;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter {
+    grid-area: newsletter;
+    margin-top: 0;
+    max-width: 660px;
+    min-width: 0;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter-title {
+    margin: 0 0 11px;
+    color: var(--bd-gold);
+    font-size: {{ section.settings.newsletter_heading_size }}px;
+    line-height: 1.2;
+    font-weight: 900;
+    text-shadow:
+      0 1px 0 #fff2a4,
+      0 2px 0 var(--bd-gold-dark),
+      0 5px 10px rgba(0,0,0,.38);
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter-note {
+    margin: 0 0 13px;
+    color: var(--bd-muted);
+    font-size: {{ section.settings.text_size }}px;
+    line-height: 1.55;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter-form {
+    max-width: 100%;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter-field {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    align-items: stretch;
+    border-radius: 17px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,221,107,.32);
+    box-shadow:
+      inset 0 2px 6px rgba(0,0,0,.22),
+      0 7px 17px rgba(0,0,0,.20);
+    overflow: hidden;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter-input {
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+    padding: 0 17px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 15px;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter-input::placeholder {
+    color: rgba(255,255,255,.66);
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter-button {
+    min-height: 52px;
+    padding: 0 23px;
+    border: 0;
+    border-left: 1px solid rgba(72,17,118,.16);
+    background:
+      radial-gradient(circle at 32% 18%, rgba(255,255,255,.65), transparent 20%),
+      linear-gradient(145deg, #ffe985, var(--bd-gold) 55%, var(--bd-gold-dark));
+    color: #431173;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow:
+      inset 0 1px 2px rgba(255,255,255,.72),
+      inset 0 -3px 4px rgba(126,72,0,.18);
+    transition: filter .2s ease, transform .2s ease;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter-button:hover {
+    filter: brightness(1.05);
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter-message {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter-message--success {
+    color: #fff0a3;
+    font-weight: 800;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-newsletter-message--error {
+    color: #ffd8d8;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-logo-image {
+    display: block;
+    width: min({{ section.settings.logo_width }}px, 100%);
+    height: auto;
+    object-fit: contain;
+    filter:
+      drop-shadow(0 5px 0 rgba(50,8,88,.55))
+      drop-shadow(0 14px 24px rgba(0,0,0,.38))
+      drop-shadow(0 0 20px rgba(255,198,47,.22));
+    transform: perspective(900px) rotateY({{ section.settings.logo_tilt }}deg);
+    transition: transform .35s ease, filter .35s ease;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-logo-image:hover {
+    transform: perspective(900px) rotateY(0deg) translateY(-3px);
+    filter:
+      drop-shadow(0 6px 0 rgba(50,8,88,.55))
+      drop-shadow(0 18px 28px rgba(0,0,0,.42))
+      drop-shadow(0 0 25px rgba(255,201,51,.28));
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-logo-fallback {
+    width: min({{ section.settings.logo_width }}px, 100%);
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bd-gold);
+    font-weight: 900;
+    font-size: 28px;
+    text-align: center;
+  }
+
+
+
+
+
+
+
+  #BestdealFooter-{{ section.id }} .bd-pages {
+    margin-top: 24px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,.12);
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-pages-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-page-link {
+    color: var(--bd-muted);
+    font-size: 13px;
+    line-height: 1.3;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color .2s ease, transform .2s ease;
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-page-link:hover {
+    color: var(--bd-gold);
+  }
+
+  #BestdealFooter-{{ section.id }} .bd-bottom-space {
+    height: {{ section.settings.bottom_space }}px;
+  }
+
+  @media screen and (max-width: 989px) and (min-width: 750px) {
+    #BestdealFooter-{{ section.id }} .bd-main-grid {
+      grid-template-columns: minmax(0, 1.2fr) minmax(220px, .8fr);
+      column-gap: 30px;
+      row-gap: 20px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-logo-image {
+      width: min(300px, 100%);
+    }
+  }
+
+  /* ---------------------------------------------------------
+     ULTRA-COMPACT MOBILE LAYOUT
+     Row 1: Contact details left + logo right
+     Row 2: Newsletter across full width
+     Row 3: Footer text pages only when non-Search links exist
+     Trust badges removed to reduce total height.
+     --------------------------------------------------------- */
+  @media screen and (max-width: 749px) {
+    #BestdealFooter-{{ section.id }} .bd-footer-content {
+      padding-top: 10px;
+    }
+
+    #BestdealFooter-{{ section.id }} .page-width {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(128px, .95fr);
+      grid-template-areas:
+        "contact logo"
+        "newsletter newsletter"
+        "pages pages";
+      column-gap: 10px;
+      row-gap: 10px;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    /* Flatten the desktop wrapper so its children can share the compact mobile grid. */
+    #BestdealFooter-{{ section.id }} .bd-main-grid {
+      display: contents;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-left {
+      grid-area: contact;
+      min-width: 0;
+      align-self: start;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-right {
+      grid-area: logo;
+      min-width: 0;
+      align-self: start;
+      justify-content: center;
+      padding-top: 22px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-heading {
+      margin: 0 0 7px;
+      font-size: 16px;
+      line-height: 1.05;
+      letter-spacing: 0;
+      text-shadow:
+        0 1px 0 #fff2aa,
+        0 2px 0 var(--bd-gold-dark),
+        0 3px 7px rgba(0,0,0,.38);
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-contact-list {
+      gap: 4px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-contact-row {
+      grid-template-columns: 27px minmax(0, 1fr);
+      gap: 6px;
+      align-items: center;
+      min-height: 27px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-contact-icon {
+      width: 27px;
+      height: 27px;
+      border-width: 1px;
+      box-shadow:
+        0 2px 0 #2b0758,
+        0 4px 7px rgba(0,0,0,.26),
+        0 0 6px rgba(130,60,255,.16),
+        inset 0 1px 1px rgba(255,255,255,.42);
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-contact-icon--gold {
+      box-shadow:
+        0 2px 0 #946209,
+        0 4px 7px rgba(0,0,0,.23),
+        0 0 6px rgba(255,198,45,.14),
+        inset 0 1px 1px rgba(255,255,255,.62);
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-contact-label {
+      margin-bottom: 0;
+      font-size: 7px;
+      line-height: 1;
+      letter-spacing: .035em;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-contact-value {
+      font-size: 9.5px;
+      line-height: 1.08;
+      font-weight: 750;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-logo-image {
+      width: min({{ section.settings.logo_width_mobile }}px, 100%);
+      max-width: 132px;
+      max-height: 145px;
+      object-fit: contain;
+      transform: perspective(700px) rotateY({{ section.settings.logo_tilt }}deg);
+      filter:
+        drop-shadow(0 2px 0 rgba(50,8,88,.46))
+        drop-shadow(0 6px 10px rgba(0,0,0,.30))
+        drop-shadow(0 0 8px rgba(255,198,47,.16));
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-logo-fallback {
+      width: min(132px, 100%);
+      min-height: 80px;
+      font-size: 13px;
+    }
+
+    /* Newsletter spans the full second mobile row. */
+    #BestdealFooter-{{ section.id }} .bd-newsletter {
+      grid-area: newsletter;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      min-width: 0;
+      align-self: start;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-newsletter-title {
+      margin: 0 0 3px;
+      font-size: 13px;
+      line-height: 1.05;
+      text-shadow:
+        0 1px 0 #fff2a4,
+        0 2px 0 var(--bd-gold-dark),
+        0 3px 6px rgba(0,0,0,.34);
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-newsletter-note {
+      margin: 0 0 5px;
+      font-size: 8.5px;
+      line-height: 1.16;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-newsletter-field {
+      grid-template-columns: minmax(0,1fr) auto;
+      gap: 0;
+      border-radius: 9px;
+      overflow: hidden;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,221,107,.28);
+      box-shadow:
+        inset 0 1px 3px rgba(0,0,0,.18),
+        0 3px 7px rgba(0,0,0,.14);
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-newsletter-input {
+      min-height: 33px;
+      padding: 0 7px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      font-size: 9px;
+      box-shadow: none;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-newsletter-button {
+      min-height: 33px;
+      padding: 0 8px;
+      border: 0;
+      border-left: 1px solid rgba(72,17,118,.16);
+      border-radius: 0;
+      font-size: 8.5px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-newsletter-message {
+      margin-top: 3px;
+      font-size: 8px;
+      line-height: 1.1;
+    }
+
+    /* Trust badges now occupy the RIGHT side of the second mobile row. */
+
+
+
+
+
+
+
+    #BestdealFooter-{{ section.id }} .bd-pages {
+      grid-area: pages;
+      margin-top: 0;
+      padding-top: 7px;
+      border-top: 1px solid rgba(255,255,255,.11);
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-pages-list {
+      gap: 4px 9px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-page-link {
+      font-size: 8.5px;
+      line-height: 1.08;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-bottom-space {
+      height: 7px;
+    }
+  }
+
+  @media screen and (max-width: 390px) {
+    #BestdealFooter-{{ section.id }} .bd-footer-content {
+      padding-top: 8px;
+    }
+
+    #BestdealFooter-{{ section.id }} .page-width {
+      grid-template-columns: minmax(0, 1.5fr) minmax(112px, .85fr);
+      column-gap: 7px;
+      row-gap: 8px;
+      padding-left: 9px;
+      padding-right: 9px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-right {
+      padding-top: 20px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-heading {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-contact-list {
+      gap: 3px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-contact-row {
+      grid-template-columns: 25px minmax(0,1fr);
+      gap: 5px;
+      min-height: 25px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-contact-icon {
+      width: 25px;
+      height: 25px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-contact-label {
+      font-size: 6.5px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-contact-value {
+      font-size: 8.7px;
+      line-height: 1.06;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-logo-image {
+      max-width: 112px;
+      max-height: 125px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-newsletter-title {
+      font-size: 12px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-newsletter-note {
+      font-size: 8px;
+      margin-bottom: 4px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-newsletter-input,
+    #BestdealFooter-{{ section.id }} .bd-newsletter-button {
+      min-height: 30px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-newsletter-input {
+      font-size: 8.5px;
+      padding: 0 6px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-newsletter-button {
+      padding: 0 6px;
+      font-size: 8px;
+    }
+
+
+
+
+    #BestdealFooter-{{ section.id }} .bd-pages {
+      padding-top: 6px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-pages-list {
+      gap: 3px 7px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-page-link {
+      font-size: 8px;
+    }
+
+    #BestdealFooter-{{ section.id }} .bd-bottom-space {
+      height: 6px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #BestdealFooter-{{ section.id }} .bd-contact-icon,
+    #BestdealFooter-{{ section.id }} .bd-logo-image,
+    #BestdealFooter-{{ section.id }} .bd-newsletter-button {
+      transition: none !important;
+    }
+  }
+{%- endstyle -%}
+
+<footer id="BestdealFooter-{{ section.id }}" class="bd-footer">
+  <div class="bd-footer-content">
+    <div class="page-width">
+
+      <div class="bd-main-grid">
+        <div class="bd-left">
+          <h2 class="bd-heading">{{ section.settings.contact_heading }}</h2>
+
+          <div class="bd-contact-list">
+            {%- if section.settings.shopping_address != blank -%}
+              <div class="bd-contact-row">
+                <span class="bd-contact-icon bd-contact-icon--gold" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 10.2A3.2 3.2 0 1 1 12 5.8a3.2 3.2 0 0 1 0 6.4Z"/></svg>
+                </span>
+                <span class="bd-contact-meta">
+                  <span class="bd-contact-label">Shopping Address</span>
+                  <span class="bd-contact-value">{{ section.settings.shopping_address }}</span>
+                </span>
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.support_email != blank -%}
+              <a class="bd-contact-row" href="mailto:{{ section.settings.support_email | escape }}">
+                <span class="bd-contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M2.4 5.2h19.2v13.6H2.4V5.2Zm2.1 1.8 7.5 5.3L19.5 7h-15Zm15 10V9.5L12 14.8 4.5 9.5V17h15Z"/></svg>
+                </span>
+                <span class="bd-contact-meta">
+                  <span class="bd-contact-label">Email Address</span>
+                  <span class="bd-contact-value">{{ section.settings.support_email }}</span>
+                </span>
+              </a>
+            {%- endif -%}
+
+            {%- if section.settings.mobile_number != blank -%}
+              <a class="bd-contact-row" href="tel:{{ phone_clean }}">
+                <span class="bd-contact-icon bd-contact-icon--gold" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M6.7 2.8 10 6.1 8 8.7c.8 1.7 2.6 3.5 4.3 4.3l2.6-2 3.3 3.3-1.8 3.3c-.3.6-.9 1-1.6 1-6.4-.5-11.5-5.6-12-12 0-.7.4-1.3 1-1.6l2.9-2.2Z"/></svg>
+                </span>
+                <span class="bd-contact-meta">
+                  <span class="bd-contact-label">Mobile Number</span>
+                  <span class="bd-contact-value">{{ section.settings.mobile_number }}</span>
+                </span>
+              </a>
+            {%- endif -%}
+
+            {%- if section.settings.facebook_url != blank -%}
+              <a class="bd-contact-row" href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener">
+                <span class="bd-contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M14.5 8H17V4.3c-.4-.1-1.9-.2-3.5-.2-3.4 0-5.7 2.1-5.7 5.9v3.3H4v4.2h3.8V24h4.6v-6.5h3.8l.6-4.2h-4.4v-2.9c0-1.2.4-2.4 2.1-2.4Z"/></svg>
+                </span>
+                <span class="bd-contact-meta">
+                  <span class="bd-contact-label">Facebook</span>
+                  <span class="bd-contact-value">{{ section.settings.facebook_label }}</span>
+                </span>
+              </a>
+            {%- endif -%}
+
+            {%- if section.settings.instagram_url != blank -%}
+              <a class="bd-contact-row" href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener">
+                <span class="bd-contact-icon bd-contact-icon--gold" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.3.5.6.2 1 .5 1.5 1s.8.9 1 1.5c.2.4.4 1.1.5 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.5 2.3-.2.6-.5 1-.9 1.5-.5.5-.9.8-1.5 1-.4.2-1.1.4-2.3.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.3-.5-.6-.2-1-.5-1.5-1s-.8-.9-1-1.5c-.2-.4-.4-1.1-.5-2.3-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.9.5-2.3.2-.6.5-1 .9-1.5.5-.5.9-.8 1.5-1 .4-.2 1.1-.4 2.3-.5C8.4 2.2 8.8 2.2 12 2.2Zm0 5.2a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2Zm0 8.4a3.3 3.3 0 1 1 0-6.6 3.3 3.3 0 0 1 0 6.6Zm6.5-8.6a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z"/></svg>
+                </span>
+                <span class="bd-contact-meta">
+                  <span class="bd-contact-label">Instagram</span>
+                  <span class="bd-contact-value">{{ section.settings.instagram_label }}</span>
+                </span>
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="bd-right">
+          {%- if section.settings.logo_image != blank -%}
+            {{
+              section.settings.logo_image
+              | image_url: width: 1000
+              | image_tag:
+                loading: 'lazy',
+                widths: '180, 260, 360, 500, 700, 1000',
+                class: 'bd-logo-image',
+                alt: shop.name
+            }}
+          {%- else -%}
+            <div class="bd-logo-fallback">Upload your large logo / image here</div>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.newsletter_enable -%}
+          <div class="bd-newsletter">
+            <h3 class="bd-newsletter-title">{{ section.settings.newsletter_heading }}</h3>
+
+            {%- if section.settings.newsletter_text != blank -%}
+              <p class="bd-newsletter-note">{{ section.settings.newsletter_text }}</p>
+            {%- endif -%}
+
+            {%- form 'customer', id: 'BestdealFooterNewsletter', class: 'bd-newsletter-form' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+
+              <div class="bd-newsletter-field">
+                <input
+                  class="bd-newsletter-input"
+                  type="email"
+                  name="contact[email]"
+                  value="{{ form.email }}"
+                  aria-required="true"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  placeholder="{{ section.settings.newsletter_placeholder }}"
+                  required
+                  {% if form.errors %}
+                    aria-invalid="true"
+                    aria-describedby="BestdealFooterNewsletterError"
+                  {% elsif form.posted_successfully? %}
+                    aria-describedby="BestdealFooterNewsletterSuccess"
+                  {% endif %}
+                >
+                <button class="bd-newsletter-button" type="submit" name="commit">
+                  {{ section.settings.newsletter_button_text }}
+                </button>
+              </div>
+
+              {%- if form.errors -%}
+                <div id="BestdealFooterNewsletterError" class="bd-newsletter-message bd-newsletter-message--error">
+                  {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+                </div>
+              {%- endif -%}
+
+              {%- if form.posted_successfully? -%}
+                <div id="BestdealFooterNewsletterSuccess" class="bd-newsletter-message bd-newsletter-message--success">
+                  {{ section.settings.newsletter_success_text }}
+                </div>
+              {%- endif -%}
+            {%- endform -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.footer_menu != blank and section.settings.footer_menu.links.size > 0 -%}
+        {%- assign bd_has_visible_footer_link = false -%}
+        {%- for link in section.settings.footer_menu.links -%}
+          {%- assign bd_link_title = link.title | strip | downcase -%}
+          {%- unless bd_link_title == 'search' -%}
+            {%- assign bd_has_visible_footer_link = true -%}
+            {%- break -%}
+          {%- endunless -%}
+        {%- endfor -%}
+
+        {%- if bd_has_visible_footer_link -%}
+          <nav class="bd-pages" aria-label="Footer pages">
+            <ul class="bd-pages-list">
+              {%- for link in section.settings.footer_menu.links -%}
+                {%- assign bd_link_title = link.title | strip | downcase -%}
+                {%- unless bd_link_title == 'search' -%}
+                  <li><a class="bd-page-link" href="{{ link.url }}">{{ link.title }}</a></li>
+                {%- endunless -%}
+              {%- endfor -%}
+            </ul>
+          </nav>
+        {%- endif -%}
+      {%- elsif linklists['footer'].links.size > 0 -%}
+        {%- assign bd_has_visible_footer_link = false -%}
+        {%- for link in linklists['footer'].links -%}
+          {%- assign bd_link_title = link.title | strip | downcase -%}
+          {%- unless bd_link_title == 'search' -%}
+            {%- assign bd_has_visible_footer_link = true -%}
+            {%- break -%}
+          {%- endunless -%}
+        {%- endfor -%}
+
+        {%- if bd_has_visible_footer_link -%}
+          <nav class="bd-pages" aria-label="Footer pages">
+            <ul class="bd-pages-list">
+              {%- for link in linklists['footer'].links -%}
+                {%- assign bd_link_title = link.title | strip | downcase -%}
+                {%- unless bd_link_title == 'search' -%}
+                  <li><a class="bd-page-link" href="{{ link.url }}">{{ link.title }}</a></li>
+                {%- endunless -%}
+              {%- endfor -%}
+            </ul>
+          </nav>
+        {%- endif -%}
+      {%- endif -%}
+
+    </div>
+  </div>
+
+  <div class="bd-bottom-space" aria-hidden="true"></div>
+</footer>
+
+{% schema %}
+{
+  "name": "Bestdeal 3D Footer V8",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Contact information"
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "label": "Contact heading",
+      "default": "Connect With Us"
+    },
+    {
+      "type": "textarea",
+      "id": "shopping_address",
+      "label": "Shopping address",
+      "default": "Add your shopping / business address here"
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "label": "Email address",
+      "default": "support@bestdeal.pk"
+    },
+    {
+      "type": "text",
+      "id": "mobile_number",
+      "label": "Mobile number",
+      "default": "+92 300 0000000"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "text",
+      "id": "facebook_label",
+      "label": "Facebook text",
+      "default": "Bestdeal.pk"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "text",
+      "id": "instagram_label",
+      "label": "Instagram text",
+      "default": "@bestdeal.pk"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter subscribe"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "label": "Show subscribe box",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Subscribe heading",
+      "default": "Subscribe & Stay Updated"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_text",
+      "label": "Subscribe text",
+      "default": "Get new arrivals, special offers and useful deal updates in your inbox."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button_text",
+      "label": "Button text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_success_text",
+      "label": "Success message",
+      "default": "Thank you! You have subscribed successfully."
+    },
+    {
+      "type": "header",
+      "content": "Large logo / image"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Large right-side logo / image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 180,
+      "max": 560,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 420
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "min": 80,
+      "max": 220,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo width - mobile",
+      "default": 140
+    },
+    {
+      "type": "select",
+      "id": "logo_alignment",
+      "label": "Logo alignment",
+      "default": "center",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "logo_tilt",
+      "min": -10,
+      "max": 10,
+      "step": 1,
+      "unit": "deg",
+      "label": "3D logo tilt",
+      "default": -4
+    },
+    {
+      "type": "header",
+      "content": "Text pages / footer menu"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer text pages menu"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_1",
+      "label": "Background 1",
+      "default": "#1E0836"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_2",
+      "label": "Background 2",
+      "default": "#3A1265"
+    },
+    {
+      "type": "color",
+      "id": "surface_color",
+      "label": "Surface color",
+      "default": "#4A197B"
+    },
+    {
+      "type": "color",
+      "id": "purple",
+      "label": "Main purple",
+      "default": "#6D20E8"
+    },
+    {
+      "type": "color",
+      "id": "purple_light",
+      "label": "Light purple",
+      "default": "#9C62FF"
+    },
+    {
+      "type": "color",
+      "id": "purple_dark",
+      "label": "Dark purple",
+      "default": "#3A0B72"
+    },
+    {
+      "type": "color",
+      "id": "gold",
+      "label": "Gold",
+      "default": "#FFD044"
+    },
+    {
+      "type": "color",
+      "id": "gold_dark",
+      "label": "Dark gold",
+      "default": "#D99300"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Main text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "Muted text",
+      "default": "#E9DFFF"
+    },
+    {
+      "type": "header",
+      "content": "Typography & spacing"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 18,
+      "max": 38,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop heading size",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 16,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile heading size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop text size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile text size",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "newsletter_heading_size",
+      "min": 16,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Subscribe heading size - desktop",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "newsletter_heading_size_mobile",
+      "min": 14,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "label": "Subscribe heading size - mobile",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 38,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop icon size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "min": 28,
+      "max": 58,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile icon size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top",
+      "min": 20,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Content top spacing - desktop",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top_mobile",
+      "min": 8,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Content top spacing - mobile",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "bottom_space",
+      "min": 12,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Blank space at bottom",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bestdeal 3D Footer V8"
+    }
+  ]
+}
+{% endschema %}

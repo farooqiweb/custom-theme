@@ -1,0 +1,713 @@
+<div class="custom-trust-badges custom-trust-badges-{{ section.id }}">
+
+  {% if section.settings.heading != blank %}
+    <h2 class="custom-trust-heading">
+      {{ section.settings.heading }}
+    </h2>
+  {% endif %}
+
+  <div class="custom-trust-badges-container">
+
+    {% for block in section.blocks %}
+
+      <div
+        class="custom-trust-badge-item"
+        {{ block.shopify_attributes }}
+      >
+
+        {% if block.settings.image != blank %}
+
+          <div class="custom-trust-icon-circle">
+            <img
+              src="{{ block.settings.image | image_url: width: 400 }}"
+              alt="{{ block.settings.image.alt | default: block.settings.text | escape }}"
+              loading="lazy"
+              width="{{ section.settings.icon_size }}"
+              height="{{ section.settings.icon_size }}"
+            >
+          </div>
+
+        {% else %}
+
+          <div class="custom-trust-icon-circle custom-placeholder-circle"></div>
+
+        {% endif %}
+
+
+        {% if block.settings.text != blank %}
+
+          <p class="custom-trust-title">
+            {{ block.settings.text }}
+          </p>
+
+        {% endif %}
+
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+</div>
+
+
+<style>
+
+/* ===============================
+   MAIN SECTION
+================================ */
+
+.custom-trust-badges-{{ section.id }} {
+  width: 100%;
+  text-align: center;
+
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  overflow: hidden;
+
+  background-color: {{ section.settings.section_bg_color }};
+}
+
+
+/* ===============================
+   HEADING
+================================ */
+
+.custom-trust-badges-{{ section.id }} .custom-trust-heading {
+  margin: 0 0 28px 0;
+  padding: 0;
+
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  color: {{ section.settings.heading_color }};
+}
+
+
+/* ===============================
+   BADGES CONTAINER
+================================ */
+
+.custom-trust-badges-{{ section.id }} .custom-trust-badges-container {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: flex-start;
+
+  flex-wrap: wrap;
+
+  gap: {{ section.settings.badge_gap }}px;
+
+}
+
+
+/* ===============================
+   EACH BADGE
+================================ */
+
+.custom-trust-badges-{{ section.id }} .custom-trust-badge-item {
+
+  width: {{ section.settings.badge_width }}px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  text-align: center;
+
+  background: transparent !important;
+
+  background-color: transparent !important;
+
+  border: none !important;
+
+  border-radius: 0 !important;
+
+  box-shadow: none !important;
+
+  outline: none !important;
+
+  padding: 0 !important;
+
+  margin: 0;
+
+  color: inherit;
+
+  animation:
+    customTrustFloat-{{ section.id }}
+    {{ section.settings.float_duration }}s
+    ease-in-out
+    infinite;
+
+}
+
+
+/* Animation Delay */
+
+.custom-trust-badges-{{ section.id }}
+.custom-trust-badge-item:nth-child(even) {
+
+  animation-delay: 0.5s;
+
+}
+
+
+/* ===============================
+   ICON CIRCLE
+================================ */
+
+.custom-trust-badges-{{ section.id }}
+.custom-trust-icon-circle {
+
+  width: {{ section.settings.icon_size }}px;
+
+  height: {{ section.settings.icon_size }}px;
+
+  min-width: {{ section.settings.icon_size }}px;
+
+  min-height: {{ section.settings.icon_size }}px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  box-sizing: border-box;
+
+  padding: 0;
+
+  margin: 0;
+
+  background-color: {{ section.settings.circle_bg_color }};
+
+  border:
+    {{ section.settings.circle_border_width }}px
+    solid
+    {{ section.settings.circle_border_color }};
+
+}
+
+
+/* ===============================
+   IMAGE
+================================ */
+
+.custom-trust-badges-{{ section.id }}
+.custom-trust-icon-circle img {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+
+  border-radius: 50%;
+
+  padding: 0;
+
+  margin: 0;
+
+  border: none;
+
+  box-shadow: none;
+
+  background: transparent;
+
+}
+
+
+/* ===============================
+   PLACEHOLDER
+================================ */
+
+.custom-trust-badges-{{ section.id }}
+.custom-placeholder-circle {
+
+  background-color: {{ section.settings.circle_bg_color }};
+
+}
+
+
+/* ===============================
+   BADGE TITLE
+================================ */
+
+.custom-trust-badges-{{ section.id }}
+.custom-trust-title {
+
+  margin: 10px 0 0 0 !important;
+
+  padding: 0 !important;
+
+  width: 100%;
+
+  background: transparent !important;
+
+  background-color: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+  font-size: {{ section.settings.title_font_size }}px;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  color: {{ section.settings.title_color }};
+
+  text-align: center;
+
+}
+
+
+/* ===============================
+   FLOAT ANIMATION
+================================ */
+
+@keyframes customTrustFloat-{{ section.id }} {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(
+        -{{ section.settings.float_distance }}px
+      );
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media screen and (max-width: 749px) {
+
+  .custom-trust-badges-{{ section.id }} {
+
+    padding-top: {{ section.settings.mobile_padding_top }}px;
+
+    padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+
+    padding-left: 8px;
+
+    padding-right: 8px;
+
+  }
+
+
+  .custom-trust-badges-{{ section.id }}
+  .custom-trust-heading {
+
+    font-size: 20px;
+
+    margin-bottom: 22px;
+
+  }
+
+
+  .custom-trust-badges-{{ section.id }}
+  .custom-trust-badges-container {
+
+    gap: {{ section.settings.mobile_badge_gap }}px;
+
+  }
+
+
+  .custom-trust-badges-{{ section.id }}
+  .custom-trust-badge-item {
+
+    width: {{ section.settings.mobile_badge_width }}px;
+
+  }
+
+
+  .custom-trust-badges-{{ section.id }}
+  .custom-trust-icon-circle {
+
+    width: {{ section.settings.mobile_icon_size }}px;
+
+    height: {{ section.settings.mobile_icon_size }}px;
+
+    min-width: {{ section.settings.mobile_icon_size }}px;
+
+    min-height: {{ section.settings.mobile_icon_size }}px;
+
+  }
+
+
+  .custom-trust-badges-{{ section.id }}
+  .custom-trust-title {
+
+    font-size: {{ section.settings.mobile_title_font_size }}px;
+
+    margin-top: 8px !important;
+
+  }
+
+}
+
+</style>
+
+
+{% schema %}
+{
+  "name": "Trust Badges",
+
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Content"
+    },
+
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Shop With Us"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#222222"
+    },
+
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Badge Title Color",
+      "default": "#222222"
+    },
+
+    {
+      "type": "color",
+      "id": "circle_bg_color",
+      "label": "Circle Background Color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "color",
+      "id": "circle_border_color",
+      "label": "Circle Border Color",
+      "default": "#d2d2d2"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 60,
+      "max": 180,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon Size Desktop",
+      "default": 125
+    },
+
+    {
+      "type": "range",
+      "id": "badge_width",
+      "min": 80,
+      "max": 220,
+      "step": 5,
+      "unit": "px",
+      "label": "Badge Width Desktop",
+      "default": 145
+    },
+
+    {
+      "type": "range",
+      "id": "badge_gap",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap Desktop",
+      "default": 22
+    },
+
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size Desktop",
+      "default": 16
+    },
+
+
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_icon_size",
+      "min": 40,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon Size Mobile",
+      "default": 90
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_badge_width",
+      "min": 60,
+      "max": 180,
+      "step": 5,
+      "unit": "px",
+      "label": "Badge Width Mobile",
+      "default": 105
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_badge_gap",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap Mobile",
+      "default": 14
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size Mobile",
+      "default": 13
+    },
+
+
+    {
+      "type": "header",
+      "content": "Circle Settings"
+    },
+
+    {
+      "type": "range",
+      "id": "circle_border_width",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "label": "Circle Border Width",
+      "default": 2
+    },
+
+
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop Padding Top",
+      "default": 20
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop Padding Bottom",
+      "default": 20
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Padding Top",
+      "default": 16
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Padding Bottom",
+      "default": 16
+    },
+
+
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+
+    {
+      "type": "range",
+      "id": "float_duration",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Animation Duration",
+      "default": 4
+    },
+
+    {
+      "type": "range",
+      "id": "float_distance",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Float Distance",
+      "default": 6
+    }
+
+  ],
+
+
+  "blocks": [
+
+    {
+      "type": "badge",
+      "name": "Trust Badge",
+
+      "settings": [
+
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Badge Image"
+        },
+
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Badge Title",
+          "default": "Secure Checkout"
+        }
+
+      ]
+
+    }
+
+  ],
+
+
+  "presets": [
+
+    {
+      "name": "Trust Badges",
+
+      "blocks": [
+
+        {
+          "type": "badge",
+          "settings": {
+            "text": "Pure Ingredients"
+          }
+        },
+
+        {
+          "type": "badge",
+          "settings": {
+            "text": "Non-Toxic"
+          }
+        },
+
+        {
+          "type": "badge",
+          "settings": {
+            "text": "Dermatologist Tested"
+          }
+        },
+
+        {
+          "type": "badge",
+          "settings": {
+            "text": "Cruelty-Free"
+          }
+        },
+
+        {
+          "type": "badge",
+          "settings": {
+            "text": "Fast Free Shipping"
+          }
+        }
+
+      ]
+
+    }
+
+  ]
+
+}
+{% endschema %} 

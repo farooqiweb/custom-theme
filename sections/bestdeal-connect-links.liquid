@@ -1,0 +1,532 @@
+{% style %}
+
+  #BestdealConnect-{{ section.id }} {
+    background:
+      radial-gradient(circle at top right, rgba(255, 206, 84, 0.15), transparent 30%),
+      radial-gradient(circle at bottom left, rgba(145, 70, 255, 0.18), transparent 35%),
+      {{ section.settings.section_bg }};
+    padding: {{ section.settings.padding_top }}px 18px {{ section.settings.padding_bottom }}px;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-wrap {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-card {
+    background: linear-gradient(180deg, {{ section.settings.card_bg_top }} 0%, {{ section.settings.card_bg_bottom }} 100%);
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: 36px 22px 28px;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow:
+      0 22px 50px rgba(44, 12, 89, 0.26),
+      inset 0 1px 0 rgba(255,255,255,0.20),
+      inset 0 -10px 30px rgba(0,0,0,0.10);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-card:before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 199, 68, 0.28), rgba(255, 199, 68, 0) 70%);
+    pointer-events: none;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-card:after {
+    content: "";
+    position: absolute;
+    bottom: -70px;
+    left: -60px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(158, 81, 255, 0.22), rgba(158, 81, 255, 0) 70%);
+    pointer-events: none;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-title {
+    margin: 0 0 10px;
+    text-align: center;
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size }}px;
+    line-height: 1.15;
+    font-weight: 900;
+    letter-spacing: 0.2px;
+    text-shadow:
+      0 2px 0 rgba(255,255,255,0.10),
+      0 5px 12px rgba(0,0,0,0.22);
+    position: relative;
+    z-index: 2;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-subtitle {
+    max-width: 700px;
+    margin: 0 auto 28px;
+    text-align: center;
+    color: {{ section.settings.text_color }};
+    font-size: 16px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-links {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.button_gap }}px;
+    max-width: {{ section.settings.button_width }}px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-btn {
+    --btn-bg: #6F22D9;
+    --btn-text: #ffffff;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 68px;
+    width: 100%;
+    padding: 14px 58px 14px 60px;
+    border-radius: {{ section.settings.button_radius }}px;
+    text-decoration: none;
+    color: var(--btn-text);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02)),
+      var(--btn-bg);
+    box-shadow:
+      0 10px 0 rgba(49, 17, 86, 0.30),
+      0 14px 24px rgba(38, 10, 73, 0.24),
+      inset 0 1px 0 rgba(255,255,255,0.28),
+      inset 0 -3px 8px rgba(0,0,0,0.15);
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    transform: translateY(0);
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.03);
+    box-shadow:
+      0 13px 0 rgba(49, 17, 86, 0.26),
+      0 20px 28px rgba(38, 10, 73, 0.28),
+      inset 0 1px 0 rgba(255,255,255,0.30),
+      inset 0 -3px 8px rgba(0,0,0,0.15);
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-btn:active {
+    transform: translateY(4px);
+    box-shadow:
+      0 5px 0 rgba(49, 17, 86, 0.28),
+      0 10px 16px rgba(38, 10, 73, 0.20),
+      inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-icon {
+    position: absolute;
+    left: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.30), rgba(255,255,255,0.08));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.25),
+      0 4px 8px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-label {
+    display: block;
+    text-align: center;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-arrow {
+    position: absolute;
+    right: 18px;
+    font-size: 24px;
+    line-height: 1;
+    opacity: 0.95;
+  }
+
+  #BestdealConnect-{{ section.id }} .bd3d-badge {
+    display: inline-block;
+    margin: 0 auto 14px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
+    color: {{ section.settings.badge_color }};
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.22),
+      0 10px 20px rgba(28, 7, 58, 0.14);
+  }
+
+  @media screen and (max-width: 749px) {
+
+    #BestdealConnect-{{ section.id }} .bd3d-card {
+      padding: 28px 16px 22px;
+      border-radius: 24px;
+    }
+
+    #BestdealConnect-{{ section.id }} .bd3d-title {
+      font-size: calc({{ section.settings.heading_size }}px * 0.75);
+    }
+
+    #BestdealConnect-{{ section.id }} .bd3d-subtitle {
+      font-size: 15px;
+      margin-bottom: 22px;
+    }
+
+    #BestdealConnect-{{ section.id }} .bd3d-links {
+      max-width: 100%;
+    }
+
+    #BestdealConnect-{{ section.id }} .bd3d-btn {
+      min-height: 62px;
+      font-size: 16px;
+      padding: 12px 46px 12px 52px;
+    }
+
+    #BestdealConnect-{{ section.id }} .bd3d-icon {
+      width: 36px;
+      height: 36px;
+      left: 12px;
+    }
+
+    #BestdealConnect-{{ section.id }} .bd3d-icon img {
+      width: 22px;
+      height: 22px;
+    }
+
+    #BestdealConnect-{{ section.id }} .bd3d-arrow {
+      right: 14px;
+      font-size: 22px;
+    }
+  }
+
+{% endstyle %}
+
+<section id="BestdealConnect-{{ section.id }}">
+  <div class="bd3d-wrap">
+    <div class="bd3d-card">
+
+      {% if section.settings.badge_text != blank %}
+        <div style="text-align:center;">
+          <span class="bd3d-badge">{{ section.settings.badge_text }}</span>
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="bd3d-title">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="bd3d-subtitle">{{ section.settings.description }}</div>
+      {% endif %}
+
+      <div class="bd3d-links">
+        {% for block in section.blocks %}
+          {% if block.settings.link != blank %}
+            <a
+              href="{{ block.settings.link }}"
+              class="bd3d-btn"
+              style="--btn-bg: {{ block.settings.button_color }}; --btn-text: {{ block.settings.text_color }};"
+              {% if block.settings.new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+              {{ block.shopify_attributes }}
+            >
+              {% if block.settings.icon != blank %}
+                <span class="bd3d-icon">
+                  {{
+                    block.settings.icon
+                    | image_url: width: 100
+                    | image_tag:
+                      loading: 'lazy',
+                      alt: block.settings.title
+                  }}
+                </span>
+              {% endif %}
+
+              <span class="bd3d-label">{{ block.settings.title }}</span>
+
+              {% if section.settings.show_arrow %}
+                <span class="bd3d-arrow">›</span>
+              {% endif %}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bestdeal Connect Links",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Small top badge",
+      "default": "Bestdeal.pk"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main title",
+      "default": "Connect With Us"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Visit our website, follow our social platforms, and stay connected with Bestdeal.pk.</p>"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section background",
+      "default": "#F6F1FF"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_top",
+      "label": "Card background top",
+      "default": "#5A1FC8"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_bottom",
+      "label": "Card background bottom",
+      "default": "#2A0A53"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Title colour",
+      "default": "#FFD35C"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Description colour",
+      "default": "#F7EEFF"
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Badge text colour",
+      "default": "#FFD35C"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Title size",
+      "min": 24,
+      "max": 64,
+      "step": 1,
+      "default": 42,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container width",
+      "min": 500,
+      "max": 1200,
+      "step": 20,
+      "default": 820,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_width",
+      "label": "Buttons area width",
+      "min": 320,
+      "max": 760,
+      "step": 20,
+      "default": 620,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card roundness",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 28,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button roundness",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_gap",
+      "label": "Space between buttons",
+      "min": 6,
+      "max": 30,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "Show arrow in buttons",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "default": 55,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "default": 65,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "social_link",
+      "name": "Social Link Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Button title",
+          "default": "Visit Bestdeal.pk"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Button icon"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Button colour",
+          "default": "#6F22D9"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text colour",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "checkbox",
+          "id": "new_tab",
+          "label": "Open in new tab",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Bestdeal Connect Links",
+      "blocks": [
+        {
+          "type": "social_link",
+          "settings": {
+            "title": "Visit Bestdeal.pk",
+            "button_color": "#7A2BE2",
+            "text_color": "#FFFFFF"
+          }
+        },
+        {
+          "type": "social_link",
+          "settings": {
+            "title": "Facebook",
+            "button_color": "#4E1896",
+            "text_color": "#FFFFFF"
+          }
+        },
+        {
+          "type": "social_link",
+          "settings": {
+            "title": "Instagram",
+            "button_color": "#8B35E8",
+            "text_color": "#FFFFFF"
+          }
+        },
+        {
+          "type": "social_link",
+          "settings": {
+            "title": "WhatsApp",
+            "button_color": "#F8C445",
+            "text_color": "#32114F"
+          }
+        },
+        {
+          "type": "social_link",
+          "settings": {
+            "title": "YouTube",
+            "button_color": "#5A22A5",
+            "text_color": "#FFFFFF"
+          }
+        },
+        {
+          "type": "social_link",
+          "settings": {
+            "title": "Read Our Blog",
+            "button_color": "#FFD35C",
+            "text_color": "#32114F"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

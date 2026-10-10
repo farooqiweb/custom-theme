@@ -1,0 +1,837 @@
+{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+
+  /* ===============================
+     BESTDEAL.PK 3D CONTACT FORM
+     =============================== */
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} {
+    --bd-purple: #6f00ff;
+    --bd-purple-dark: #4700aa;
+    --bd-purple-light: #9b45ff;
+    --bd-gold: #ffc928;
+    --bd-gold-light: #ffe58a;
+    --bd-gold-dark: #c78e00;
+    --bd-black: #131313;
+    --bd-gray: #666666;
+    --bd-white: #ffffff;
+    --bd-bg: #f7f5fb;
+  }
+
+  /* Background */
+  #shopify-section-{{ section.id }} .bd-contact-background {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        circle at 10% 15%,
+        rgba(111, 0, 255, 0.10),
+        transparent 28%
+      ),
+      radial-gradient(
+        circle at 90% 80%,
+        rgba(255, 201, 40, 0.13),
+        transparent 30%
+      ),
+      linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #f9f6ff 48%,
+        #fffaf0 100%
+      );
+  }
+
+  /* Decorative soft glow */
+  #shopify-section-{{ section.id }} .bd-contact-background::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(111, 0, 255, 0.08);
+    filter: blur(65px);
+    top: -100px;
+    left: -100px;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .bd-contact-background::after {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: rgba(255, 201, 40, 0.11);
+    filter: blur(65px);
+    right: -80px;
+    bottom: -100px;
+    pointer-events: none;
+  }
+
+  /* Main 3D Form Card */
+  #shopify-section-{{ section.id }} .bd-contact-card {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 42px 42px 46px;
+    border-radius: 28px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255,255,255,0.98),
+        rgba(247,243,255,0.98)
+      );
+
+    border: 1px solid rgba(111, 0, 255, 0.12);
+
+    box-shadow:
+      0 28px 55px rgba(48, 14, 91, 0.18),
+      0 10px 20px rgba(0, 0, 0, 0.08),
+      inset 1px 1px 0 rgba(255,255,255,0.95),
+      inset -1px -1px 0 rgba(111,0,255,0.06);
+
+    transform: perspective(1000px) translateZ(0);
+  }
+
+  /* Gold top accent */
+  #shopify-section-{{ section.id }} .bd-contact-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 5px;
+
+    border-radius: 0 0 20px 20px;
+
+    background:
+      linear-gradient(
+        90deg,
+        var(--bd-purple),
+        var(--bd-gold),
+        var(--bd-purple)
+      );
+
+    box-shadow:
+      0 4px 12px rgba(255, 201, 40, 0.40);
+  }
+
+  /* Heading */
+  #shopify-section-{{ section.id }} .bd-contact-title {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--bd-black);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  #shopify-section-{{ section.id }} .bd-contact-title strong,
+  #shopify-section-{{ section.id }} .bd-contact-title em {
+    color: var(--bd-purple);
+  }
+
+  /* Small heading decoration */
+  #shopify-section-{{ section.id }} .bd-title-line {
+    width: 80px;
+    height: 5px;
+    margin: 14px auto 32px;
+
+    border-radius: 20px;
+
+    background:
+      linear-gradient(
+        90deg,
+        var(--bd-purple),
+        var(--bd-gold)
+      );
+
+    box-shadow:
+      0 5px 10px rgba(111, 0, 255, 0.22);
+  }
+
+  /* Field spacing */
+  #shopify-section-{{ section.id }} .contact__fields {
+    gap: 18px;
+  }
+
+  #shopify-section-{{ section.id }} .field {
+    margin-bottom: 18px;
+  }
+
+  /* ===============================
+     3D INPUT FIELDS
+     =============================== */
+
+  #shopify-section-{{ section.id }} .field::after,
+  #shopify-section-{{ section.id }} .field::before {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .field__input {
+    min-height: 58px;
+    border-radius: 15px !important;
+
+    background:
+      linear-gradient(
+        145deg,
+        #f4f1f8,
+        #ffffff
+      ) !important;
+
+    border: 1px solid rgba(111, 0, 255, 0.14) !important;
+
+    color: var(--bd-black) !important;
+
+    box-shadow:
+      inset 5px 5px 11px rgba(44, 22, 72, 0.08),
+      inset -5px -5px 11px rgba(255,255,255,0.95),
+      0 5px 12px rgba(63, 32, 98, 0.06) !important;
+
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease,
+      background 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .field__input:hover {
+    border-color: rgba(111, 0, 255, 0.35) !important;
+  }
+
+  #shopify-section-{{ section.id }} .field__input:focus {
+    outline: none !important;
+
+    border-color: var(--bd-purple) !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+      inset 3px 3px 8px rgba(111, 0, 255, 0.06),
+      inset -3px -3px 8px rgba(255,255,255,0.95),
+      0 0 0 3px rgba(111,0,255,0.10),
+      0 9px 22px rgba(111,0,255,0.13) !important;
+
+    transform: translateY(-1px);
+  }
+
+  /* Labels */
+  #shopify-section-{{ section.id }} .field__label {
+    color: #67606e;
+    font-weight: 500;
+  }
+
+  #shopify-section-{{ section.id }} .field__input:focus ~ .field__label,
+  #shopify-section-{{ section.id }} .field__input:not(:placeholder-shown) ~ .field__label {
+    color: var(--bd-purple);
+  }
+
+  /* Textarea */
+  #shopify-section-{{ section.id }} textarea.field__input {
+    min-height: 165px;
+    resize: vertical;
+    padding-top: 20px;
+  }
+
+  /* ===============================
+     3D SEND BUTTON
+     =============================== */
+
+  #shopify-section-{{ section.id }} .contact__button {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .contact__button .button {
+    position: relative;
+
+    min-width: 200px;
+    min-height: 58px;
+
+    padding: 15px 34px;
+
+    border: 0 !important;
+    border-radius: 16px !important;
+
+    color: #ffffff !important;
+
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+
+    background:
+      linear-gradient(
+        145deg,
+        #8625ff 0%,
+        #6900ed 55%,
+        #5000b9 100%
+      ) !important;
+
+    box-shadow:
+      0 7px 0 #3d008b,
+      0 13px 24px rgba(77, 0, 167, 0.30),
+      inset 0 2px 2px rgba(255,255,255,0.30) !important;
+
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      filter 0.18s ease;
+
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .contact__button .button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+      linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(255,255,255,0.22) 45%,
+        transparent 70%
+      );
+
+    transform: translateX(-120%);
+    transition: transform 0.55s ease;
+  }
+
+  #shopify-section-{{ section.id }} .contact__button .button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+      0 9px 0 #3d008b,
+      0 17px 28px rgba(77,0,167,0.34),
+      inset 0 2px 2px rgba(255,255,255,0.30) !important;
+
+    filter: brightness(1.05);
+  }
+
+  #shopify-section-{{ section.id }} .contact__button .button:hover::before {
+    transform: translateX(120%);
+  }
+
+  #shopify-section-{{ section.id }} .contact__button .button:active {
+    transform: translateY(6px);
+
+    box-shadow:
+      0 2px 0 #3d008b,
+      0 7px 14px rgba(77,0,167,0.22) !important;
+  }
+
+  #shopify-section-{{ section.id }} .contact__button .button::after {
+    display: none !important;
+  }
+
+  /* Gold button accent */
+  #shopify-section-{{ section.id }} .contact__button {
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .contact__button::after {
+    content: "";
+    display: block;
+
+    width: 60px;
+    height: 4px;
+
+    margin: 19px auto 0;
+
+    border-radius: 20px;
+
+    background: var(--bd-gold);
+
+    box-shadow:
+      0 3px 9px rgba(255,201,40,0.45);
+  }
+
+  /* ===============================
+     SUCCESS / ERROR MESSAGES
+     =============================== */
+
+  #shopify-section-{{ section.id }} .form-status,
+  #shopify-section-{{ section.id }} .form__message {
+    border-radius: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .form-status-list {
+    margin-bottom: 18px;
+  }
+
+  /* ===============================
+     MOBILE
+     =============================== */
+
+  @media screen and (max-width: 749px) {
+
+    #shopify-section-{{ section.id }} .section-{{ section.id }}-padding {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    #shopify-section-{{ section.id }} .bd-contact-card {
+      padding: 30px 18px 34px;
+      border-radius: 22px;
+
+      box-shadow:
+        0 18px 35px rgba(48,14,91,0.15),
+        0 7px 14px rgba(0,0,0,0.07),
+        inset 1px 1px 0 rgba(255,255,255,0.95);
+    }
+
+    #shopify-section-{{ section.id }} .bd-contact-title {
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    #shopify-section-{{ section.id }} .bd-title-line {
+      margin-bottom: 25px;
+    }
+
+    #shopify-section-{{ section.id }} .field {
+      margin-bottom: 15px;
+    }
+
+    #shopify-section-{{ section.id }} .contact__fields {
+      gap: 0;
+    }
+
+    #shopify-section-{{ section.id }} .field__input {
+      min-height: 55px;
+      border-radius: 14px !important;
+    }
+
+    #shopify-section-{{ section.id }} textarea.field__input {
+      min-height: 145px;
+    }
+
+    #shopify-section-{{ section.id }} .contact__button .button {
+      width: 100%;
+      min-height: 56px;
+      border-radius: 15px !important;
+    }
+  }
+
+  /* Large screen */
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .bd-contact-card:hover {
+      box-shadow:
+        0 32px 65px rgba(48,14,91,0.20),
+        0 12px 23px rgba(0,0,0,0.09),
+        inset 1px 1px 0 rgba(255,255,255,0.95),
+        inset -1px -1px 0 rgba(111,0,255,0.06);
+    }
+  }
+
+{%- endstyle -%}
+
+
+<div class="bd-contact-background">
+  <div class="contact page-width section-{{ section.id }}-padding">
+
+    <div class="bd-contact-card">
+
+      {%- if section.settings.heading != blank -%}
+
+        <h2 class="
+          bd-contact-title
+          title
+          title-wrapper--no-top-margin
+          inline-richtext
+          {{ section.settings.heading_size }}
+          {% if settings.animations_reveal_on_scroll %}
+            scroll-trigger animate--slide-in
+          {% endif %}
+        ">
+          {{ section.settings.heading }}
+        </h2>
+
+      {%- else -%}
+
+        <h2 class="visually-hidden">
+          {{ 'templates.contact.form.title' | t }}
+        </h2>
+
+      {%- endif -%}
+
+      <div class="bd-title-line"></div>
+
+
+      {%- liquid
+
+        assign contact_form_class = 'isolate'
+
+        if settings.animations_reveal_on_scroll
+          assign contact_form_class = 'isolate scroll-trigger animate--slide-in'
+        endif
+
+      -%}
+
+
+      {%- form 'contact',
+        id: 'ContactForm',
+        class: contact_form_class
+      -%}
+
+
+        {%- if form.posted_successfully? -%}
+
+          <h2
+            class="form-status form-status-list form__message"
+            tabindex="-1"
+            autofocus
+          >
+
+            {{- 'icon-success.svg' | inline_asset_content -}}
+
+            {{ 'templates.contact.form.post_success' | t }}
+
+          </h2>
+
+
+        {%- elsif form.errors -%}
+
+          <div class="form__message">
+
+            <h2
+              class="form-status caption-large text-body"
+              role="alert"
+              tabindex="-1"
+              autofocus
+            >
+
+              {{- 'icon-error.svg' | inline_asset_content -}}
+
+              {{ 'templates.contact.form.error_heading' | t }}
+
+            </h2>
+
+          </div>
+
+
+          <ul
+            class="form-status-list caption-large"
+            role="list"
+          >
+
+            <li>
+
+              <a
+                href="#ContactForm-email"
+                class="link"
+              >
+
+                {{ form.errors.translated_fields.email | capitalize }}
+
+                {{ form.errors.messages.email }}
+
+              </a>
+
+            </li>
+
+          </ul>
+
+        {%- endif -%}
+
+
+        <div class="contact__fields">
+
+          <!-- NAME -->
+          <div class="field">
+
+            <input
+              class="field__input"
+              autocomplete="name"
+              type="text"
+              id="ContactForm-name"
+
+              name="contact[{{ 'templates.contact.form.name' | t }}]"
+
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+
+              placeholder="{{ 'templates.contact.form.name' | t }}"
+            >
+
+            <label
+              class="field__label"
+              for="ContactForm-name"
+            >
+
+              {{ 'templates.contact.form.name' | t }}
+
+            </label>
+
+          </div>
+
+
+          <!-- EMAIL -->
+          <div class="field field--with-error">
+
+            <input
+              autocomplete="email"
+              type="email"
+
+              id="ContactForm-email"
+
+              class="field__input"
+
+              name="contact[email]"
+
+              spellcheck="false"
+              autocapitalize="off"
+
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+
+              aria-required="true"
+
+              {% if form.errors contains 'email' %}
+                aria-invalid="true"
+                aria-describedby="ContactForm-email-error"
+              {% endif %}
+
+              placeholder="{{ 'templates.contact.form.email' | t }}"
+            >
+
+            <label
+              class="field__label"
+              for="ContactForm-email"
+            >
+
+              {{- 'templates.contact.form.email' | t }}
+
+              <span aria-hidden="true">*</span>
+
+            </label>
+
+
+            {%- if form.errors contains 'email' -%}
+
+              <small
+                class="contact__field-error"
+                id="ContactForm-email-error"
+              >
+
+                <span class="visually-hidden">
+
+                  {{ 'accessibility.error' | t }}
+
+                </span>
+
+                <span class="form__message">
+
+                  <span class="svg-wrapper">
+
+                    {{- 'icon-error.svg' | inline_asset_content -}}
+
+                  </span>
+
+                  {{- form.errors.translated_fields.email | capitalize }}
+
+                  {{ form.errors.messages.email -}}
+
+                </span>
+
+              </small>
+
+            {%- endif -%}
+
+          </div>
+
+        </div>
+
+
+        <!-- PHONE -->
+        <div class="field">
+
+          <input
+            type="tel"
+
+            id="ContactForm-phone"
+
+            class="field__input"
+
+            autocomplete="tel"
+
+            name="contact[{{ 'templates.contact.form.phone' | t }}]"
+
+            pattern="[0-9\-]*"
+
+            value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+
+            placeholder="{{ 'templates.contact.form.phone' | t }}"
+          >
+
+          <label
+            class="field__label"
+            for="ContactForm-phone"
+          >
+
+            {{ 'templates.contact.form.phone' | t }}
+
+          </label>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+        <div class="field">
+
+          <textarea
+            rows="10"
+
+            id="ContactForm-body"
+
+            class="text-area field__input"
+
+            name="contact[{{ 'templates.contact.form.comment' | t }}]"
+
+            placeholder="{{ 'templates.contact.form.comment' | t }}"
+          >
+{{- form.body -}}
+          </textarea>
+
+          <label
+            class="form__label field__label"
+            for="ContactForm-body"
+          >
+
+            {{- 'templates.contact.form.comment' | t -}}
+
+          </label>
+
+        </div>
+
+
+        <!-- SEND BUTTON -->
+        <div class="contact__button">
+
+          <button
+            type="submit"
+            class="button"
+          >
+
+            {{ 'templates.contact.form.send' | t }}
+
+          </button>
+
+        </div>
+
+
+      {%- endform -%}
+
+    </div>
+
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "t:sections.contact-form.name",
+  "tag": "section",
+  "class": "section",
+
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+
+  "settings": [
+
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Contact Us",
+      "label": "Heading"
+    },
+
+    {
+      "type": "select",
+      "id": "heading_size",
+
+      "options": [
+
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+
+        {
+          "value": "h0",
+          "label": "Large"
+        },
+
+        {
+          "value": "hxl",
+          "label": "Extra Large"
+        },
+
+        {
+          "value": "hxxl",
+          "label": "XX Large"
+        }
+
+      ],
+
+      "default": "h1",
+      "label": "Heading size"
+    },
+
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 52
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 52
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Bestdeal 3D Contact Form"
+    }
+  ]
+}
+{% endschema %}

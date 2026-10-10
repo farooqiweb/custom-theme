@@ -1,0 +1,1036 @@
+{% liquid
+  assign selected_collection = section.settings.collection
+  assign products_limit = section.settings.products_to_show
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} .market-collection {
+    --market-card-size: {{ section.settings.card_size }}px;
+    --market-gap: {{ section.settings.card_gap }}px;
+    --market-mobile-gap: {{ section.settings.mobile_gap }}px;
+    --market-radius: {{ section.settings.card_radius }}px;
+    --market-price: {{ section.settings.price_color }};
+    --market-button: {{ section.settings.button_color }};
+    --market-button-text: {{ section.settings.button_text_color }};
+    --market-title-size: {{ section.settings.product_title_size }}px;
+
+    background: {{ section.settings.background_color }};
+    padding: {{ section.settings.padding_top }}px 0
+      {{ section.settings.padding_bottom }}px;
+    color: #171717;
+  }
+
+  #shopify-section-{{ section.id }} .market-collection,
+  #shopify-section-{{ section.id }} .market-collection * {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .market-container {
+    width: 100%;
+    max-width: {{ section.settings.content_width }}px;
+    margin: 0 auto;
+    padding-inline: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .market-container--full {
+    max-width: none;
+  }
+
+  #shopify-section-{{ section.id }} .market-heading {
+    margin: 0 0 20px;
+    font-size: {{ section.settings.heading_size }}px;
+    line-height: 1.25;
+    color: #222;
+    text-align: {{ section.settings.heading_alignment }};
+  }
+
+  #shopify-section-{{ section.id }} .market-heading::before,
+  #shopify-section-{{ section.id }} .market-heading::after {
+    content: none;
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .market-description {
+    margin-bottom: 24px;
+    text-align: {{ section.settings.heading_alignment }};
+  }
+
+  #shopify-section-{{ section.id }} .market-description > :first-child {
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .market-grid {
+    display: grid;
+    grid-template-columns:
+      repeat(
+        auto-fill,
+        minmax(min(100%, var(--market-card-size)), 1fr)
+      );
+    gap: var(--market-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #shopify-section-{{ section.id }} .market-grid > li {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #shopify-section-{{ section.id }} .market-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--market-radius);
+    background: {{ section.settings.card_background }};
+    transition: box-shadow 180ms ease;
+  }
+
+  @media (hover: hover) {
+    #shopify-section-{{ section.id }} .market-card:hover {
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.09);
+    }
+  }
+
+  #shopify-section-{{ section.id }} .market-image-link {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: {{ section.settings.image_ratio }};
+    overflow: hidden;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .market-image,
+  #shopify-section-{{ section.id }} .market-placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.image_fit }};
+  }
+
+  #shopify-section-{{ section.id }} .market-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: {{ section.settings.card_padding }}px;
+  }
+
+  #shopify-section-{{ section.id }} .market-product-title {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    min-height: 2.7em;
+    margin: 0 0 8px;
+    font-family: inherit;
+    font-size: var(--market-title-size);
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: normal;
+  }
+
+  #shopify-section-{{ section.id }} .market-product-title a {
+    color: #171717;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .market-price-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 5px 8px;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  #shopify-section-{{ section.id }} .market-price {
+    color: var(--market-price);
+    font-size: {{ section.settings.price_size }}px;
+    font-weight: 500;
+  }
+
+  #shopify-section-{{ section.id }} .market-from {
+    font-size: 0.65em;
+  }
+
+  #shopify-section-{{ section.id }} .market-discount {
+    color: #626262;
+    font-size: 14px;
+  }
+
+  #shopify-section-{{ section.id }} .market-old-price {
+    margin-bottom: 6px;
+    color: #858585;
+    font-size: 13px;
+  }
+
+  #shopify-section-{{ section.id }} .market-rating {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .market-stars {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    color: #dedede;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .market-stars-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--rating-fill);
+    overflow: hidden;
+    color: #ffc343;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .market-rating-count {
+    color: #888;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ section.id }} .market-actions {
+    margin-top: auto;
+    padding-top: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .market-action-buttons {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .market-form {
+    width: 100%;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .market-buy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 44px;
+    margin: 0;
+    padding: 11px 8px;
+    border: 0;
+    border-radius: {{ section.settings.button_radius }}px;
+    background: var(--market-button);
+    color: var(--market-button-text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    appearance: none;
+    transition: filter 180ms ease;
+  }
+
+  #shopify-section-{{ section.id }} .market-buy:hover {
+    filter: brightness(0.92);
+  }
+
+  #shopify-section-{{ section.id }} .market-preview {
+    border: 1px solid var(--market-button);
+    background: transparent;
+    color: var(--market-button);
+  }
+
+  #shopify-section-{{ section.id }} .market-preview:hover {
+    background: var(--market-button);
+    color: var(--market-button-text);
+    filter: none;
+  }
+
+  #shopify-section-{{ section.id }} .market-buy:disabled {
+    background: #e5e5e5;
+    color: #777;
+    cursor: not-allowed;
+    filter: none;
+  }
+
+  #shopify-section-{{ section.id }} .market-collection a:focus-visible,
+  #shopify-section-{{ section.id }} .market-collection button:focus-visible {
+    outline: 3px solid #0025cd;
+    outline-offset: -3px;
+  }
+
+  #shopify-section-{{ section.id }} .market-view-all {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+  }
+
+  #shopify-section-{{ section.id }} .market-view-all a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 28px;
+    border: 1px solid var(--market-button);
+    border-radius: {{ section.settings.button_radius }}px;
+    color: var(--market-button);
+    text-decoration: none;
+    font-size: 15px;
+  }
+
+  #shopify-section-{{ section.id }} .market-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .market-container {
+      padding-inline: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .market-grid {
+      grid-template-columns:
+        repeat({{ section.settings.columns_mobile }}, minmax(0, 1fr));
+      gap: var(--market-mobile-gap);
+    }
+
+    #shopify-section-{{ section.id }} .market-heading {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+      margin-bottom: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .market-info {
+      padding: {{ section.settings.mobile_card_padding }}px;
+    }
+
+    #shopify-section-{{ section.id }} .market-product-title {
+      font-size: {{ section.settings.mobile_title_size }}px;
+    }
+
+    #shopify-section-{{ section.id }} .market-price {
+      font-size: {{ section.settings.mobile_price_size }}px;
+    }
+
+    #shopify-section-{{ section.id }} .market-discount {
+      font-size: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .market-stars {
+      font-size: 15px;
+    }
+
+    #shopify-section-{{ section.id }} .market-buy {
+      min-height: 40px;
+      padding-inline: 5px;
+      font-size: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .market-action-buttons {
+      gap: 6px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .market-card,
+    #shopify-section-{{ section.id }} .market-buy {
+      transition: none;
+    }
+  }
+
+  /* Adjustable total card height; allow extra room when text needs it. */
+  {% if section.settings.custom_card_height %}
+    #shopify-section-{{ section.id }} .market-card {
+      display: grid;
+      grid-template-rows: minmax(80px, 1fr) auto;
+      min-height: {{ section.settings.desktop_card_height }}px;
+    }
+
+    #shopify-section-{{ section.id }} .market-image-link {
+      aspect-ratio: auto;
+      min-height: 80px;
+    }
+
+    #shopify-section-{{ section.id }} .market-image,
+    #shopify-section-{{ section.id }} .market-placeholder {
+      position: absolute;
+      inset: 0;
+    }
+
+    #shopify-section-{{ section.id }} .market-info {
+      min-width: 0;
+    }
+
+    @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} .market-card {
+        min-height: {{ section.settings.mobile_card_height }}px;
+      }
+    }
+  {% endif %}
+
+  /* Compact cards: image height controls the overall card length. */
+  #shopify-section-{{ section.id }} .market-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .market-image-link {
+    height: 200px;
+    min-height: 0;
+    flex: 0 0 auto;
+    aspect-ratio: auto;
+  }
+
+  #shopify-section-{{ section.id }} .market-image,
+  #shopify-section-{{ section.id }} .market-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .market-image-link {
+      height: 150px;
+    }
+  }
+{% endstyle %}
+
+<div class="market-collection">
+  <div class="market-container{% if section.settings.full_width %} market-container--full{% endif %}">
+
+    {% if section.settings.title != blank %}
+      <h2 class="market-heading">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <div class="market-description rte">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+
+    <ul class="market-grid" role="list">
+      {% for product in selected_collection.products limit: products_limit %}
+        {% liquid
+          assign purchase_variant = product.selected_or_first_available_variant
+          assign has_discount = false
+
+          if product.price_varies == false
+            if purchase_variant.compare_at_price > purchase_variant.price
+              assign has_discount = true
+              assign discount_amount = purchase_variant.compare_at_price | minus: purchase_variant.price
+              assign discount_percent = discount_amount | times: 100.0 | divided_by: purchase_variant.compare_at_price | round
+            endif
+          endif
+
+          assign rating_data = product.metafields.reviews.rating.value
+          assign rating_count = product.metafields.reviews.rating_count.value
+
+          assign image_loading = 'lazy'
+          if section.index == 1 and forloop.index <= 2
+            assign image_loading = 'eager'
+          endif
+
+          assign image_alt = product.featured_image.alt | default: product.title
+          assign product_form_id = 'MarketBuy-' | append: section.id | append: '-' | append: product.id
+        %}
+
+        <li>
+          <article class="market-card">
+            <a
+              href="{{ product.url }}"
+              class="market-image-link"
+              aria-label="{{ product.title | escape }}"
+            >
+              {% if product.featured_image != blank %}
+                {{
+                  product.featured_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    class: 'market-image',
+                    loading: image_loading,
+                    widths: '180, 240, 320, 400, 500, 600, 800, 1000, 1200',
+                    sizes: '(max-width: 749px) 100vw, 50vw',
+                    alt: image_alt
+                }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'market-placeholder' }}
+              {% endif %}
+            </a>
+
+            <div class="market-info">
+              <h3 class="market-product-title">
+                <a href="{{ product.url }}">
+                  {{ product.title | escape }}
+                </a>
+              </h3>
+
+              <div class="market-price-row">
+                <span class="market-price">
+                  {% if product.price_varies %}
+                    <span class="market-from">From</span>
+                  {% endif %}
+                  {{ product.price | money }}
+                </span>
+
+                {% if section.settings.show_discount and has_discount %}
+                  <span class="market-discount">
+                    -{{ discount_percent }}%
+                  </span>
+                {% endif %}
+              </div>
+
+              {% if section.settings.show_compare_price and has_discount %}
+                <div class="market-old-price">
+                  <span class="market-sr-only">Regular price</span>
+                  <s>{{ purchase_variant.compare_at_price | money }}</s>
+                </div>
+              {% endif %}
+
+              {% if section.settings.show_rating and rating_data != blank %}
+                {% liquid
+                  assign rating_max = rating_data.scale_max | default: 5
+                  assign rating_fill = rating_data.rating | times: 100.0 | divided_by: rating_max
+                  assign rating_fill = rating_fill | at_least: 0 | at_most: 100
+                %}
+
+                <div class="market-rating">
+                  <span class="market-sr-only">
+                    Rated {{ rating_data.rating }} out of {{ rating_max }}
+                    {% if rating_count != blank %}
+                      based on {{ rating_count }} reviews
+                    {% endif %}
+                  </span>
+
+                  <span
+                    class="market-stars"
+                    style="--rating-fill: {{ rating_fill }}%;"
+                    aria-hidden="true"
+                  >
+                    <span>★★★★★</span>
+                    <span class="market-stars-fill">★★★★★</span>
+                  </span>
+
+                  {% if rating_count != blank %}
+                    <span class="market-rating-count" aria-hidden="true">
+                      ({{ rating_count }})
+                    </span>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              <div class="market-actions">
+                <div class="market-action-buttons">
+                  {% if product.available == false %}
+                    <button class="market-buy" type="button" disabled>
+                      Sold Out
+                    </button>
+
+                  {% elsif product.requires_selling_plan or product.variants.size > 1 %}
+                    <a class="market-buy" href="{{ product.url }}">
+                      {{ section.settings.add_to_cart_label | escape }}
+                      <span class="market-sr-only">
+                        — choose options for {{ product.title | escape }}
+                      </span>
+                    </a>
+
+                  {% else %}
+                    {% form 'product',
+                      product,
+                      id: product_form_id,
+                      class: 'market-form'
+                    %}
+                      <input
+                        type="hidden"
+                        name="id"
+                        value="{{ purchase_variant.id }}"
+                      >
+                      <input
+                        type="hidden"
+                        name="quantity"
+                        value="{{ purchase_variant.quantity_rule.min | default: 1 }}"
+                      >
+
+                      <button
+                        type="submit"
+                        name="add"
+                        class="market-buy"
+                      >
+                        {{ section.settings.add_to_cart_label | escape }}
+                        <span class="market-sr-only">
+                          — {{ product.title | escape }}
+                        </span>
+                      </button>
+                    {% endform %}
+                  {% endif %}
+
+                  <a
+                    class="market-buy market-preview"
+                    href="{{ product.url }}"
+                    aria-label="{{ section.settings.preview_label | escape }} — {{ product.title | escape }}"
+                  >
+                    {{ section.settings.preview_label | escape }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+
+      {% else %}
+        {% for i in (1..6) %}
+          <li>
+            <article class="market-card">
+              <div class="market-image-link">
+                {% assign placeholder_name = 'product-' | append: i %}
+                {{ placeholder_name | placeholder_svg_tag: 'market-placeholder' }}
+              </div>
+
+              <div class="market-info">
+                <h3 class="market-product-title">
+                  Example product title
+                </h3>
+
+                <div class="market-price-row">
+                  <span class="market-price">
+                    {{ 199900 | money }}
+                  </span>
+                </div>
+
+                <div class="market-actions">
+                  <div class="market-action-buttons">
+                    <button class="market-buy" type="button" disabled>
+                      {{ section.settings.add_to_cart_label | escape }}
+                    </button>
+                    <button class="market-buy market-preview" type="button" disabled>
+                      {{ section.settings.preview_label | escape }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+
+    {% if section.settings.show_view_all and selected_collection != blank %}
+      <div class="market-view-all">
+        <a href="{{ selected_collection.url }}">
+          View All Products
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {"type": "header", "content": "Card height"},
+    {"type": "checkbox", "id": "custom_card_height", "label": "Enable custom card height", "default": true, "info": "Adjust total card height independently of width. Overrides Image shape."},
+    {"type": "range", "id": "desktop_card_height", "label": "Desktop card height", "min": 240, "max": 900, "step": 10, "unit": "px", "default": 420, "info": "The card can grow if needed to keep text and the button visible."},
+    {"type": "range", "id": "mobile_card_height", "label": "Mobile card height", "min": 220, "max": 700, "step": 10, "unit": "px", "default": 340, "info": "Reduce this value for shorter mobile cards."},
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Just For You"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 48,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Desktop layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content maximum width",
+      "info": "Used when Full width is turned off.",
+      "min": 900,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "default": 1800
+    },
+    {
+      "type": "range",
+      "id": "card_size",
+      "label": "Desktop card size",
+      "info": "Smaller values show more cards per row. Cards expand slightly to fill the row.",
+      "min": 120,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "default": 220
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Desktop card gap",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card inner spacing",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner roundness",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Products per row on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 — Larger cards"
+        },
+        {
+          "value": "2",
+          "label": "2 — Smaller cards"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Mobile card gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_padding",
+      "label": "Mobile card inner spacing",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Product images"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image shape",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Square"
+        },
+        {
+          "value": "4 / 5",
+          "label": "Portrait"
+        },
+        {
+          "value": "4 / 3",
+          "label": "Landscape"
+        }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image display",
+      "options": [
+        {
+          "value": "contain",
+          "label": "Show full image"
+        },
+        {
+          "value": "cover",
+          "label": "Fill area — may crop"
+        }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "header",
+      "content": "Text sizes"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Desktop heading size",
+      "min": 18,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile heading size",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "product_title_size",
+      "label": "Desktop product title size",
+      "min": 12,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "label": "Mobile product title size",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "price_size",
+      "label": "Desktop price size",
+      "min": 16,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_price_size",
+      "label": "Mobile price size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "header",
+      "content": "Prices and ratings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_discount",
+      "label": "Show discount percentage",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compare_price",
+      "label": "Show crossed-out original price",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show product ratings",
+      "info": "Requires reviews.rating and optionally reviews.rating_count product metafields.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_label",
+      "label": "Add to Cart button text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "text",
+      "id": "preview_label",
+      "label": "Preview button text",
+      "default": "Preview"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button corner roundness",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All Products",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price color",
+      "default": "#FD6612"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button background",
+      "default": "#FD6612"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}
