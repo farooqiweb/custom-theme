@@ -10,8 +10,8 @@
 {
   "current": {
     "logo": "shopify://shop_images/B_1.png",
-    "logo_width": 110,
-    "favicon": "shopify://shop_images/ChatGPT_Image_Sep_22_2026_06_44_48_PM_be184e2a-1d7f-4603-905b-163b5b1af793.png",
+    "logo_width": 190,
+    "favicon": "shopify://shop_images/Untitled_design_ac9cbaea-6dce-493d-9229-aab26b2b9920.png",
     "type_header_font": "assistant_n4",
     "heading_scale": 100,
     "type_body_font": "assistant_n4",
@@ -157,7 +157,7 @@
           "background": "#ffffff",
           "background_gradient": "",
           "text": "#1a1a1a",
-          "button": "#0C4643",
+          "button": "#0c4643",
           "button_label": "#ffffff",
           "secondary_button_label": "#1c3d2d",
           "shadow": "#121212"
