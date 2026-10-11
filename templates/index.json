@@ -14,22 +14,11 @@
       "blocks": {
         "slide_biCwnC": {
           "type": "slide",
-          "disabled": true,
           "settings": {
-            "desktop_image": "shopify://shop_images/B_7.png",
+            "desktop_image": "shopify://shop_images/Smart_Kitchen_Gadget_Deal.png",
             "heading": "",
             "description": "",
             "button_text": "",
-            "button_link": ""
-          }
-        },
-        "slide_GRPWbB": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "heading": "Best Deals For You",
-            "description": "Discover our latest collection",
-            "button_text": "Shop Now",
             "button_link": ""
           }
         },
@@ -43,22 +32,11 @@
             "button_text": "",
             "button_link": ""
           }
-        },
-        "slide_rRA7Ni": {
-          "type": "slide",
-          "settings": {
-            "heading": "Best Deals For You",
-            "description": "Discover our latest collection",
-            "button_text": "Shop Now",
-            "button_link": ""
-          }
         }
       },
       "block_order": [
         "slide_biCwnC",
-        "slide_GRPWbB",
-        "slide_mwX4mB",
-        "slide_rRA7Ni"
+        "slide_mwX4mB"
       ],
       "name": "Responsive Hero Slider",
       "settings": {
