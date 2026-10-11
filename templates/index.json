@@ -277,12 +277,106 @@
         "padding_top": 40,
         "padding_bottom": 0
       }
+    },
+    "deal_banner_responsive_6nWKfj": {
+      "type": "deal-banner-responsive",
+      "blocks": {
+        "deal_title_EPBxPM": {
+          "type": "deal_title",
+          "settings": {
+            "text": "MEGA DEAL",
+            "align": "center",
+            "y_position": 50,
+            "nudge_desktop": 0,
+            "nudge_mobile": 0,
+            "size_desktop": 22,
+            "size_mobile": 13,
+            "pad_x_desktop": 14,
+            "pad_y_desktop": 8,
+            "pad_x_mobile": 9,
+            "pad_y_mobile": 5,
+            "bg": "#e85a2a",
+            "color": "#ffffff",
+            "animate": true,
+            "speed": 17,
+            "scale": 105
+          }
+        },
+        "countdown_zDiNJi": {
+          "type": "countdown",
+          "settings": {
+            "end_date": "2026-12-31T23:59:59+05:00",
+            "align": "center",
+            "y_position": 79,
+            "nudge_desktop": 0,
+            "nudge_mobile": 0,
+            "bg": "#111111",
+            "color": "#ffffff",
+            "label_color": "#e85a2a",
+            "number_size_desktop": 12,
+            "label_size_desktop": 6,
+            "number_size_mobile": 8,
+            "label_size_mobile": 4,
+            "pad_x_desktop": 7,
+            "pad_y_desktop": 5,
+            "pad_x_mobile": 4,
+            "pad_y_mobile": 3
+          }
+        },
+        "shop_button_VwFDAA": {
+          "type": "shop_button",
+          "settings": {
+            "text": "SHOP NOW",
+            "link": "",
+            "align": "right",
+            "y_position": 52,
+            "nudge_desktop": 0,
+            "nudge_mobile": 0,
+            "bg": "#e85a2a",
+            "color": "#ffffff",
+            "border": "#ffffff",
+            "size_desktop": 19,
+            "size_mobile": 11,
+            "pad_x_desktop": 22,
+            "pad_y_desktop": 10,
+            "pad_x_mobile": 13,
+            "pad_y_mobile": 7,
+            "animate": true,
+            "speed": 16,
+            "scale": 108
+          }
+        }
+      },
+      "block_order": [
+        "deal_title_EPBxPM",
+        "countdown_zDiNJi",
+        "shop_button_VwFDAA"
+      ],
+      "name": "BestDeals same display",
+      "settings": {
+        "banner_link": "",
+        "full_width": true,
+        "max_width": 1600,
+        "border_radius": 8,
+        "section_bg": "#ffffff",
+        "stage_bg": "#ffffff",
+        "layout_mode": "same",
+        "desktop_height": 190,
+        "mobile_height": 120,
+        "desktop_fit": "cover",
+        "mobile_fit": "contain",
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
+      }
     }
   },
   "order": [
     "responsive_hero_slider_nMPbVa",
     "trust_badges_4mLh97",
     "product_badge_ticker_TxBQiM",
+    "deal_banner_responsive_6nWKfj",
     "custom_responsive_hero_banner_7izejr",
     "product_section_UtKJ8f",
     "custom_liquid_Rwaiim"
