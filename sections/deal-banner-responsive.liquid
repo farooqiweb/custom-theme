@@ -1,20 +1,21 @@
 {% comment %}
-  BestDeals.pk - Independent Desktop/Mobile Position Banner
+  BestDeals.pk - Same Display Responsive Deal Banner
   -------------------------------------------------
   • One banner image on desktop and mobile
   • Same composition mode preserves the complete banner ratio everywhere
   • Optional custom desktop/mobile height mode
   • No separate logo overlay
-  • MEGA DEAL / timer / button: separate desktop and mobile horizontal and vertical position sliders
-  • Optional separate mobile image; independent size settings
-  • Each overlay has a show/hide switch for desktop and mobile
-  • Overlay positions can be independently adjusted on mobile
+  • MEGA DEAL block: Left / Center / Right + fine left/right adjustment + heartbeat
+  • Countdown block: Left / Center / Right + compact responsive sizes
+  • SHOP NOW block: Left / Center / Right + fine adjustment + heartbeat
+  • All overlay elements remain visible on mobile
 {% endcomment %}
+
 {% liquid
   assign banner_image = section.settings.banner_image
-  assign mobile_image = section.settings.mobile_banner_image | default: banner_image
   assign banner_link = section.settings.banner_link
 %}
+
 <section
   id="BDDealBanner-{{ section.id }}"
   class="bd-deal-banner{% if section.settings.full_width %} bd-deal-banner--full{% endif %}"
@@ -37,9 +38,9 @@
     <div
       class="bd-deal-banner__stage{% if section.settings.layout_mode == 'same' %} bd-deal-banner__stage--same{% else %} bd-deal-banner__stage--custom{% endif %}"
       {% if section.settings.layout_mode == 'same' and banner_image != blank %}
-        style="--bd-ratio-desktop: {{ banner_image.aspect_ratio }}; --bd-ratio-mobile: {{ mobile_image.aspect_ratio }};"
+        style="aspect-ratio: {{ banner_image.aspect_ratio }} / 1;"
       {% elsif section.settings.layout_mode == 'same' %}
-        style="--bd-ratio-desktop: 4; --bd-ratio-mobile: 4;"
+        style="aspect-ratio: 4 / 1;"
       {% endif %}
     >
       {% if banner_link != blank %}
@@ -47,47 +48,54 @@
       {% else %}
         <div class="bd-deal-banner__image-link">
       {% endif %}
+
         {% if banner_image != blank %}
-          <picture class="bd-deal-banner__picture">
-            {% if section.settings.mobile_banner_image != blank %}
-              <source
-                media="(max-width: 749px)"
-                srcset="{{ mobile_image | image_url: width: 480 }} 480w, {{ mobile_image | image_url: width: 800 }} 800w, {{ mobile_image | image_url: width: 1200 }} 1200w"
-                sizes="100vw"
-              >
-            {% endif %}
-            {{ banner_image
-              | image_url: width: 3200
-              | image_tag:
-                class: 'bd-deal-banner__image',
-                widths: '360, 480, 640, 750, 960, 1200, 1500, 1800, 2200, 2600, 3200',
-                sizes: '100vw',
-                loading: 'lazy',
-                alt: 'BestDeals deal banner'
-            }}
-          </picture>
+          {{ banner_image
+            | image_url: width: 3200
+            | image_tag:
+              class: 'bd-deal-banner__image',
+              widths: '360, 480, 640, 750, 960, 1200, 1500, 1800, 2200, 2600, 3200',
+              sizes: '100vw',
+              loading: 'lazy',
+              alt: 'BestDeals deal banner'
+          }}
         {% else %}
           <div class="bd-deal-banner__placeholder">
             {{ 'lifestyle-2' | placeholder_svg_tag: 'bd-deal-banner__placeholder-svg' }}
             <span>Select your deal banner</span>
           </div>
         {% endif %}
+
       {% if banner_link != blank %}
         </a>
       {% else %}
         </div>
       {% endif %}
+
       {% for block in section.blocks %}
         {% case block.type %}
           {% when 'deal_title' %}
+            {% liquid
+              assign title_x = 50
+              assign title_shift = '-50%'
+              case block.settings.align
+                when 'left'
+                  assign title_x = 3
+                  assign title_shift = '0%'
+                when 'right'
+                  assign title_x = 97
+                  assign title_shift = '-100%'
+              endcase
+            %}
             <div
-              class="bd-deal-banner__overlay bd-deal-banner__title-wrap{% unless block.settings.show_desktop %} bd-hide-desktop{% endunless %}{% unless block.settings.show_mobile %} bd-hide-mobile{% endunless %}"
+              class="bd-deal-banner__overlay bd-deal-banner__title-wrap"
               {{ block.shopify_attributes }}
               style="
-                --bd-x-d: {{ block.settings.x_position_desktop }}%;
-                --bd-y-d: {{ block.settings.y_position_desktop }}%;
-                --bd-x-m: {{ block.settings.x_position_mobile }}%;
-                --bd-y-m: {{ block.settings.y_position_mobile }}%;
+                --bd-x: {{ title_x }}%;
+                --bd-y: {{ block.settings.y_position }}%;
+                --bd-shift-x: {{ title_shift }};
+                --bd-nudge-d: {{ block.settings.nudge_desktop }}px;
+                --bd-nudge-m: {{ block.settings.nudge_mobile }}px;
                 --bd-size-d: {{ block.settings.size_desktop }}px;
                 --bd-size-m: {{ block.settings.size_mobile }}px;
                 --bd-pad-x-d: {{ block.settings.pad_x_desktop }}px;
@@ -104,15 +112,29 @@
                 {{ block.settings.text | escape }}
               </div>
             </div>
+
           {% when 'countdown' %}
+            {% liquid
+              assign timer_x = 50
+              assign timer_shift = '-50%'
+              case block.settings.align
+                when 'left'
+                  assign timer_x = 3
+                  assign timer_shift = '0%'
+                when 'right'
+                  assign timer_x = 97
+                  assign timer_shift = '-100%'
+              endcase
+            %}
             <div
-              class="bd-deal-banner__overlay bd-deal-banner__timer-wrap{% unless block.settings.show_desktop %} bd-hide-desktop{% endunless %}{% unless block.settings.show_mobile %} bd-hide-mobile{% endunless %}"
+              class="bd-deal-banner__overlay bd-deal-banner__timer-wrap"
               {{ block.shopify_attributes }}
               style="
-                --bd-x-d: {{ block.settings.x_position_desktop }}%;
-                --bd-y-d: {{ block.settings.y_position_desktop }}%;
-                --bd-x-m: {{ block.settings.x_position_mobile }}%;
-                --bd-y-m: {{ block.settings.y_position_mobile }}%;
+                --bd-x: {{ timer_x }}%;
+                --bd-y: {{ block.settings.y_position }}%;
+                --bd-shift-x: {{ timer_shift }};
+                --bd-nudge-d: {{ block.settings.nudge_desktop }}px;
+                --bd-nudge-m: {{ block.settings.nudge_mobile }}px;
                 --bd-num-d: {{ block.settings.number_size_desktop }}px;
                 --bd-label-d: {{ block.settings.label_size_desktop }}px;
                 --bd-num-m: {{ block.settings.number_size_mobile }}px;
@@ -141,16 +163,30 @@
                 <div class="bd-deal-banner__unit"><strong data-seconds>00</strong><span>Sec</span></div>
               </div>
             </div>
+
           {% when 'shop_button' %}
-            {% assign button_link = block.settings.link | default: banner_link %}
+            {% liquid
+              assign button_x = 50
+              assign button_shift = '-50%'
+              case block.settings.align
+                when 'left'
+                  assign button_x = 3
+                  assign button_shift = '0%'
+                when 'right'
+                  assign button_x = 97
+                  assign button_shift = '-100%'
+              endcase
+              assign button_link = block.settings.link | default: banner_link
+            %}
             <div
-              class="bd-deal-banner__overlay bd-deal-banner__button-wrap{% unless block.settings.show_desktop %} bd-hide-desktop{% endunless %}{% unless block.settings.show_mobile %} bd-hide-mobile{% endunless %}"
+              class="bd-deal-banner__overlay bd-deal-banner__button-wrap"
               {{ block.shopify_attributes }}
               style="
-                --bd-x-d: {{ block.settings.x_position_desktop }}%;
-                --bd-y-d: {{ block.settings.y_position_desktop }}%;
-                --bd-x-m: {{ block.settings.x_position_mobile }}%;
-                --bd-y-m: {{ block.settings.y_position_mobile }}%;
+                --bd-x: {{ button_x }}%;
+                --bd-y: {{ block.settings.y_position }}%;
+                --bd-shift-x: {{ button_shift }};
+                --bd-nudge-d: {{ block.settings.nudge_desktop }}px;
+                --bd-nudge-m: {{ block.settings.nudge_mobile }}px;
                 --bd-size-d: {{ block.settings.size_desktop }}px;
                 --bd-size-m: {{ block.settings.size_mobile }}px;
                 --bd-pad-x-d: {{ block.settings.pad_x_desktop }}px;
@@ -179,6 +215,7 @@
     </div>
   </div>
 </section>
+
 <style>
   #BDDealBanner-{{ section.id }} {
     width: 100%;
@@ -186,14 +223,17 @@
     margin-top: var(--bd-d-mt);
     margin-bottom: var(--bd-d-mb);
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__outer {
     width: min(calc(100% - 24px), var(--bd-max-width));
     margin-inline: auto;
   }
+
   #BDDealBanner-{{ section.id }}.bd-deal-banner--full .bd-deal-banner__outer {
     width: 100%;
     max-width: none;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__stage {
     position: relative;
     width: 100%;
@@ -202,13 +242,15 @@
     background: var(--bd-stage-bg);
     isolation: isolate;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__stage--same {
     height: auto;
-    aspect-ratio: var(--bd-ratio-desktop) / 1;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__stage--custom {
     height: var(--bd-desktop-height);
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__image-link {
     position: absolute;
     inset: 0;
@@ -218,19 +260,21 @@
     height: 100%;
     text-decoration: none;
   }
-  #BDDealBanner-{{ section.id }} .bd-deal-banner__picture,
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__image,
   #BDDealBanner-{{ section.id }} .bd-deal-banner__placeholder {
     display: block;
     width: 100%;
     height: 100%;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__image {
     max-width: none;
     border: 0;
     object-position: center center;
     object-fit: {% if section.settings.layout_mode == 'same' %}cover{% else %}var(--bd-desktop-fit){% endif %};
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__placeholder {
     position: absolute;
     inset: 0;
@@ -239,10 +283,12 @@
     overflow: hidden;
     background: #f4f4f4;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__placeholder-svg {
     width: 100%;
     height: 100%;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__placeholder span {
     position: absolute;
     left: 50%;
@@ -255,25 +301,24 @@
     font-size: 13px;
     white-space: nowrap;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__overlay {
     position: absolute;
     z-index: 20;
-    left: var(--bd-x-d);
-    top: var(--bd-y-d);
-    transform: translate(-50%, -50%);
+    left: var(--bd-x);
+    top: var(--bd-y);
+    transform: translate(var(--bd-shift-x), -50%) translateX(var(--bd-nudge-d));
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     max-width: 96%;
   }
-  /* Visibility is separately configurable for desktop and mobile. */
-  #BDDealBanner-{{ section.id }} .bd-deal-banner__overlay.bd-hide-desktop {
-    display: none !important;
-  }
+
   /* MEGA DEAL */
   #BDDealBanner-{{ section.id }} .bd-deal-banner__title-wrap {
     pointer-events: none;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__title {
     display: inline-flex;
     align-items: center;
@@ -291,10 +336,12 @@
     box-shadow: 0 4px 15px rgba(0,0,0,.20);
     transform-origin: center;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__title--pulse {
     animation: bdTitleHeartbeat-{{ section.id }} var(--bd-speed) ease-in-out infinite;
     will-change: transform, filter;
   }
+
   @keyframes bdTitleHeartbeat-{{ section.id }} {
     0%, 100% { transform: scale(1); filter: brightness(1); }
     10% { transform: scale(var(--bd-scale)); filter: brightness(1.12); }
@@ -302,10 +349,12 @@
     30% { transform: scale(var(--bd-scale)); filter: brightness(1.08); }
     44%, 82% { transform: scale(1); filter: brightness(1); }
   }
+
   /* TIMER */
   #BDDealBanner-{{ section.id }} .bd-deal-banner__timer-wrap {
     pointer-events: none;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__timer {
     display: flex;
     align-items: center;
@@ -317,15 +366,18 @@
     white-space: nowrap;
     box-shadow: 0 4px 14px rgba(0,0,0,.22);
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__timer > b {
     font-size: calc(var(--bd-num-d) * .65);
     line-height: 1;
     opacity: .86;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__unit {
     min-width: calc(var(--bd-num-d) * 1.65);
     text-align: center;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__unit strong {
     display: block;
     font-size: var(--bd-num-d);
@@ -333,6 +385,7 @@
     font-weight: 900;
     font-variant-numeric: tabular-nums;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__unit span {
     display: block;
     margin-top: 2px;
@@ -342,10 +395,12 @@
     text-transform: uppercase;
     letter-spacing: .04em;
   }
+
   /* SHOP NOW */
   #BDDealBanner-{{ section.id }} .bd-deal-banner__button-wrap {
     pointer-events: auto;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__button {
     display: inline-flex;
     align-items: center;
@@ -365,10 +420,12 @@
     box-shadow: 0 5px 18px rgba(0,0,0,.25);
     transform-origin: center;
   }
+
   #BDDealBanner-{{ section.id }} .bd-deal-banner__button--heartbeat {
     animation: bdButtonHeartbeat-{{ section.id }} var(--bd-speed) ease-in-out infinite;
     will-change: transform, box-shadow, filter;
   }
+
   @keyframes bdButtonHeartbeat-{{ section.id }} {
     0%, 100% {
       transform: scale(1);
@@ -396,67 +453,70 @@
       box-shadow: 0 5px 18px rgba(0,0,0,.25), 0 0 0 0 rgba(255,255,255,0);
     }
   }
+
   @media (hover:hover) and (pointer:fine) {
     #BDDealBanner-{{ section.id }} .bd-deal-banner__button:hover {
       filter: brightness(1.12);
     }
   }
+
   /* MOBILE: nothing is hidden; same alignment anchors and same vertical positions */
   @media screen and (max-width: 749px) {
     #BDDealBanner-{{ section.id }} {
       margin-top: var(--bd-m-mt);
       margin-bottom: var(--bd-m-mb);
     }
+
     #BDDealBanner-{{ section.id }} .bd-deal-banner__outer {
       width: min(calc(100% - 12px), var(--bd-max-width));
     }
+
     #BDDealBanner-{{ section.id }}.bd-deal-banner--full .bd-deal-banner__outer {
       width: 100%;
     }
-    #BDDealBanner-{{ section.id }} .bd-deal-banner__stage--same {
-      aspect-ratio: var(--bd-ratio-mobile) / 1;
-    }
+
     #BDDealBanner-{{ section.id }} .bd-deal-banner__stage--custom {
       height: var(--bd-mobile-height);
     }
+
     #BDDealBanner-{{ section.id }} .bd-deal-banner__stage--custom .bd-deal-banner__image {
       object-fit: var(--bd-mobile-fit);
     }
+
     #BDDealBanner-{{ section.id }} .bd-deal-banner__overlay {
-      left: var(--bd-x-m);
-      top: var(--bd-y-m);
-      transform: translate(-50%, -50%);
+      transform: translate(var(--bd-shift-x), -50%) translateX(var(--bd-nudge-m));
     }
-    #BDDealBanner-{{ section.id }} .bd-deal-banner__overlay.bd-hide-desktop {
-      display: block !important;
-    }
-    #BDDealBanner-{{ section.id }} .bd-deal-banner__overlay.bd-hide-mobile {
-      display: none !important;
-    }
+
     #BDDealBanner-{{ section.id }} .bd-deal-banner__title {
       font-size: var(--bd-size-m);
       padding: var(--bd-pad-y-m) var(--bd-pad-x-m);
       box-shadow: 0 2px 8px rgba(0,0,0,.18);
     }
+
     #BDDealBanner-{{ section.id }} .bd-deal-banner__timer {
       gap: 1px;
       padding: var(--bd-pad-y-m) var(--bd-pad-x-m);
       border-radius: 5px;
       box-shadow: 0 2px 8px rgba(0,0,0,.20);
     }
+
     #BDDealBanner-{{ section.id }} .bd-deal-banner__timer > b {
       font-size: calc(var(--bd-num-m) * .62);
     }
+
     #BDDealBanner-{{ section.id }} .bd-deal-banner__unit {
       min-width: calc(var(--bd-num-m) * 1.55);
     }
+
     #BDDealBanner-{{ section.id }} .bd-deal-banner__unit strong {
       font-size: var(--bd-num-m);
     }
+
     #BDDealBanner-{{ section.id }} .bd-deal-banner__unit span {
       margin-top: 1px;
       font-size: var(--bd-label-m);
     }
+
     #BDDealBanner-{{ section.id }} .bd-deal-banner__button {
       font-size: var(--bd-size-m);
       padding: var(--bd-pad-y-m) var(--bd-pad-x-m);
@@ -464,6 +524,7 @@
       box-shadow: 0 3px 10px rgba(0,0,0,.24);
     }
   }
+
   @media (prefers-reduced-motion: reduce) {
     #BDDealBanner-{{ section.id }} .bd-deal-banner__button,
     #BDDealBanner-{{ section.id }} .bd-deal-banner__title {
@@ -471,40 +532,49 @@
     }
   }
 </style>
+
 <script>
   (function() {
     var sectionId = 'BDDealBanner-{{ section.id }}';
     var intervals = [];
+
     function clearTimers() {
       intervals.forEach(function(id) { clearInterval(id); });
       intervals = [];
     }
+
     function initTimers() {
       clearTimers();
       var section = document.getElementById(sectionId);
       if (!section) return;
+
       var timers = section.querySelectorAll('[data-bd-timer]');
       timers.forEach(function(timer) {
         var endValue = timer.getAttribute('data-end');
         var endTime = endValue ? new Date(endValue).getTime() : NaN;
+
         function pad(value) {
           return String(Math.max(0, value)).padStart(2, '0');
         }
+
         function render(distance) {
           var d = Math.max(0, distance);
           var days = Math.floor(d / 86400000);
           var hours = Math.floor((d % 86400000) / 3600000);
           var minutes = Math.floor((d % 3600000) / 60000);
           var seconds = Math.floor((d % 60000) / 1000);
+
           var dayEl = timer.querySelector('[data-days]');
           var hourEl = timer.querySelector('[data-hours]');
           var minEl = timer.querySelector('[data-minutes]');
           var secEl = timer.querySelector('[data-seconds]');
+
           if (dayEl) dayEl.textContent = pad(days);
           if (hourEl) hourEl.textContent = pad(hours);
           if (minEl) minEl.textContent = pad(minutes);
           if (secEl) secEl.textContent = pad(seconds);
         }
+
         function update() {
           if (Number.isNaN(endTime)) {
             render(0);
@@ -514,6 +584,7 @@
           render(distance);
           return distance > 0;
         }
+
         if (update()) {
           var id = setInterval(function() {
             if (!update()) clearInterval(id);
@@ -522,197 +593,56 @@
         }
       });
     }
+
     initTimers();
+
     document.addEventListener('shopify:section:load', function(event) {
       if (event.detail && event.detail.sectionId === '{{ section.id }}') initTimers();
     });
+
     document.addEventListener('shopify:section:unload', function(event) {
       if (event.detail && event.detail.sectionId === '{{ section.id }}') clearTimers();
     });
   })();
 </script>
+
 {% schema %}
 {
-  "name": "BestDeals position editor",
+  "name": "BestDeals same display",
   "tag": "section",
-  "class": "section-bestdeals-position-control",
+  "class": "section-bestdeals-same-display",
   "max_blocks": 3,
   "settings": [
-    {
-      "type": "header",
-      "content": "Banner"
-    },
-    {
-      "type": "image_picker",
-      "id": "banner_image",
-      "label": "Desktop banner image"
-    },
-    {
-      "type": "image_picker",
-      "id": "mobile_banner_image",
-      "label": "Mobile banner image (optional)",
-      "info": "A separate mobile design is optional; otherwise the desktop image is used."
-    },
-    {
-      "type": "url",
-      "id": "banner_link",
-      "label": "Banner link"
-    },
-    {
-      "type": "checkbox",
-      "id": "full_width",
-      "label": "Full width",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "max_width",
-      "label": "Maximum width",
-      "min": 800,
-      "max": 2400,
-      "step": 50,
-      "unit": "px",
-      "default": 1600
-    },
-    {
-      "type": "range",
-      "id": "border_radius",
-      "label": "Corner radius",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 8
-    },
-    {
-      "type": "color",
-      "id": "section_bg",
-      "label": "Section background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "stage_bg",
-      "label": "Banner background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "header",
-      "content": "Responsive display"
-    },
-    {
-      "type": "select",
-      "id": "layout_mode",
-      "label": "Display mode",
-      "default": "same",
-      "info": "Same composition keeps the complete banner ratio on desktop and mobile.",
-      "options": [
-        {
-          "value": "same",
-          "label": "Same composition (recommended)"
-        },
-        {
-          "value": "custom",
-          "label": "Custom heights"
-        }
-      ]
-    },
-    {
-      "type": "range",
-      "id": "desktop_height",
-      "label": "Desktop height - custom mode",
-      "min": 70,
-      "max": 420,
-      "step": 10,
-      "unit": "px",
-      "default": 190
-    },
-    {
-      "type": "range",
-      "id": "mobile_height",
-      "label": "Mobile height - custom mode",
-      "min": 60,
-      "max": 320,
-      "step": 5,
-      "unit": "px",
-      "default": 120
-    },
-    {
-      "type": "select",
-      "id": "desktop_fit",
-      "label": "Desktop image fit - custom mode",
-      "default": "cover",
-      "options": [
-        {
-          "value": "cover",
-          "label": "Fill area"
-        },
-        {
-          "value": "contain",
-          "label": "Show complete image"
-        }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "mobile_fit",
-      "label": "Mobile image fit - custom mode",
-      "default": "contain",
-      "options": [
-        {
-          "value": "contain",
-          "label": "Show complete image"
-        },
-        {
-          "value": "cover",
-          "label": "Fill area"
-        }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Spacing"
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_top",
-      "label": "Desktop top spacing",
-      "min": 0,
-      "max": 80,
-      "step": 2,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_bottom",
-      "label": "Desktop bottom spacing",
-      "min": 0,
-      "max": 80,
-      "step": 2,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_margin_top",
-      "label": "Mobile top spacing",
-      "min": 0,
-      "max": 60,
-      "step": 2,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_margin_bottom",
-      "label": "Mobile bottom spacing",
-      "min": 0,
-      "max": 60,
-      "step": 2,
-      "unit": "px",
-      "default": 0
-    }
+    { "type": "header", "content": "Banner" },
+    { "type": "image_picker", "id": "banner_image", "label": "Banner image - same for desktop/mobile" },
+    { "type": "url", "id": "banner_link", "label": "Banner link" },
+    { "type": "checkbox", "id": "full_width", "label": "Full width", "default": true },
+    { "type": "range", "id": "max_width", "label": "Maximum width", "min": 800, "max": 2400, "step": 50, "unit": "px", "default": 1600 },
+    { "type": "range", "id": "border_radius", "label": "Corner radius", "min": 0, "max": 30, "step": 1, "unit": "px", "default": 8 },
+    { "type": "color", "id": "section_bg", "label": "Section background", "default": "#ffffff" },
+    { "type": "color", "id": "stage_bg", "label": "Banner background", "default": "#ffffff" },
+
+    { "type": "header", "content": "Responsive display" },
+    { "type": "select", "id": "layout_mode", "label": "Display mode", "default": "same", "info": "Same composition keeps the complete banner ratio on desktop and mobile.", "options": [
+      { "value": "same", "label": "Same composition (recommended)" },
+      { "value": "custom", "label": "Custom heights" }
+    ] },
+    { "type": "range", "id": "desktop_height", "label": "Desktop height - custom mode", "min": 70, "max": 420, "step": 10, "unit": "px", "default": 190 },
+    { "type": "range", "id": "mobile_height", "label": "Mobile height - custom mode", "min": 60, "max": 320, "step": 5, "unit": "px", "default": 120 },
+    { "type": "select", "id": "desktop_fit", "label": "Desktop image fit - custom mode", "default": "cover", "options": [
+      { "value": "cover", "label": "Fill area" },
+      { "value": "contain", "label": "Show complete image" }
+    ] },
+    { "type": "select", "id": "mobile_fit", "label": "Mobile image fit - custom mode", "default": "contain", "options": [
+      { "value": "contain", "label": "Show complete image" },
+      { "value": "cover", "label": "Fill area" }
+    ] },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "desktop_margin_top", "label": "Desktop top spacing", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "desktop_margin_bottom", "label": "Desktop bottom spacing", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_margin_top", "label": "Mobile top spacing", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_margin_bottom", "label": "Mobile bottom spacing", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 }
   ],
   "blocks": [
     {
@@ -720,169 +650,26 @@
       "name": "MEGA DEAL title",
       "limit": 1,
       "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Text",
-          "default": "MEGA DEAL"
-        },
-        {
-          "type": "header",
-          "content": "Desktop / laptop positioning"
-        },
-        {
-          "type": "range",
-          "id": "x_position_desktop",
-          "label": "Desktop horizontal (0 left, 100 right)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 79
-        },
-        {
-          "type": "range",
-          "id": "y_position_desktop",
-          "label": "Desktop vertical (0 top, 100 bottom)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 23
-        },
-        {
-          "type": "checkbox",
-          "id": "show_desktop",
-          "label": "Show on desktop",
-          "default": true
-        },
-        {
-          "type": "header",
-          "content": "Mobile positioning"
-        },
-        {
-          "type": "range",
-          "id": "x_position_mobile",
-          "label": "Mobile horizontal (0 left, 100 right)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 78
-        },
-        {
-          "type": "range",
-          "id": "y_position_mobile",
-          "label": "Mobile vertical (0 top, 100 bottom)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 22
-        },
-        {
-          "type": "checkbox",
-          "id": "show_mobile",
-          "label": "Show on mobile",
-          "default": true
-        },
-        {
-          "type": "range",
-          "id": "size_desktop",
-          "label": "Text size - desktop",
-          "min": 10,
-          "max": 56,
-          "step": 1,
-          "unit": "px",
-          "default": 22
-        },
-        {
-          "type": "range",
-          "id": "size_mobile",
-          "label": "Text size - mobile",
-          "min": 7,
-          "max": 30,
-          "step": 1,
-          "unit": "px",
-          "default": 13
-        },
-        {
-          "type": "range",
-          "id": "pad_x_desktop",
-          "label": "Side padding - desktop",
-          "min": 6,
-          "max": 40,
-          "step": 1,
-          "unit": "px",
-          "default": 14
-        },
-        {
-          "type": "range",
-          "id": "pad_y_desktop",
-          "label": "Top/bottom padding - desktop",
-          "min": 3,
-          "max": 22,
-          "step": 1,
-          "unit": "px",
-          "default": 8
-        },
-        {
-          "type": "range",
-          "id": "pad_x_mobile",
-          "label": "Side padding - mobile",
-          "min": 4,
-          "max": 24,
-          "step": 1,
-          "unit": "px",
-          "default": 9
-        },
-        {
-          "type": "range",
-          "id": "pad_y_mobile",
-          "label": "Top/bottom padding - mobile",
-          "min": 2,
-          "max": 14,
-          "step": 1,
-          "unit": "px",
-          "default": 5
-        },
-        {
-          "type": "color",
-          "id": "bg",
-          "label": "Background",
-          "default": "#e85a2a"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "Text color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "checkbox",
-          "id": "animate",
-          "label": "Heartbeat animation",
-          "default": true
-        },
-        {
-          "type": "range",
-          "id": "speed",
-          "label": "Animation speed (x0.1 sec)",
-          "min": 8,
-          "max": 30,
-          "step": 1,
-          "default": 17
-        },
-        {
-          "type": "range",
-          "id": "scale",
-          "label": "Animation strength",
-          "min": 102,
-          "max": 116,
-          "step": 1,
-          "unit": "%",
-          "default": 105
-        }
+        { "type": "text", "id": "text", "label": "Text", "default": "MEGA DEAL" },
+        { "type": "select", "id": "align", "label": "Horizontal side", "default": "center", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ] },
+        { "type": "range", "id": "y_position", "label": "Vertical position", "min": 5, "max": 95, "step": 1, "unit": "%", "default": 50 },
+        { "type": "range", "id": "nudge_desktop", "label": "Left/right fine tune - desktop", "min": -250, "max": 250, "step": 5, "unit": "px", "default": 0 },
+        { "type": "range", "id": "nudge_mobile", "label": "Left/right fine tune - mobile", "min": -150, "max": 150, "step": 5, "unit": "px", "default": 0 },
+        { "type": "range", "id": "size_desktop", "label": "Text size - desktop", "min": 10, "max": 56, "step": 1, "unit": "px", "default": 22 },
+        { "type": "range", "id": "size_mobile", "label": "Text size - mobile", "min": 7, "max": 30, "step": 1, "unit": "px", "default": 13 },
+        { "type": "range", "id": "pad_x_desktop", "label": "Side padding - desktop", "min": 6, "max": 40, "step": 1, "unit": "px", "default": 14 },
+        { "type": "range", "id": "pad_y_desktop", "label": "Top/bottom padding - desktop", "min": 3, "max": 22, "step": 1, "unit": "px", "default": 8 },
+        { "type": "range", "id": "pad_x_mobile", "label": "Side padding - mobile", "min": 4, "max": 24, "step": 1, "unit": "px", "default": 9 },
+        { "type": "range", "id": "pad_y_mobile", "label": "Top/bottom padding - mobile", "min": 2, "max": 14, "step": 1, "unit": "px", "default": 5 },
+        { "type": "color", "id": "bg", "label": "Background", "default": "#df2935" },
+        { "type": "color", "id": "color", "label": "Text color", "default": "#ffffff" },
+        { "type": "checkbox", "id": "animate", "label": "Heartbeat animation", "default": true },
+        { "type": "range", "id": "speed", "label": "Animation speed (x0.1 sec)", "min": 8, "max": 30, "step": 1, "default": 17 },
+        { "type": "range", "id": "scale", "label": "Animation strength", "min": 102, "max": 116, "step": 1, "unit": "%", "default": 105 }
       ]
     },
     {
@@ -890,171 +677,26 @@
       "name": "Countdown timer",
       "limit": 1,
       "settings": [
-        {
-          "type": "text",
-          "id": "end_date",
-          "label": "End date/time",
-          "info": "Example: 2026-12-31T23:59:59+05:00",
-          "default": "2026-12-31T23:59:59+05:00"
-        },
-        {
-          "type": "header",
-          "content": "Desktop / laptop positioning"
-        },
-        {
-          "type": "range",
-          "id": "x_position_desktop",
-          "label": "Desktop horizontal (0 left, 100 right)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 79
-        },
-        {
-          "type": "range",
-          "id": "y_position_desktop",
-          "label": "Desktop vertical (0 top, 100 bottom)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 51
-        },
-        {
-          "type": "checkbox",
-          "id": "show_desktop",
-          "label": "Show on desktop",
-          "default": true
-        },
-        {
-          "type": "header",
-          "content": "Mobile positioning"
-        },
-        {
-          "type": "range",
-          "id": "x_position_mobile",
-          "label": "Mobile horizontal (0 left, 100 right)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 78
-        },
-        {
-          "type": "range",
-          "id": "y_position_mobile",
-          "label": "Mobile vertical (0 top, 100 bottom)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 50
-        },
-        {
-          "type": "checkbox",
-          "id": "show_mobile",
-          "label": "Show on mobile",
-          "default": true
-        },
-        {
-          "type": "color",
-          "id": "bg",
-          "label": "Background",
-          "default": "#111111"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "Number color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "label_color",
-          "label": "Label color",
-          "default": "#e85a2a"
-        },
-        {
-          "type": "range",
-          "id": "number_size_desktop",
-          "label": "Number size - desktop",
-          "min": 8,
-          "max": 32,
-          "step": 1,
-          "unit": "px",
-          "default": 12
-        },
-        {
-          "type": "range",
-          "id": "label_size_desktop",
-          "label": "Label size - desktop",
-          "min": 5,
-          "max": 14,
-          "step": 1,
-          "unit": "px",
-          "default": 6
-        },
-        {
-          "type": "range",
-          "id": "number_size_mobile",
-          "label": "Number size - mobile",
-          "min": 6,
-          "max": 20,
-          "step": 1,
-          "unit": "px",
-          "default": 8
-        },
-        {
-          "type": "range",
-          "id": "label_size_mobile",
-          "label": "Label size - mobile",
-          "min": 4,
-          "max": 10,
-          "step": 1,
-          "unit": "px",
-          "default": 4
-        },
-        {
-          "type": "range",
-          "id": "pad_x_desktop",
-          "label": "Side padding - desktop",
-          "min": 3,
-          "max": 20,
-          "step": 1,
-          "unit": "px",
-          "default": 7
-        },
-        {
-          "type": "range",
-          "id": "pad_y_desktop",
-          "label": "Top/bottom padding - desktop",
-          "min": 2,
-          "max": 14,
-          "step": 1,
-          "unit": "px",
-          "default": 5
-        },
-        {
-          "type": "range",
-          "id": "pad_x_mobile",
-          "label": "Side padding - mobile",
-          "min": 2,
-          "max": 14,
-          "step": 1,
-          "unit": "px",
-          "default": 4
-        },
-        {
-          "type": "range",
-          "id": "pad_y_mobile",
-          "label": "Top/bottom padding - mobile",
-          "min": 1,
-          "max": 10,
-          "step": 1,
-          "unit": "px",
-          "default": 3
-        }
+        { "type": "text", "id": "end_date", "label": "End date/time", "info": "Example: 2026-12-31T23:59:59+05:00", "default": "2026-12-31T23:59:59+05:00" },
+        { "type": "select", "id": "align", "label": "Horizontal side", "default": "center", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ] },
+        { "type": "range", "id": "y_position", "label": "Vertical position", "min": 5, "max": 95, "step": 1, "unit": "%", "default": 79 },
+        { "type": "range", "id": "nudge_desktop", "label": "Left/right fine tune - desktop", "min": -250, "max": 250, "step": 5, "unit": "px", "default": 0 },
+        { "type": "range", "id": "nudge_mobile", "label": "Left/right fine tune - mobile", "min": -150, "max": 150, "step": 5, "unit": "px", "default": 0 },
+        { "type": "color", "id": "bg", "label": "Background", "default": "#111111" },
+        { "type": "color", "id": "color", "label": "Number color", "default": "#ffffff" },
+        { "type": "color", "id": "label_color", "label": "Label color", "default": "#ffd95a" },
+        { "type": "range", "id": "number_size_desktop", "label": "Number size - desktop", "min": 8, "max": 32, "step": 1, "unit": "px", "default": 12 },
+        { "type": "range", "id": "label_size_desktop", "label": "Label size - desktop", "min": 5, "max": 14, "step": 1, "unit": "px", "default": 6 },
+        { "type": "range", "id": "number_size_mobile", "label": "Number size - mobile", "min": 6, "max": 20, "step": 1, "unit": "px", "default": 8 },
+        { "type": "range", "id": "label_size_mobile", "label": "Label size - mobile", "min": 4, "max": 10, "step": 1, "unit": "px", "default": 4 },
+        { "type": "range", "id": "pad_x_desktop", "label": "Side padding - desktop", "min": 3, "max": 20, "step": 1, "unit": "px", "default": 7 },
+        { "type": "range", "id": "pad_y_desktop", "label": "Top/bottom padding - desktop", "min": 2, "max": 14, "step": 1, "unit": "px", "default": 5 },
+        { "type": "range", "id": "pad_x_mobile", "label": "Side padding - mobile", "min": 2, "max": 14, "step": 1, "unit": "px", "default": 4 },
+        { "type": "range", "id": "pad_y_mobile", "label": "Top/bottom padding - mobile", "min": 1, "max": 10, "step": 1, "unit": "px", "default": 3 }
       ]
     },
     {
@@ -1062,196 +704,38 @@
       "name": "Shop Now button",
       "limit": 1,
       "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Button text",
-          "default": "SHOP NOW"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Button link"
-        },
-        {
-          "type": "header",
-          "content": "Desktop / laptop positioning"
-        },
-        {
-          "type": "range",
-          "id": "x_position_desktop",
-          "label": "Desktop horizontal (0 left, 100 right)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 79
-        },
-        {
-          "type": "range",
-          "id": "y_position_desktop",
-          "label": "Desktop vertical (0 top, 100 bottom)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 78
-        },
-        {
-          "type": "checkbox",
-          "id": "show_desktop",
-          "label": "Show on desktop",
-          "default": true
-        },
-        {
-          "type": "header",
-          "content": "Mobile positioning"
-        },
-        {
-          "type": "range",
-          "id": "x_position_mobile",
-          "label": "Mobile horizontal (0 left, 100 right)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 78
-        },
-        {
-          "type": "range",
-          "id": "y_position_mobile",
-          "label": "Mobile vertical (0 top, 100 bottom)",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "default": 78
-        },
-        {
-          "type": "checkbox",
-          "id": "show_mobile",
-          "label": "Show on mobile",
-          "default": true
-        },
-        {
-          "type": "color",
-          "id": "bg",
-          "label": "Button background",
-          "default": "#e85a2a"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "Button text color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "border",
-          "label": "Button border color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "range",
-          "id": "size_desktop",
-          "label": "Text size - desktop",
-          "min": 10,
-          "max": 32,
-          "step": 1,
-          "unit": "px",
-          "default": 19
-        },
-        {
-          "type": "range",
-          "id": "size_mobile",
-          "label": "Text size - mobile",
-          "min": 7,
-          "max": 22,
-          "step": 1,
-          "unit": "px",
-          "default": 11
-        },
-        {
-          "type": "range",
-          "id": "pad_x_desktop",
-          "label": "Side padding - desktop",
-          "min": 8,
-          "max": 40,
-          "step": 1,
-          "unit": "px",
-          "default": 22
-        },
-        {
-          "type": "range",
-          "id": "pad_y_desktop",
-          "label": "Top/bottom padding - desktop",
-          "min": 4,
-          "max": 22,
-          "step": 1,
-          "unit": "px",
-          "default": 10
-        },
-        {
-          "type": "range",
-          "id": "pad_x_mobile",
-          "label": "Side padding - mobile",
-          "min": 5,
-          "max": 26,
-          "step": 1,
-          "unit": "px",
-          "default": 13
-        },
-        {
-          "type": "range",
-          "id": "pad_y_mobile",
-          "label": "Top/bottom padding - mobile",
-          "min": 3,
-          "max": 16,
-          "step": 1,
-          "unit": "px",
-          "default": 7
-        },
-        {
-          "type": "checkbox",
-          "id": "animate",
-          "label": "Heartbeat animation",
-          "default": true
-        },
-        {
-          "type": "range",
-          "id": "speed",
-          "label": "Animation speed (x0.1 sec)",
-          "min": 8,
-          "max": 30,
-          "step": 1,
-          "default": 16
-        },
-        {
-          "type": "range",
-          "id": "scale",
-          "label": "Animation strength",
-          "min": 102,
-          "max": 120,
-          "step": 1,
-          "unit": "%",
-          "default": 108
-        }
+        { "type": "text", "id": "text", "label": "Button text", "default": "SHOP NOW" },
+        { "type": "url", "id": "link", "label": "Button link" },
+        { "type": "select", "id": "align", "label": "Shop Now alignment", "default": "right", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ] },
+        { "type": "range", "id": "y_position", "label": "Vertical position", "min": 5, "max": 95, "step": 1, "unit": "%", "default": 52 },
+        { "type": "range", "id": "nudge_desktop", "label": "Left/right fine tune - desktop", "min": -250, "max": 250, "step": 5, "unit": "px", "default": 0 },
+        { "type": "range", "id": "nudge_mobile", "label": "Left/right fine tune - mobile", "min": -150, "max": 150, "step": 5, "unit": "px", "default": 0 },
+        { "type": "color", "id": "bg", "label": "Button background", "default": "#df2935" },
+        { "type": "color", "id": "color", "label": "Button text color", "default": "#ffffff" },
+        { "type": "color", "id": "border", "label": "Button border color", "default": "#ffffff" },
+        { "type": "range", "id": "size_desktop", "label": "Text size - desktop", "min": 10, "max": 32, "step": 1, "unit": "px", "default": 19 },
+        { "type": "range", "id": "size_mobile", "label": "Text size - mobile", "min": 7, "max": 22, "step": 1, "unit": "px", "default": 11 },
+        { "type": "range", "id": "pad_x_desktop", "label": "Side padding - desktop", "min": 8, "max": 40, "step": 1, "unit": "px", "default": 22 },
+        { "type": "range", "id": "pad_y_desktop", "label": "Top/bottom padding - desktop", "min": 4, "max": 22, "step": 1, "unit": "px", "default": 10 },
+        { "type": "range", "id": "pad_x_mobile", "label": "Side padding - mobile", "min": 5, "max": 26, "step": 1, "unit": "px", "default": 13 },
+        { "type": "range", "id": "pad_y_mobile", "label": "Top/bottom padding - mobile", "min": 3, "max": 16, "step": 1, "unit": "px", "default": 7 },
+        { "type": "checkbox", "id": "animate", "label": "Heartbeat animation", "default": true },
+        { "type": "range", "id": "speed", "label": "Animation speed (x0.1 sec)", "min": 8, "max": 30, "step": 1, "default": 16 },
+        { "type": "range", "id": "scale", "label": "Animation strength", "min": 102, "max": 120, "step": 1, "unit": "%", "default": 108 }
       ]
     }
   ],
   "presets": [
     {
-      "name": "BestDeals position editor",
+      "name": "BestDeals same display",
       "blocks": [
-        {
-          "type": "deal_title"
-        },
-        {
-          "type": "countdown"
-        },
-        {
-          "type": "shop_button"
-        }
+        { "type": "deal_title" },
+        { "type": "countdown" },
+        { "type": "shop_button" }
       ]
     }
   ]
