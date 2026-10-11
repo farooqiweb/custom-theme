@@ -1,1 +1,102 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"whatsapp_floating_fVq3WG":{"type":"whatsapp-floating","name":"WhatsApp Floating","settings":{"enable_button":true,"phone":"+923235049407","message":"Hi Bestdeal.pk, I need help with my order.","button_text":"Chat on WhatsApp","show_text":true,"side":"right","desktop_position":55,"mobile_position":71,"bg_color":"#25D366","icon_color":"#FFFFFF","text_color":"#FFFFFF","icon_size":32,"text_size":11,"padding_vertical":6,"padding_horizontal":5,"radius":26,"animation":true,"show_desktop":true,"show_mobile":true,"mobile_icon_only":true}},"custom_liquid_RXHJN3":{"type":"custom-liquid","name":"t:sections.custom-liquid.presets.name","settings":{"custom_liquid":"{% comment %}\n  Bestdeal.pk Animated Waves - paste this into a Shopify \"Custom liquid\" section.\n  This is intentionally separate from the footer.\n{% endcomment %}\n\n<style>\n  .bestdeal-custom-waves {\n    --wave-purple: #e85a2a;\n    --wave-gold: #e85a2a;\n    --wave-soft: #e85a2a;\n    position: relative;\n    width: 100%;\n    height: 130px;\n    overflow: hidden;\n    background: transparent;\n    line-height: 0;\n    pointer-events: none;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave {\n    position: absolute;\n    left: -3%;\n    bottom: 0;\n    width: 106%;\n    height: 100%;\n    transform-origin: center bottom;\n    will-change: transform;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave--1 {\n    opacity: .72;\n    animation: bdcwWave1 5s ease-in-out infinite;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave--2 {\n    opacity: .50;\n    animation: bdcwWave2 7s ease-in-out infinite;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave--3 {\n    opacity: .30;\n    animation: bdcwWave3 9s ease-in-out infinite;\n  }\n\n  @keyframes bdcwWave1 {\n    0%,100% { transform: translate3d(-1.2%,0,0) scaleX(1.02); }\n    50% { transform: translate3d(1.3%,7px,0) scaleX(1.05); }\n  }\n\n  @keyframes bdcwWave2 {\n    0%,100% { transform: translate3d(1%,4px,0) scaleX(1.05); }\n    50% { transform: translate3d(-1.6%,-5px,0) scaleX(1.01); }\n  }\n\n  @keyframes bdcwWave3 {\n    0%,100% { transform: translate3d(-.8%,-2px,0) scaleX(1.01); }\n    50% { transform: translate3d(1.8%,9px,0) scaleX(1.06); }\n  }\n\n  @media screen and (max-width: 749px) {\n    .bestdeal-custom-waves {\n      height: 90px;\n    }\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    .bestdeal-custom-waves .bdcw-wave {\n      animation: none !important;\n    }\n  }\n<\/style>\n\n<div class=\"bestdeal-custom-waves\" aria-hidden=\"true\">\n  <svg class=\"bdcw-wave bdcw-wave--1\" viewBox=\"0 0 1440 180\" preserveAspectRatio=\"none\">\n    <path fill=\"var(--wave-purple)\" d=\"M-20 98 C 170 40, 350 145, 565 91 S 935 29, 1175 86 S 1415 132, 1490 72 L 1490 200 L -20 200 Z\"\/>\n  <\/svg>\n\n  <svg class=\"bdcw-wave bdcw-wave--2\" viewBox=\"0 0 1440 180\" preserveAspectRatio=\"none\">\n    <path fill=\"var(--wave-gold)\" d=\"M-35 120 C 175 151, 350 45, 565 111 S 910 154, 1125 77 S 1385 35, 1490 93 L 1490 200 L -35 200 Z\"\/>\n  <\/svg>\n\n  <svg class=\"bdcw-wave bdcw-wave--3\" viewBox=\"0 0 1440 180\" preserveAspectRatio=\"none\">\n    <path fill=\"var(--wave-soft)\" d=\"M-25 94 C 180 155, 370 74, 610 118 S 930 150, 1120 92 S 1360 70, 1490 118 L 1490 200 L -25 200 Z\"\/>\n  <\/svg>\n<\/div>","color_scheme":"","padding_top":0,"padding_bottom":0}},"footer":{"type":"footer","settings":{"contact_heading":"Connect With Us","shopping_address":"Tandlianwala District Faisalabad","support_email":"adminbestdeal@gmail.com","mobile_number":"+92 3235049407","facebook_url":"https:\/\/www.facebook.com\/Bestdeal.407\/","facebook_label":"Bestdeal.pk","instagram_url":"","instagram_label":"@bestdeal.pk","newsletter_enable":true,"newsletter_heading":"Subscribe to our emails","newsletter_text":"Get new arrivals, special offers and useful deal updates in your inbox.","newsletter_placeholder":"Enter your email address","newsletter_button_text":"Subscribe","newsletter_success_text":"Thank you! You have subscribed successfully.","logo_image":"shopify:\/\/shop_images\/ChatGPT_Image_Sep_22_2026_06_44_48_PM_be184e2a-1d7f-4603-905b-163b5b1af793.png","logo_width":330,"logo_width_mobile":180,"logo_alignment":"flex-start","logo_tilt":10,"footer_menu":"","bg_color_1":"#132b20","bg_color_2":"#1c3d2d","surface_color":"#1c3d2d","purple":"#e85a2a","purple_light":"#e85a2a","purple_dark":"#1c3d2d","gold":"#e85a2a","gold_dark":"#e85a2a","text_color":"#ffffff","muted_text_color":"#f9efe4","heading_size":25,"heading_size_mobile":21,"text_size":14,"text_size_mobile":14,"newsletter_heading_size":20,"newsletter_heading_size_mobile":18,"icon_size":48,"icon_size_mobile":44,"margin_top":0,"content_padding_top":36,"content_padding_top_mobile":28,"bottom_space":20}}},"order":["whatsapp_floating_fVq3WG","custom_liquid_RXHJN3","footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "whatsapp_floating_fVq3WG": {
+      "type": "whatsapp-floating",
+      "name": "WhatsApp Floating",
+      "settings": {
+        "enable_button": true,
+        "phone": "+923235049407",
+        "message": "Hi Bestdeal.pk, I need help with my order.",
+        "side": "right",
+        "desktop_position": 55,
+        "mobile_position": 71,
+        "desktop_spacing": 12,
+        "mobile_spacing": 10,
+        "desktop_size": 50,
+        "desktop_icon_size": 29,
+        "mobile_size": 46,
+        "mobile_icon_size": 26,
+        "background_color": "#25d366",
+        "icon_color": "#ffffff",
+        "border_color": "#ffffff",
+        "border_width": 2,
+        "enable_animation": true,
+        "show_desktop": true,
+        "show_mobile": true
+      }
+    },
+    "custom_liquid_RXHJN3": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{% comment %}\n  Bestdeal.pk Animated Waves - paste this into a Shopify \"Custom liquid\" section.\n  This is intentionally separate from the footer.\n{% endcomment %}\n\n<style>\n  .bestdeal-custom-waves {\n    --wave-purple: #e85a2a;\n    --wave-gold: #e85a2a;\n    --wave-soft: #e85a2a;\n    position: relative;\n    width: 100%;\n    height: 130px;\n    overflow: hidden;\n    background: transparent;\n    line-height: 0;\n    pointer-events: none;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave {\n    position: absolute;\n    left: -3%;\n    bottom: 0;\n    width: 106%;\n    height: 100%;\n    transform-origin: center bottom;\n    will-change: transform;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave--1 {\n    opacity: .72;\n    animation: bdcwWave1 5s ease-in-out infinite;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave--2 {\n    opacity: .50;\n    animation: bdcwWave2 7s ease-in-out infinite;\n  }\n\n  .bestdeal-custom-waves .bdcw-wave--3 {\n    opacity: .30;\n    animation: bdcwWave3 9s ease-in-out infinite;\n  }\n\n  @keyframes bdcwWave1 {\n    0%,100% { transform: translate3d(-1.2%,0,0) scaleX(1.02); }\n    50% { transform: translate3d(1.3%,7px,0) scaleX(1.05); }\n  }\n\n  @keyframes bdcwWave2 {\n    0%,100% { transform: translate3d(1%,4px,0) scaleX(1.05); }\n    50% { transform: translate3d(-1.6%,-5px,0) scaleX(1.01); }\n  }\n\n  @keyframes bdcwWave3 {\n    0%,100% { transform: translate3d(-.8%,-2px,0) scaleX(1.01); }\n    50% { transform: translate3d(1.8%,9px,0) scaleX(1.06); }\n  }\n\n  @media screen and (max-width: 749px) {\n    .bestdeal-custom-waves {\n      height: 90px;\n    }\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    .bestdeal-custom-waves .bdcw-wave {\n      animation: none !important;\n    }\n  }\n</style>\n\n<div class=\"bestdeal-custom-waves\" aria-hidden=\"true\">\n  <svg class=\"bdcw-wave bdcw-wave--1\" viewBox=\"0 0 1440 180\" preserveAspectRatio=\"none\">\n    <path fill=\"var(--wave-purple)\" d=\"M-20 98 C 170 40, 350 145, 565 91 S 935 29, 1175 86 S 1415 132, 1490 72 L 1490 200 L -20 200 Z\"/>\n  </svg>\n\n  <svg class=\"bdcw-wave bdcw-wave--2\" viewBox=\"0 0 1440 180\" preserveAspectRatio=\"none\">\n    <path fill=\"var(--wave-gold)\" d=\"M-35 120 C 175 151, 350 45, 565 111 S 910 154, 1125 77 S 1385 35, 1490 93 L 1490 200 L -35 200 Z\"/>\n  </svg>\n\n  <svg class=\"bdcw-wave bdcw-wave--3\" viewBox=\"0 0 1440 180\" preserveAspectRatio=\"none\">\n    <path fill=\"var(--wave-soft)\" d=\"M-25 94 C 180 155, 370 74, 610 118 S 930 150, 1120 92 S 1360 70, 1490 118 L 1490 200 L -25 200 Z\"/>\n  </svg>\n</div>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "contact_heading": "Connect With Us",
+        "shopping_address": "Tandlianwala District Faisalabad",
+        "support_email": "adminbestdeal@gmail.com",
+        "mobile_number": "+92 3235049407",
+        "facebook_url": "https://www.facebook.com/Bestdeal.407/",
+        "facebook_label": "Bestdeal.pk",
+        "instagram_url": "",
+        "instagram_label": "@bestdeal.pk",
+        "newsletter_enable": true,
+        "newsletter_heading": "Subscribe to our emails",
+        "newsletter_text": "Get new arrivals, special offers and useful deal updates in your inbox.",
+        "newsletter_placeholder": "Enter your email address",
+        "newsletter_button_text": "Subscribe",
+        "newsletter_success_text": "Thank you! You have subscribed successfully.",
+        "logo_image": "shopify://shop_images/Glossy_Teal_Shopping_Bag_with_Gold_B.png",
+        "logo_width": 330,
+        "logo_width_mobile": 180,
+        "logo_alignment": "flex-start",
+        "logo_tilt": 10,
+        "footer_menu": "",
+        "bg_color_1": "#132b20",
+        "bg_color_2": "#1c3d2d",
+        "surface_color": "#1c3d2d",
+        "purple": "#e85a2a",
+        "purple_light": "#e85a2a",
+        "purple_dark": "#1c3d2d",
+        "gold": "#e85a2a",
+        "gold_dark": "#e85a2a",
+        "text_color": "#ffffff",
+        "muted_text_color": "#f9efe4",
+        "heading_size": 25,
+        "heading_size_mobile": 21,
+        "text_size": 14,
+        "text_size_mobile": 14,
+        "newsletter_heading_size": 20,
+        "newsletter_heading_size_mobile": 18,
+        "icon_size": 48,
+        "icon_size_mobile": 44,
+        "margin_top": 0,
+        "content_padding_top": 36,
+        "content_padding_top_mobile": 28,
+        "bottom_space": 20
+      }
+    }
+  },
+  "order": [
+    "whatsapp_floating_fVq3WG",
+    "custom_liquid_RXHJN3",
+    "footer"
+  ]
+}

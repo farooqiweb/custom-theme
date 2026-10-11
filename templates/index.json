@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "responsive_hero_slider_nMPbVa": {
@@ -5,19 +14,29 @@
       "blocks": {
         "slide_biCwnC": {
           "type": "slide",
-          "disabled": true,
           "settings": {
+            "desktop_image": "shopify://shop_images/B_7.png",
             "heading": "",
             "description": "",
             "button_text": "",
             "button_link": ""
           }
         },
+        "slide_GRPWbB": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "heading": "Best Deals For You",
+            "description": "Discover our latest collection",
+            "button_text": "Shop Now",
+            "button_link": ""
+          }
+        },
         "slide_mwX4mB": {
           "type": "slide",
           "settings": {
-            "desktop_image": "shopify://shop_images/Untitled_1800_x_800_px_1.png",
-            "mobile_image": "shopify://shop_images/Add_a_heading.png",
+            "desktop_image": "shopify://shop_images/B_4.png",
+            "mobile_image": "shopify://shop_images/B_3.png",
             "heading": "",
             "description": "",
             "button_text": "",
@@ -27,6 +46,7 @@
       },
       "block_order": [
         "slide_biCwnC",
+        "slide_GRPWbB",
         "slide_mwX4mB"
       ],
       "name": "Responsive Hero Slider",
@@ -121,49 +141,49 @@
         "trust_badge_tqdrJP": {
           "type": "trust_badge",
           "settings": {
-            "badge_image": "shopify://shop_images/Glossy_Purple_Call_Icon_0653a4db-6e54-4ebf-8c91-9d12c4fc3a37.png",
+            "badge_image": "shopify://shop_images/Glossy_Orange_Call_Icon_e30a9f70-2f5b-4a9b-92d6-8fdaed004d56.png",
             "badge_title": "Customer support"
           }
         },
         "trust_badge_4yzmFi": {
           "type": "trust_badge",
           "settings": {
-            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_31_18_PM.png",
+            "badge_image": "shopify://shop_images/ChatGPT_Image_Oct_11_2026_12_05_00_PM.png",
             "badge_title": "Secure catalog"
           }
         },
         "trust_badge_RD6eRT": {
           "type": "trust_badge",
           "settings": {
-            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_26_2026_09_58_13_PM.png",
+            "badge_image": "shopify://shop_images/Glossy_Teal_and_Orange_100_Badge_1.png",
             "badge_title": "Product quality 100%"
           }
         },
         "trust_badge_WpjCMM": {
           "type": "trust_badge",
           "settings": {
-            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_30_55_PM.png",
+            "badge_image": "shopify://shop_images/ChatGPT_Image_Oct_11_2026_12_03_55_PM.png",
             "badge_title": "Cash on delivery free"
           }
         },
         "trust_badge_YbEN4d": {
           "type": "trust_badge",
           "settings": {
-            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_36_48_PM.png",
+            "badge_image": "shopify://shop_images/ChatGPT_Image_Oct_11_2026_12_05_13_PM.png",
             "badge_title": "Allow to open"
           }
         },
         "trust_badge_DXgyDh": {
           "type": "trust_badge",
           "settings": {
-            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_30_43_PM.png",
+            "badge_image": "shopify://shop_images/ChatGPT_Image_Oct_11_2026_12_03_41_PM.png",
             "badge_title": "Easy to return"
           }
         },
         "trust_badge_hnPHqn": {
           "type": "trust_badge",
           "settings": {
-            "badge_image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_08_31_10_PM.png",
+            "badge_image": "shopify://shop_images/ChatGPT_Image_Oct_11_2026_12_04_34_PM.png",
             "badge_title": "Fast delivery"
           }
         }
@@ -204,100 +224,6 @@
         "padding_bottom": 30,
         "mobile_padding_top": 24,
         "mobile_padding_bottom": 24
-      }
-    },
-    "deal_banner_responsive_ztejA3": {
-      "type": "deal-banner-responsive",
-      "blocks": {
-        "deal_title_9QGtAc": {
-          "type": "deal_title",
-          "settings": {
-            "text": "MEGA DEAL",
-            "align": "right",
-            "y_position": 20,
-            "nudge_desktop": -50,
-            "nudge_mobile": -10,
-            "size_desktop": 36,
-            "size_mobile": 12,
-            "pad_x_desktop": 33,
-            "pad_y_desktop": 8,
-            "pad_x_mobile": 14,
-            "pad_y_mobile": 3,
-            "bg": "#e85a2a",
-            "color": "#ffffff",
-            "animate": true,
-            "speed": 17,
-            "scale": 114
-          }
-        },
-        "countdown_TjFkHX": {
-          "type": "countdown",
-          "settings": {
-            "end_date": "2026-10-10T23:59:59+05:00",
-            "align": "right",
-            "y_position": 50,
-            "nudge_desktop": -25,
-            "nudge_mobile": 0,
-            "bg": "#e85a2a",
-            "color": "#ffffff",
-            "label_color": "#ffffff",
-            "number_size_desktop": 32,
-            "label_size_desktop": 12,
-            "number_size_mobile": 14,
-            "label_size_mobile": 5,
-            "pad_x_desktop": 20,
-            "pad_y_desktop": 9,
-            "pad_x_mobile": 3,
-            "pad_y_mobile": 2
-          }
-        },
-        "shop_button_fAME68": {
-          "type": "shop_button",
-          "settings": {
-            "text": "SHOP NOW",
-            "link": "shopify://products/kitchen-gadget-mega-deal-5-useful-kitchen-essentials-in-one-bundle",
-            "align": "right",
-            "y_position": 76,
-            "nudge_desktop": -80,
-            "nudge_mobile": -15,
-            "bg": "#e85a2a",
-            "color": "#ffffff",
-            "border": "#e85a2a",
-            "size_desktop": 32,
-            "size_mobile": 11,
-            "pad_x_desktop": 18,
-            "pad_y_desktop": 16,
-            "pad_x_mobile": 11,
-            "pad_y_mobile": 5,
-            "animate": true,
-            "speed": 16,
-            "scale": 109
-          }
-        }
-      },
-      "block_order": [
-        "deal_title_9QGtAc",
-        "countdown_TjFkHX",
-        "shop_button_fAME68"
-      ],
-      "name": "BestDeals same display",
-      "settings": {
-        "banner_image": "shopify://shop_images/ChatGPT_Image_Sep_30_2026_03_10_04_PM.png",
-        "banner_link": "shopify://products/kitchen-gadget-mega-deal-5-useful-kitchen-essentials-in-one-bundle",
-        "full_width": true,
-        "max_width": 1600,
-        "border_radius": 8,
-        "section_bg": "#ffffff",
-        "stage_bg": "#ffffff",
-        "layout_mode": "same",
-        "desktop_height": 190,
-        "mobile_height": 215,
-        "desktop_fit": "cover",
-        "mobile_fit": "contain",
-        "desktop_margin_top": 16,
-        "desktop_margin_bottom": 16,
-        "mobile_margin_top": 8,
-        "mobile_margin_bottom": 8
       }
     },
     "custom_responsive_hero_banner_7izejr": {
@@ -367,7 +293,6 @@
     "responsive_hero_slider_nMPbVa",
     "trust_badges_4mLh97",
     "product_badge_ticker_TxBQiM",
-    "deal_banner_responsive_ztejA3",
     "custom_responsive_hero_banner_7izejr",
     "product_section_UtKJ8f",
     "custom_liquid_Rwaiim"
