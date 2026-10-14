@@ -292,7 +292,7 @@
       ],
       "name": "BestDeals same display",
       "settings": {
-        "banner_image": "shopify://shop_images/Kitchen_Gadget_Deal_Banner.png",
+        "banner_image": "shopify://shop_images/Smart_Kitchen_Gadget_Deal_Banner.png",
         "banner_link": "shopify://products/kitchen-gadget-mega-deal-5-useful-kitchen-essentials-in-one-bundle",
         "full_width": true,
         "max_width": 1600,
