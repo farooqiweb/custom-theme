@@ -12,6 +12,17 @@
     "responsive_hero_slider_nMPbVa": {
       "type": "responsive-hero-slider",
       "blocks": {
+        "slide_3bWwTK": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/3_Kitchen_Essentials_Combo_Banner.png",
+            "mobile_image": "shopify://shop_images/bestdeal_banner_corrected_1000x700_d53b2807-20ba-4f43-b19e-10f5d85d4c0e.png",
+            "heading": "",
+            "description": "",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
         "slide_biCwnC": {
           "type": "slide",
           "settings": {
@@ -36,6 +47,7 @@
         }
       },
       "block_order": [
+        "slide_3bWwTK",
         "slide_biCwnC",
         "slide_mwX4mB"
       ],
