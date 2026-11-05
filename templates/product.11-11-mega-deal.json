@@ -388,24 +388,6 @@
             "shopify_video": "shopify://files/videos/1008(5).mp4"
           }
         },
-        "video_item_K7xkXq": {
-          "type": "video_item",
-          "settings": {
-            "title": "Knife sharpener 3-in-1",
-            "source_type": "shopify",
-            "external_video": "",
-            "shopify_video": "shopify://files/videos/1008(3).mp4"
-          }
-        },
-        "video_item_TULdBN": {
-          "type": "video_item",
-          "settings": {
-            "title": "Mini portable sealer",
-            "source_type": "shopify",
-            "external_video": "",
-            "shopify_video": "shopify://files/videos/1008(1).mp4"
-          }
-        },
         "video_item_BHgB4g": {
           "type": "video_item",
           "settings": {
@@ -419,8 +401,6 @@
       "block_order": [
         "video_item_7fGKtN",
         "video_item_xAmqwy",
-        "video_item_K7xkXq",
-        "video_item_TULdBN",
         "video_item_BHgB4g"
       ],
       "name": "VIP Product Videos",
@@ -428,14 +408,14 @@
         "heading": "Watch Our Kitchen Mega Deal in Action",
         "subheading": "See All 5 Amazing Kitchen Products in Action",
         "products": [],
-        "padding_top": 20,
-        "padding_bottom": 20,
+        "padding_top": 8,
+        "padding_bottom": 24,
         "desktop_columns": 5,
-        "desktop_gap": 16,
-        "desktop_row_gap": 16,
+        "desktop_gap": 30,
+        "desktop_row_gap": 38,
         "mobile_columns": 2,
-        "mobile_gap": 10,
-        "mobile_row_gap": 12
+        "mobile_gap": 0,
+        "mobile_row_gap": 18
       }
     }
   },
