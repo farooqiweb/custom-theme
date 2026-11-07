@@ -281,7 +281,7 @@
             "align": "right",
             "y_position": 78,
             "nudge_desktop": -10,
-            "nudge_mobile": -25,
+            "nudge_mobile": -15,
             "bg": "#ea5b2a",
             "color": "#ffffff",
             "border": "#ffffff",
