@@ -308,7 +308,7 @@
         "banner_link": "shopify://products/kitchen-gadget-mega-deal-5-useful-kitchen-essentials-in-one-bundle",
         "full_width": true,
         "max_width": 1600,
-        "border_radius": 25,
+        "border_radius": 30,
         "section_bg": "#ffffff",
         "stage_bg": "#ffffff",
         "layout_mode": "same",
@@ -318,8 +318,8 @@
         "mobile_fit": "contain",
         "desktop_margin_top": 0,
         "desktop_margin_bottom": 0,
-        "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0
+        "mobile_margin_top": 10,
+        "mobile_margin_bottom": 10
       }
     },
     "deal_banner_responsive_Ttbceq": {
@@ -413,8 +413,8 @@
         "mobile_fit": "contain",
         "desktop_margin_top": 0,
         "desktop_margin_bottom": 0,
-        "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0
+        "mobile_margin_top": 10,
+        "mobile_margin_bottom": 10
       }
     },
     "custom_responsive_hero_banner_7izejr": {
