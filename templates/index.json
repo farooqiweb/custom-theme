@@ -316,8 +316,8 @@
         "mobile_height": 120,
         "desktop_fit": "cover",
         "mobile_fit": "contain",
-        "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
+        "desktop_margin_top": 10,
+        "desktop_margin_bottom": 10,
         "mobile_margin_top": 10,
         "mobile_margin_bottom": 10
       }
@@ -411,8 +411,8 @@
         "mobile_height": 120,
         "desktop_fit": "cover",
         "mobile_fit": "contain",
-        "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
+        "desktop_margin_top": 10,
+        "desktop_margin_bottom": 10,
         "mobile_margin_top": 10,
         "mobile_margin_bottom": 10
       }
